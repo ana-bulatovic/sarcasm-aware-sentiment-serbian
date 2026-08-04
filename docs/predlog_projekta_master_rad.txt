@@ -1,0 +1,146 @@
+PRELOG PROJEKTA MASTER RADA
+===========================
+
+Radni naslov
+------------
+Analiza sentimenta sa detekcijom sarkazma za srpski jezik:
+kreiranje dataseta i poređenje single-task i multitask pristupa
+
+
+1. Motivacija i problem
+-----------------------
+Analiza sentimenta na kratkim korisničkim tekstovima (komentari, recenzije)
+često greši kada je poruka sarkastična: površinski “pozitivne” reči zapravo
+nose negativan stav, i obrnuto. Za engleski postoji više resursa i modela,
+dok je za srpski ova kombinacija (sentiment + sarkazam) još uvek slabo
+pokrivena, posebno kroz javno dostupne, ručno anotirane korpuse namenjene
+zajedničkom učenju oba zadatka.
+
+Cilj ovog rada nije “rešiti sarkazam uopšte”, već konkretno ispitati:
+da li i kako eksplicitna obrada sarkazma poboljšava klasifikaciju sentimenta
+na srpskom jeziku.
+
+
+2. Predmet i cilj istraživanja
+------------------------------
+Glavni cilj:
+1) kreirati kvalitetan, ručno anotirani dataset srpskih tekstova sa labelama
+   sentimenta i sarkazma;
+2) na tom datasetu uporediti:
+   - single-task modele (posebno sentiment, posebno sarkazam),
+   - multitask model (zajedničko učenje oba zadatka);
+3) analizirati uticaj sarkazma na tačnost sentimenta, posebno na teškim
+   primerima.
+
+Očekivani naučni doprinos:
+- novi (ili prošireni) srpski resurs sa dvostrukom anotacijom
+  (sentiment + sarkazam);
+- empirijsko poređenje single-task vs multitask pristupa;
+- analiza grešaka koja pokazuje kada sarkazam najviše utiče na sentiment.
+
+
+3. Istraživačka pitanja
+-----------------------
+P1: Koliko pouzdano se sentiment i sarkazam mogu klasifikovati na srpskim
+    kratkim tekstovima (baseline performanse)?
+
+P2: Da li multitask učenje (sentiment + sarkazam u istom modelu) poboljšava
+    klasifikaciju sentimenta u odnosu na single-task model?
+
+P3: Da li je poboljšanje (ako postoji) izraženije baš na sarkastičnim
+    primerima?
+
+P4 (sporedno, ako vreme dozvoli): Kako se jednostavan LLM pristup sa
+    promptovanjem (npr. zero-shot / few-shot) poredi sa fine-tune modelom
+    na istom test skupu?
+
+
+4. Dataset
+----------
+Planirani obim: do oko 2000 prirodnih srpskih tekstova
+
+Izvori (javno dostupni / licencirani, uz poštovanje uslova korišćenja):
+- postojeći korpus SentiComments.SR (CC BY-NC-SA 4.0) — tekstovi + mapiranje
+  postojećih labela gde je primenljivo;
+- javni YouTube komentari preko zvaničnog YouTube Data API;
+- po potrebi dodatni javni komentari/recenzije sa drugih društvenih mreža.
+
+Anotaciona šema:
+- sentiment: positive | neutral | negative
+- sarcasm: yes | no
+
+Napomena:
+Za deo podataka iz SentiComments.SR labele se mogu predpopuniti mapiranjem
+iz postojeće anotacije, uz proveru konzistentnosti sa šemom ovog rada.
+Za YouTube i ostale nove izvore predviđena je ručna anotacija.
+
+Pipeline koji se već razvija u projektu obuhvata:
+prikupljanje -> čišćenje (bez uklanjanja interpunkcije) -> deduplikaciju ->
+annotation CSV -> osnovne statistike.
+
+
+5. Metodologija (fokusirana, ne preširoka)
+------------------------------------------
+5.1. Priprema podataka
+- podela na train / validation / test (npr. stratifikovano po sentimentu
+  i/ili sarkazmu);
+- ista podela za sve modele (fer poređenje).
+
+5.2. Modeli (glavni eksperiment)
+- bazni encoder prilagođen srpskom / BCMS jeziku (npr. BERTić ili srodan
+  transformer);
+- Single-task A: samo sentiment (3 klase);
+- Single-task B: samo sarkazam (2 klase);
+- Multitask: zajednički encoder + dve klasifikacione glave
+  (sentiment i sarkazam).
+
+5.3. Evaluacija
+- accuracy, macro-F1 (i po klasama);
+- poseban prikaz rezultata na podskupu gde je sarcasm = yes;
+- matrica konfuzije i kratka kvalitativna analiza grešaka
+  (10–20 tipičnih primera).
+
+5.4. Opcioni sporedni eksperiment 
+- 1–2 lokalna LLM modela (npr. preko Ollama);
+- 2–3 prompt tehnike: zero-shot, few-shot, eventualno kratki chain-of-thought;
+- isključivo evaluacija na ISTOM test skupu, bez pretvaranja LLM dela
+  u glavnu temu rada.
+
+Ovaj sporedni deo služi kao dodatno poređenje.
+
+
+
+6. Očekivani rezultati i deliverables
+-------------------------------------
+- anotirani dataset + dokumentacija (data dictionary, uputstvo za anotaciju);
+- kod za prikupljanje/preprocesiranje i za trening/evaluaciju;
+- tabele rezultata: single-task vs multitask (+ opciono LLM baseline);
+- analiza: da li multitask pomaže sentimentu, i u kojim slučajevima;
+- tekst master rada sa jasno definisanim ograničenjima i budućim radom.
+
+
+7. Okvirni plan rada
+--------------------
+Faza 1 — Dataset i anotacija
+  Finalizacija prikupljanja, ručna anotacija, provera kvaliteta,
+  train/val/test split.
+
+Faza 2 — Baseline modeli
+  Single-task sentiment i single-task sarkazam.
+
+Faza 3 — Multitask model i poređenje
+  Trening multitask modela, evaluacija, analiza grešaka.
+
+Faza 4 (opciono) — LLM spot-provera
+  Mali broj prompt eksperimenata na istom test skupu.
+
+Faza 5 — Pisanje rada
+  Metodologija, rezultati, diskusija, zaključak.
+
+
+8. Rizici i mitigacija
+----------------------
+- Premalo sarkastičnih primera: ciljano prikupljanje izvora bogatijih
+  komentarima; praćenje raspodele tokom anotacije.
+- Neujednačena anotacija: jasne smernice + kalibracioni uzorak na početku.
+- Preširok obim: LLM deo ostaje opcion i ograničen.

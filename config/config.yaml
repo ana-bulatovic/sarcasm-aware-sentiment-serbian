@@ -1,0 +1,101 @@
+# =============================================================================
+# Konfiguracija pipeline-a za prikupljanje i pripremu srpskog dataseta
+# (analiza sentimenta sa detekcijom sarkazma)
+# =============================================================================
+
+dataset:
+  # Maksimalan broj finalnih uzoraka nakon preprocesiranja i deduplikacije
+  max_total_samples: 2000
+  # Koliko sirovih uzoraka prikupiti više od finalnog limita (buffer za filtriranje)
+  raw_oversample_factor: 1.5
+  # Dozvoljene vrednosti labela (ručna anotacija; pipeline ih NE popunjava)
+  sentiment_labels: [positive, neutral, negative]
+  sarcasm_labels: [yes, no]
+
+# Maksimalan broj uzoraka po izvoru u finalnom datasetu (pre balansiranja ukupnog limita)
+per_source_limits:
+  youtube: 1500
+  tiktok: 800
+  reddit: 400
+  reviews: 300
+
+paths:
+  raw_dir: data/raw
+  interim_dir: data/interim
+  processed_dir: data/processed
+  external_dir: data/external
+  annotation_csv: data/processed/annotation_template.csv
+  dataset_csv: data/processed/dataset.csv
+  stats_json: data/processed/dataset_stats.json
+
+language:
+  # Filtriranje na srpski (i blisko srodne BCMS varijante ako je omogućeno)
+  enabled: true
+  # dozvoljeni ISO 639-1 / langdetect kodovi
+  allowed_codes: [sr, hr, bs]
+  # Ako je true, tekstovi sa nepouzdanom detekcijom jezika se zadržavaju
+  keep_unknown: true
+  # Minimalna pouzdanost langdetect (0-1); ispod praga tretira se kao unknown
+  min_confidence: 0.5
+  # Minimalna dužina teksta (u karakterima) nakon čišćenja
+  min_text_length: 15
+  # Maksimalna dužina teksta (karakteri); duži se odbacuju
+  max_text_length: 2000
+
+collection:
+  # Koje kolektore pokrenuti u run_collection
+  # Dataset je samostalan (bez SentiComments.SR)
+  enabled_sources:
+    - youtube
+    - tiktok
+    - reddit
+    - reviews
+
+  youtube:
+    # Zahteva YOUTUBE_API_KEY u .env
+    # Lista video ID-eva (ili putanja do TXT fajla, jedan ID po liniji)
+    video_ids: []
+    video_ids_file: config/youtube_video_ids.txt
+    max_comments_per_video: 300
+    include_replies: false
+    # Samo tekst komentara; bez username / channelId autora
+    request_timeout_seconds: 30
+
+  tiktok:
+    # Nema browser scrapinga (ToS). Koristi se rucni / polu-rucni unos:
+    # scripts/append_tiktok.py --url "..." --comments-file putanja.txt
+    comments_dir: data/external/tiktok/
+    source_label: tiktok
+
+  reddit:
+    # Akademsko istraživanje: Reddit for Researchers (RFR).
+    # Ovaj kolektor NE scrape-uje Reddit i NE zaobilazi autentifikaciju.
+    # Podržava učitavanje odobrenog ekspora (JSONL/CSV) dobijenog formalnim putem.
+    export_path: data/external/reddit/export.jsonl
+    text_column: text
+    # Opciono: kolona sa ID-jem komentara (ako postoji u eksportu)
+    id_column: id
+
+  reviews:
+    # Generički učitavač javno dostupnih recenzija/komentara iz lokalnih fajlova
+    # (korisnik obezbeđuje podatke u skladu sa ToS izvora)
+    input_paths:
+      - data/external/reviews/
+    # Podržani formati: .csv, .tsv, .jsonl, .json, .txt
+    text_column: text
+    source_label: reviews
+
+preprocessing:
+  remove_emojis: true
+  normalize_whitespace: true
+  replace_urls_with: "[URL]"
+  strip_html: true
+  # Interpunkcija se ZADRŽAVA (važna za sarkazam)
+  remove_punctuation: false
+  remove_stopwords: false
+  # Latinica i ćirilica se NE konvertuju jedna u drugu
+  transliterate: false
+  # Exact duplicate detection na normalizovanom tekstu
+  deduplicate: true
+
+random_seed: 42

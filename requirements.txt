@@ -1,0 +1,8 @@
+# Pipeline dependencies (Python >= 3.10)
+PyYAML>=6.0
+python-dotenv>=1.0
+requests>=2.31
+pandas>=2.0
+langdetect>=1.0.9
+beautifulsoup4>=4.12
+tqdm>=4.66

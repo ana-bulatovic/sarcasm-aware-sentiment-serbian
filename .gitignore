@@ -216,3 +216,16 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Project-specific
+.env
+data/raw/**/*.jsonl
+data/interim/**
+data/processed/**
+data/external/senticomments_sr/*.txt
+data/external/reddit/*
+data/external/reviews/*
+!data/**/.gitkeep
+!data/external/reddit/.gitkeep
+!data/external/reviews/.gitkeep
+!data/external/senticomments_sr/.gitkeep
