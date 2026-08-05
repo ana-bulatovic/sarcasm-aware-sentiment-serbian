@@ -12,18 +12,20 @@ def platform_from_source(source: str) -> str:
     s = (source or "").strip().lower()
     if not s:
         return "unknown"
-    if s in {"youtube", "tiktok", "reddit", "reviews"}:
+    if s in {"youtube", "tiktok", "instagram", "reddit", "reviews"}:
         return s
     if "youtube.com" in s or "youtu.be" in s:
         return "youtube"
     if "tiktok.com" in s:
         return "tiktok"
+    if "instagram.com" in s:
+        return "instagram"
     if "reddit.com" in s:
         return "reddit"
     return s
 
 
-PLATFORM_ORDER = ("youtube", "tiktok", "reddit", "reviews")
+PLATFORM_ORDER = ("youtube", "tiktok", "instagram", "reddit", "reviews")
 
 
 def platform_sort_key(source: str) -> tuple[int, str]:

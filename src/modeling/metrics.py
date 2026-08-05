@@ -64,7 +64,7 @@ def pack_single_task_metrics(
     overall = classification_metrics(
         y_true, y_pred, labels=labels, target_names=label_names
     )
-    sarcasm_mask = [str(x).strip().lower() == "yes" for x in sarcasm_raw]
+    sarcasm_mask = [str(x).strip() == "1" for x in sarcasm_raw]
     on_sarcastic = subset_where(
         y_true, y_pred, sarcasm_mask, labels=labels, target_names=label_names
     )

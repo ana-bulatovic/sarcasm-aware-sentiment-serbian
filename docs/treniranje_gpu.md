@@ -32,23 +32,51 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### PyTorch sa CUDA (važno)
+### PyTorch + CUDA (usklađivanje verzija)
 
-`requirements.txt` često stavi CPU torch. Na GPU mašini instaliraj CUDA build, npr. za CUDA 12.1:
+`pip install -r requirements.txt` **ne** instalira torch — na GPU ga stavljaš ručno da se poklopi sa drajverom.
 
+**1) Proveri šta drajver podržava:**
 ```bash
-pip install torch --index-url https://download.pytorch.org/whl/cu121
+nvidia-smi
+```
+Gore desno piše npr. `CUDA Version: 12.4` — to je **maksimum** koji drajver dozvoljava (ne moraš imati isti CUDA toolkit instaliran).
+
+**2) Obriši stari / pogrešan torch:**
+```bash
+pip uninstall -y torch torchvision torchaudio
 ```
 
-Za drugu CUDA verziju vidi: https://pytorch.org/get-started/locally/
+**3) Instaliraj odgovarajući wheel** (biraj ≤ verziji iz `nvidia-smi`):
 
-### Provera GPU-a
+| nvidia-smi CUDA | Komanda |
+|-----------------|--------|
+| 12.1+ / **12.2** | `pip install "torch>=2.6" --index-url https://download.pytorch.org/whl/cu121` |
+| 12.4+ | `pip install "torch>=2.6" --index-url https://download.pytorch.org/whl/cu124` |
+| 12.6+ | `pip install "torch>=2.6" --index-url https://download.pytorch.org/whl/cu126` |
+| 11.8+ | `pip install "torch>=2.6" --index-url https://download.pytorch.org/whl/cu118` |
 
+Ako nisi sigurna, za novije kartice najčešće radi **cu124** ili **cu121**.
+
+Alternativa (conda):
 ```bash
-python -c "import torch; print('cuda:', torch.cuda.is_available()); print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'NEMA GPU')"
+conda install pytorch pytorch-cuda=12.1 -c pytorch -c nvidia
 ```
 
-Mora: `cuda: True` i ime kartice.
+Zvanični birač: https://pytorch.org/get-started/locally/
+
+**4) Provera:**
+```bash
+python -c "import torch; print(torch.__version__); print('cuda:', torch.cuda.is_available()); print(torch.version.cuda); print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else '-')"
+```
+
+Mora: `cuda: True`. Ako je `False`, torch je i dalje CPU build ili drajver/CUDA wheel ne odgovaraju — ponovi korake 1–3.
+
+**Česte greške:**
+- `pip install torch` sa PyPI → često **CPU** verzija
+- torch `cu121` na drajveru koji javlja samo CUDA 11.x → ne radi
+- mešanje conda torch + pip torch u istom env-u → ukloni jedno
+- `ValueError: ... upgrade torch to at least v2.6` → noviji `transformers` zahteva torch≥2.6; reinstaliraj sa `"torch>=2.6"` i odgovarajućim `cuXXX` index-url
 
 ---
 
@@ -136,6 +164,6 @@ python scripts/modeling/predict.py --task multitask --file moji_tekstovi.txt
 |---------|-------------|
 | `cuda: False` | Instaliraj CUDA torch (korak 2), proveri NVIDIA drajver (`nvidia-smi`) |
 | `Nedostaje split fajl` | Prvo `prepare_splits.py` |
-| `Nema validno anotiranih` | Proveri CSV: `sentiment` ∈ positive/neutral/negative, `sarcasm` ∈ yes/no |
+| `Nema validno anotiranih` | Proveri CSV: `sentiment` ∈ 1/0/-1, `sarcasm` ∈ 1/0 |
 | OOM (nestalo VRAM) | Smanji `--batch-size` (npr. 8 ili 4) |
 | Sporo / loši skorovi | Malo podataka ili premalo epoha — prvo ~1500–2000 anotiranih, pa 4+ epohe |

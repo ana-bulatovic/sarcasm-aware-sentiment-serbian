@@ -74,6 +74,7 @@ def build_annotation_dataset(config: dict[str, Any]) -> list[dict[str, str]]:
             id=f"sr-{idx:05d}",
             source=str(rec.get("source", "")),
             text=str(rec.get("text", "")),
+            tip=str(rec.get("tip") or ""),
             sentiment=str(rec.get("sentiment") or ""),
             sarcasm=str(rec.get("sarcasm") or ""),
         ).to_dict()

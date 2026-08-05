@@ -1,5 +1,5 @@
 {
-  "total_texts": 511,
+  "total_texts": 512,
   "by_source": {
     "https://www.youtube.com/watch?v=-_xotyeinSc": 97,
     "https://www.youtube.com/watch?v=00onqy5JYzE": 27,
@@ -9,34 +9,35 @@
     "https://www.youtube.com/watch?v=NzsWabihv54": 12,
     "https://www.youtube.com/watch?v=Ps4AgSVrBm0": 29,
     "https://www.youtube.com/watch?v=T3eoijKZrNs": 29,
+    "https://www.youtube.com/watch?v=hpKAFB9QUZc": 1,
     "https://www.youtube.com/watch?v=i_K0Z3jeZL0": 89,
     "https://www.youtube.com/watch?v=t1Jzut6esII": 65
   },
   "sentiment": {
-    "positive": 236,
-    "neutral": 154,
-    "negative": 121,
-    "unlabeled": 0,
+    "1": 236,
+    "0": 154,
+    "-1": 121,
+    "unlabeled": 1,
     "other": 0
   },
   "sarcasm": {
-    "yes": 127,
-    "no": 384,
-    "unlabeled": 0,
+    "1": 127,
+    "0": 384,
+    "unlabeled": 1,
     "other": 0
   },
   "sentiment_sarcasm_combinations": {
-    "positive/yes": 24,
-    "positive/no": 212,
-    "neutral/yes": 45,
-    "neutral/no": 109,
-    "negative/yes": 58,
-    "negative/no": 63,
-    "unlabeled_pair": 0
+    "1/1": 24,
+    "1/0": 212,
+    "0/1": 45,
+    "0/0": 109,
+    "-1/1": 58,
+    "-1/0": 63,
+    "unlabeled_pair": 1
   },
   "annotation_progress": {
     "fully_labeled": 511,
-    "missing_sentiment": 0,
-    "missing_sarcasm": 0
+    "missing_sentiment": 1,
+    "missing_sarcasm": 1
   }
 }

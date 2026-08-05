@@ -26,11 +26,18 @@ Ovaj projekat prikuplja **javno dostupne** tekstove za **nekomercijalno akademsk
 - Akademski pristup: [TikTok Research Tools / Research API](https://developers.tiktok.com/products/research-api) uz prijavu i odobrenje.
 - U ovom projektu: polu-ručni unos preko `scripts/collection/append_tiktok.py` (korisnik otvara URL i kopira javne tekstove komentara u TXT).
 
+### Instagram
+
+- **Automatski login + scraping nije podržan** (krši Instagram/Meta ToS).
+- Zvaničan put za aplikacije: [Meta Graph API](https://developers.facebook.com/docs/instagram-platform) uz app review / dozvole.
+- U ovom projektu: polu-ručni unos preko `scripts/collection/append_instagram.py` (isti obrazac kao TikTok).
+
 ### Reddit
 
 - Za akademsko istraživanje Reddit navodi da je zvaničan put **Reddit for Researchers (RFR)**.
 - Pipeline **ne** implementira scraping ni neovlašćeni API pristup.
 - `RedditExportCollector` učitava eksport koji istraživač dobije **odobrenim** putem.
+- Brži put za mali broj threadova: polu-ručni unos preko `scripts/collection/append_reddit.py`.
 
 ### Javne recenzije (`reviews`)
 

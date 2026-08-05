@@ -6,31 +6,29 @@ Kodiranje: **UTF-8 with BOM** (`utf-8-sig`) radi lakog otvaranja u Excel-u.
 
 | Kolona | Tip | Obavezno | Opis | Dozvoljene vrednosti |
 |--------|-----|----------|------|----------------------|
-| `id` | string | da | Stabilni identifikator uzorka u ovom datasetu | Format `sr-00001`, `sr-00002`, … |
-| `source` | string | da | Pun URL snimka/videa sa kog je tekst uzet | npr. `https://www.youtube.com/watch?v=...` ili TikTok URL |
-| `text` | string | da | Očišćen srpski tekst (latinica ili ćirilica) | Slobodan tekst; interpunkcija sačuvana |
-| `sentiment` | string | ručno / predpopunjeno | Polaritet iskaza | `positive`, `neutral`, `negative` (prazno dok nije anotirano; za `senticomments_sr` se mapira iz originalnih labela) |
-| `sarcasm` | string | ručno / predpopunjeno | Da li je tekst sarkastičan | `yes`, `no` (za `senticomments_sr`: sufiks `s` → `yes`) |
+| `id` | string | da | Stabilni identifikator uzorka | Format `sr-00001`, … |
+| `source` | string | da | Pun URL snimka/videa | npr. YouTube / TikTok / Reddit URL |
+| `text` | string | da | Očišćen srpski tekst | Interpunkcija sačuvana |
+| `tip` | string | da | Domen / tip sadržaja | npr. `filmovi` (proširivo) |
+| `sentiment` | string/int | ručno | Polaritet (preneseni stav) | `1` (pozitivno), `0` (neutralno), `-1` (negativno); prazno dok nije anotirano |
+| `sarcasm` | string/int | ručno | Da li je tekst sarkastičan | `1` (da), `0` (ne) |
 
 ## Napomene
 
-- Kolone `sentiment` i `sarcasm` se **ručno** popunjavaju (YouTube/TikTok/ostalo).
-- Redosled redova: prvo `youtube`, zatim `tiktok`, zatim ostali izvori (pri rebuild-u).
-- Ne koristite druge vrednosti (npr. `pozitivno`, `1`, `true`) — samo navedene engleske oznake radi konzistentnosti u kodu.
-- Latinica i ćirilica se **ne** mešaju transliteracijom; ostaju kakve jesu u izvornom tekstu.
-- `source` označava kanal prikupljanja, ne autora. Lični identifikatori (username, email) se ne čuvaju.
-- Latinica i ćirilica se **ne** mešaju transliteracijom; ostaju kakve jesu u izvornom tekstu.
-- `source` označava kanal prikupljanja, ne autora. Lični identifikatori (username, email) se ne čuvaju.
+- Kolone `sentiment` i `sarcasm` se **ručno** popunjavaju.
+- Ne koristite stare oznake (`positive`/`yes`) — samo `1` / `0` / `-1`.
+- Latinica i ćirilica se ne transliterišu.
+- `source` je kanal prikupljanja, ne autor (bez username-a).
 
 ## Šest kombinacija labela
 
 | sentiment | sarcasm | Značenje (kratko) |
 |-----------|---------|-------------------|
-| positive | no | Iskreno pozitivan stav |
-| positive | yes | Pozitivan površinski ton, sarkazam (često zapravo negativna namera) |
-| neutral | no | Neutralan, bez sarkazma |
-| neutral | yes | Neutralan sadržaj izrečen sarkastično |
-| negative | no | Iskreno negativan stav |
-| negative | yes | Negativan ton sa sarkazmom / sarkastična kritika |
+| 1 | 0 | Iskreno pozitivan stav |
+| 1 | 1 | Namenjeni pozitivni stav izražen sarkastično |
+| 0 | 0 | Neutralan, bez sarkazma |
+| 0 | 1 | Neutralan sadržaj izrečen sarkastično |
+| -1 | 0 | Iskreno negativan stav |
+| -1 | 1 | Negativan stav sa sarkazmom (npr. „bravo majstore“) |
 
 Detaljna pravila: [annotation_guidelines.md](annotation_guidelines.md).

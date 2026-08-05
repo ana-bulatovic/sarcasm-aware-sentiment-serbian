@@ -71,9 +71,9 @@ def draft_annotate(text: str) -> tuple[str, str]:
     raw = normalize_whitespace(text or "")
     folded = _fold(raw)
     if not raw or len(raw) < 8:
-        return "neutral", "no"
+        return "0", "0"
     if TIMESTAMP_RE.match(raw) and len(raw) < 40:
-        return "neutral", "no"
+        return "0", "0"
 
     pos = _has_any(folded, POSITIVE)
     neg = _has_any(folded, NEGATIVE)
@@ -96,28 +96,28 @@ def draft_annotate(text: str) -> tuple[str, str]:
 
     if is_sarcastic:
         if neg or pos:
-            return "negative", "yes"
-        return "neutral", "yes"
+            return "-1", "1"
+        return "0", "1"
 
     if pos and neg:
         p_hits = sum(1 for p in POSITIVE if p in folded)
         n_hits = sum(1 for n in NEGATIVE if n in folded)
         if n_hits > p_hits:
-            return "negative", "no"
+            return "-1", "0"
         if p_hits > n_hits:
-            return "positive", "no"
-        return "neutral", "no"
+            return "1", "0"
+        return "0", "0"
     if pos:
-        return "positive", "no"
+        return "1", "0"
     if neg:
-        return "negative", "no"
+        return "-1", "0"
 
     questionish = raw.strip().endswith("?") or folded.startswith(
         ("zašto", "zasto", "kako", "da li", "jel ", "ko ", "šta ", "sta ")
     )
     if questionish:
-        return "neutral", "no"
-    return "neutral", "no"
+        return "0", "0"
+    return "0", "0"
 
 
 def _ollama_annotate_batch(items: list[dict[str, str]], model: str) -> dict[str, tuple[str, str]]:
@@ -125,13 +125,13 @@ def _ollama_annotate_batch(items: list[dict[str, str]], model: str) -> dict[str,
     prompt = f"""Ti anotiras srpske komentare za master rad.
 Za SVAKI red vrati TACNO jedan JSON objekat po liniji (JSONL), polja:
 id, sentiment, sarcasm
-sentiment: positive|neutral|negative
-sarcasm: yes|no
+sentiment: 1|0|-1
+sarcasm: 1|0
 
 Pravila:
 - sentiment = preneseni/namerni stav, ne samo povrsinske reci
-- sarkasticni kompliment (npr. "bravo" uz kritiku) => sentiment=negative, sarcasm=yes
-- sarcasm=yes SAMO ako je jasan podsmeh; ako nisi siguran => no
+- sarkasticni kompliment (npr. "bravo" uz kritiku) => sentiment=-1, sarcasm=1
+- sarcasm=yes SAMO ako je jasan podsmeh; ako nisi siguran => 0
 - neutral za cinjenice, timestamp, pitanja bez stava
 - bez objasnjenja, samo JSONL
 
@@ -166,7 +166,7 @@ Komentari:
         rid = str(obj.get("id", "")).strip()
         sent = str(obj.get("sentiment", "")).strip().lower()
         sarc = str(obj.get("sarcasm", "")).strip().lower()
-        if rid and sent in {"positive", "neutral", "negative"} and sarc in {"yes", "no"}:
+        if rid and sent in {"1", "0", "-1"} and sarc in {"1", "0"}:
             result[rid] = (sent, sarc)
     return result
 

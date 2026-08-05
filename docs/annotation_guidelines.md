@@ -4,8 +4,9 @@ Ovaj dokument definiše kako anotirati kolone `sentiment` i `sarcasm` u fajlu `d
 
 ## Dozvoljene vrednosti
 
-- **sentiment:** `positive` | `neutral` | `negative`
-- **sarcasm:** `yes` | `no`
+- **sentiment:** `1` (positive) | `0` (neutral) | `-1` (negative)
+- **sarcasm:** `1` (yes) | `0` (no)
+- **tip:** npr. `filmovi` (domen sadržaja)
 
 Ne ostavljajte druge oznake. Ako ste u potpunoj nedoumici, ostavite polje prazno i označite red u posebnom listu „za diskusiju“ (npr. komentar u Sheets-u).
 
@@ -22,8 +23,8 @@ Ne ostavljajte druge oznake. Ako ste u potpunoj nedoumici, ostavite polje prazno
 ### Preporučeni redosled
 
 1. Pročitajte tekst.
-2. Odlučite da li ima **sarkazma** (`yes`/`no`).
-3. Odlučite **sentiment** poruke (`positive`/`neutral`/`negative`).
+2. Odlučite da li ima **sarkazma** (`1`/`0`).
+3. Odlučite **sentiment** poruke (`1`/`0`/`-1`).
 4. Proverite da li kombinacija ima smisla (vidi teške slučajeve ispod).
 
 ---
@@ -32,9 +33,9 @@ Ne ostavljajte druge oznake. Ako ste u potpunoj nedoumici, ostavite polje prazno
 
 | Labela | Kada koristiti |
 |--------|----------------|
-| `positive` | Pohvala, zadovoljstvo, odobravanje, pozitivna ocena |
-| `neutral` | Činjenično, opisno, pitanje bez jasnog stava, mešovito bez dominante |
-| `negative` | Kritika, nezadovoljstvo, odbacivanje, negativna ocena |
+| `1` | Pohvala, zadovoljstvo, odobravanje, pozitivna ocena |
+| `0` | Činjenično, opisno, pitanje bez jasnog stava, mešovito bez dominante |
+| `-1` | Kritika, nezadovoljstvo, odbacivanje, negativna ocena |
 
 ---
 
@@ -42,12 +43,12 @@ Ne ostavljajte druge oznake. Ako ste u potpunoj nedoumici, ostavite polje prazno
 
 | Labela | Kada koristiti |
 |--------|----------------|
-| `yes` | Postoji jasan sarkastični / podsmešljivi prenos značenja |
-| `no` | Doslovno ili neutrano figurativno izražavanje bez sarkazma |
+| `1` | Postoji jasan sarkastični / podsmešljivi prenos značenja |
+| `0` | Doslovno ili neutrano figurativno izražavanje bez sarkazma |
 
 **Ironija vs sarkazam:** Ironija je širi pojam (suprotnost između rečenog i mišljenog). Sarkazam je tipično **oštriji, podsmešljiv, usmeren** (često prema osobi, delu, pojavi). U ovom projektu:
-- jasno podsmešljive / „ubodne“ ironije → `sarcasm = yes`
-- blaga stilska ironija bez jasnog uboda može biti granična — ako niste sigurni, preferirajte konzervativno `no` i zabeležite primer za kasniju kalibraciju
+- jasno podsmešljive / „ubodne“ ironije → `sarcasm = 1`
+- blaga stilska ironija bez jasnog uboda može biti granična — ako niste sigurni, preferirajte konzervativno `0` i zabeležite primer za kasniju kalibraciju
 
 ---
 
@@ -56,29 +57,29 @@ Ne ostavljajte druge oznake. Ako ste u potpunoj nedoumici, ostavite polje prazno
 ### 1) Pozitivan sentiment izražen sarkastično
 
 Često: površinski kompliment, a namera je kritika.  
-**Preporuka:** `sentiment = negative` (prava evaluacija), `sarcasm = yes`.  
+**Preporuka:** `sentiment = -1` (prava evaluacija), `sarcasm = 1`.  
 Ako anotaciona šema zahteva „površinski polaritet“, to ovde **nije** slučaj — pratimo **preneseni** stav.
 
 | Tekst | sentiment | sarcasm |
 |-------|-----------|---------|
-| Baš ste genijalni što ste ovo pustili u bioskope. | negative | yes |
-| Bravo, još jedan „remek-delo“ od 2 sata dosade. | negative | yes |
-| Одлично, баш ми је требао још један наставак који ништа не доноси. | negative | yes |
+| Baš ste genijalni što ste ovo pustili u bioskope. | -1 | 1 |
+| Bravo, još jedan „remek-delo“ od 2 sata dosade. | -1 | 1 |
+| Одлично, баш ми је требао још један наставак који ништа не доноси. | -1 | 1 |
 
 ### 2) Negativan sentiment izražen sarkastično
 
-Eksplicitna negativnost + sarkazam / podsmех.
+Eksplicitna negativnost + sarkazam / podsmeh.
 
 | Tekst | sentiment | sarcasm |
 |-------|-----------|---------|
-| Naravno da je odvratno — ko bi drugo očekivao od ovog režisera? | negative | yes |
-| Šta ćemo, katastrofa kao i uvek, zar ne? | negative | yes |
+| Naravno da je odvratno — ko bi drugo očekivao od ovog režisera? | -1 | 1 |
+| Šta ćemo, katastrofa kao i uvek, zar ne? | -1 | 1 |
 
 Bez sarkazma:
 
 | Tekst | sentiment | sarcasm |
 |-------|-----------|---------|
-| Film mi se nije dopao, spor je i dosadan. | negative | no |
+| Film mi se nije dopao, spor je i dosadan. | -1 | 0 |
 
 ### 3) Neutralne sarkastične izjave
 
@@ -86,10 +87,10 @@ Sarkazam postoji, ali nema jasne pohvale ni kritike prema objektu (ili je stav n
 
 | Tekst | sentiment | sarcasm |
 |-------|-----------|---------|
-| Ah da, opet „najbolja večer ikada“ — kao i svaki utorak. | neutral | yes |
-| Jeste, baš smo mi ovde stručnjaci za sve. | neutral | yes |
+| Ah da, opet „najbolja večer ikada“ — kao i svaki utorak. | 0 | 1 |
+| Jeste, baš smo mi ovde stručnjaci za sve. | 0 | 1 |
 
-Ako je meta jasno negativno ocenjena, pomerite ka `negative` + `yes`.
+Ako je meta jasno negativno ocenjena, pomerite ka `-1` + `1`.
 
 ### 4) Retorička pitanja
 
@@ -97,27 +98,27 @@ Retoričko pitanje **nije automatski** sarkazam.
 
 | Tekst | sentiment | sarcasm | Objašnjenje |
 |-------|-----------|---------|-------------|
-| Zašto uopšte snimaju ovakve filmove? | negative | no | Kritika bez sarkazma |
-| Zašto da ne volimo ovo remek-delo od nula zvezda? | negative | yes | Retorika + sarkazam |
-| Da li je neko gledao hrvatsku sinhronizaciju? | neutral | no | Informativno pitanje |
+| Zašto uopšte snimaju ovakve filmove? | -1 | 0 | Kritika bez sarkazma |
+| Zašto da ne volimo ovo remek-delo od nula zvezda? | -1 | 1 | Retorika + sarkazam |
+| Da li je neko gledao hrvatsku sinhronizaciju? | 0 | 0 | Informativno pitanje |
 
 ### 5) Ironija naspram sarkazma
 
 | Tekst | Predlog | Napomena |
 |-------|---------|----------|
-| Lepo vreme za šetnju, a napolju pljusak. | neutral / no ili yes | Blaga situaciona ironija; `yes` samo ako zvuči podsmešljivo |
-| Svaka čast produkciji na ovom promašaju. | negative / yes | Klasičan sarkazam |
+| Lepo vreme za šetnju, a napolju pljusak. | 0 / 0 ili 1 | Blaga situaciona ironija; `1` samo ako zvuči podsmešljivo |
+| Svaka čast produkciji na ovom promašaju. | -1 / 1 | Klasičan sarkazam |
 
 ### 6) Ambiguous / granični slučajevi
 
 | Tekst | Predlog | Napomena |
 |-------|---------|----------|
-| Ma dobro je... | neutral / no | Nejasno; bez jačeg signala ne forsiraјte sarkazam |
-| „Dobro“ je. | negative / yes | Navodnici često signaliziraju distancu / sarkazam |
-| Super!!! | positive / no | Pretjerani uzvičnici sami po sebi nisu dovoljni |
-| Super!!! (posle opisa katastrofe u threadu) | negative / yes | Kontext pomaže; ako kontekst nije u tekstu, budite oprezni |
+| Ma dobro je... | 0 / 0 | Nejasno; bez jačeg signala ne forsirajte sarkazam |
+| „Dobro“ je. | -1 / 1 | Navodnici često signaliziraju distancu / sarkazam |
+| Super!!! | 1 / 0 | Pretjerani uzvičnici sami po sebi nisu dovoljni |
+| Super!!! (posle opisa katastrofe u threadu) | -1 / 1 | Kontext pomaže; ako kontekst nije u tekstu, budite oprezni |
 
-Ako tekst **sam po sebi** ne nosi dovoljno signala, birajte konzervativnije labele (`sarcasm = no`) ili ostavite prazno za kasniju konsultaciju.
+Ako tekst **sam po sebi** ne nosi dovoljno signala, birajte konzervativnije labele (`sarcasm = 0`) ili ostavite prazno za kasniju konsultaciju.
 
 ---
 

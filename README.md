@@ -64,6 +64,23 @@ TikTok **zabranjuje scraping**. Zvaničan akademski put: [Research API](https://
 python scripts/collection/append_tiktok.py --url "https://www.tiktok.com/@nesto/video/123" --comments-file data/external/tiktok/comments_paste.txt
 ```
 
+### Reddit (polu-ručno)
+
+```bash
+python scripts/collection/append_reddit.py --url "https://www.reddit.com/r/serbia/comments/...." --comments-file data/external/reddit/comments_paste.txt
+```
+
+Dobri subredditi za srpski: npr. `r/serbia`, `r/askserbia` (javni threadovi).  
+Veći akademski eksport: Reddit for Researchers → `data/external/reddit/export.jsonl`.
+
+### Instagram (polu-ručno, bez scrapinga)
+
+Isto kao TikTok — **nema** automatskog logina ni scrapinga (Instagram ToS).
+
+```bash
+python scripts/collection/append_instagram.py --url "https://www.instagram.com/p/SHORTCODE/" --comments-file data/external/instagram/comments_paste.txt
+```
+
 ### Statistike i split
 
 ```bash
@@ -92,7 +109,7 @@ python scripts/modeling/evaluate.py --task sentiment --split test
 
 Encoder: `classla/bcms-bertic` (podešava se u `config/config.yaml` → `modeling`).  
 Rezultati: `models/<task>/best.pt`, `metrics.json`, `test_metrics.json`, plus `models/comparison.json` za `--task all`.  
-Metrike: accuracy, macro-F1, i posebno na podskupu `sarcasm=yes`.
+Metrike: accuracy, macro-F1, i posebno na podskupu `sarcasm=1`.
 
 ## Konfiguracija
 
@@ -104,14 +121,16 @@ Metrike: accuracy, macro-F1, i posebno na podskupu `sarcasm=yes`.
 |-------|---------|
 | YouTube | Data API v3 |
 | TikTok | polu-ručni unos (`append_tiktok.py`) / Research API ako odobre |
-| Reddit | samo odobreni RFR eksport |
+| Instagram | polu-ručni unos (`append_instagram.py`) / Meta Graph API ako odobre |
+| Reddit | polu-ručni (`append_reddit.py`) / RFR eksport |
 | Reviews | lokalni CSV/JSONL/TXT |
 
 Detalji: [`docs/collection_ethics.md`](docs/collection_ethics.md).
 
 ## Labele (ručno)
 
-- `sentiment`: `positive` | `neutral` | `negative`
-- `sarcasm`: `yes` | `no`
+- `tip`: npr. `filmovi`
+- `sentiment`: `1` | `0` | `-1`
+- `sarcasm`: `1` | `0`
 
 Vidi: [`docs/data_dictionary.md`](docs/data_dictionary.md), [`docs/annotation_guidelines.md`](docs/annotation_guidelines.md).

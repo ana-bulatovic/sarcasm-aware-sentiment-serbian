@@ -130,6 +130,7 @@ def append_texts_to_annotation(
                 id=f"sr-{next_id:05d}",
                 source=source,
                 text=str(rec["text"]),
+                tip=str(meta.get("tip") or ""),
                 sentiment="",
                 sarcasm="",
             ).to_dict()

@@ -9,13 +9,14 @@ dataset:
   # Koliko sirovih uzoraka prikupiti više od finalnog limita (buffer za filtriranje)
   raw_oversample_factor: 1.5
   # Dozvoljene vrednosti labela (ručna anotacija; pipeline ih NE popunjava)
-  sentiment_labels: [positive, neutral, negative]
-  sarcasm_labels: [yes, no]
+  sentiment_labels: ["1", "0", "-1"]
+  sarcasm_labels: ["1", "0"]
 
 # Maksimalan broj uzoraka po izvoru u finalnom datasetu (pre balansiranja ukupnog limita)
 per_source_limits:
   youtube: 1500
   tiktok: 800
+  instagram: 800
   reddit: 400
   reviews: 300
 
@@ -49,6 +50,7 @@ collection:
   enabled_sources:
     - youtube
     - tiktok
+    - instagram
     - reddit
     - reviews
 
@@ -68,6 +70,13 @@ collection:
     comments_dir: data/external/tiktok/
     source_label: tiktok
 
+  instagram:
+    # Nema logina/scrapinga (ToS). Polu-rucni unos kao TikTok:
+    # scripts/collection/append_instagram.py --url "..." --comments-file putanja.txt
+    # Zvanicni put za app-ove: Meta Graph API (sa odobrenjem).
+    comments_dir: data/external/instagram/
+    source_label: instagram
+
   reddit:
     # Akademsko istraživanje: Reddit for Researchers (RFR).
     # Ovaj kolektor NE scrape-uje Reddit i NE zaobilazi autentifikaciju.
@@ -76,6 +85,9 @@ collection:
     text_column: text
     # Opciono: kolona sa ID-jem komentara (ako postoji u eksportu)
     id_column: id
+    # Polu-rucni unos (kao TikTok):
+    # scripts/collection/append_reddit.py --url "..." --comments-file putanja.txt
+    comments_dir: data/external/reddit/
 
   reviews:
     # Generički učitavač javno dostupnih recenzija/komentara iz lokalnih fajlova
