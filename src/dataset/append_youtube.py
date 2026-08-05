@@ -72,7 +72,7 @@ def append_new_youtube_videos(
     if not annotation_path.exists():
         raise FileNotFoundError(
             f"Nema {annotation_path}. Prvo napravi osnovni dataset "
-            "(python scripts/run_pipeline.py), pa tek onda append."
+            "(python scripts/collection/run_pipeline.py), pa tek onda append."
         )
 
     df = load_csv(annotation_path)

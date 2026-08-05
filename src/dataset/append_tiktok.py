@@ -114,7 +114,7 @@ def append_tiktok_comments(
         else:
             print(
                 "OK — sačuvaj komentare u fajl pa pokreni:\n"
-                f'  python scripts/append_tiktok.py --url "{url}" '
+                f'  python scripts/collection/append_tiktok.py --url "{url}" '
                 f'--comments-file "{tip}"'
             )
             return []

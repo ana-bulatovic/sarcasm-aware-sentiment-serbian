@@ -24,7 +24,7 @@ Ovaj projekat prikuplja **javno dostupne** tekstove za **nekomercijalno akademsk
 
 - **Automatski browser scraping nije podržan** (krši TikTok ToS i često zahteva zaobilaženje zaštita).
 - Akademski pristup: [TikTok Research Tools / Research API](https://developers.tiktok.com/products/research-api) uz prijavu i odobrenje.
-- U ovom projektu: polu-ručni unos preko `scripts/append_tiktok.py` (korisnik otvara URL i kopira javne tekstove komentara u TXT).
+- U ovom projektu: polu-ručni unos preko `scripts/collection/append_tiktok.py` (korisnik otvara URL i kopira javne tekstove komentara u TXT).
 
 ### Reddit
 

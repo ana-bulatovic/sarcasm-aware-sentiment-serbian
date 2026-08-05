@@ -27,6 +27,7 @@ paths:
   annotation_csv: data/processed/annotation_template.csv
   dataset_csv: data/processed/dataset.csv
   stats_json: data/processed/dataset_stats.json
+  splits_dir: data/processed/splits
 
 language:
   # Filtriranje na srpski (i blisko srodne BCMS varijante ako je omogućeno)
@@ -63,7 +64,7 @@ collection:
 
   tiktok:
     # Nema browser scrapinga (ToS). Koristi se rucni / polu-rucni unos:
-    # scripts/append_tiktok.py --url "..." --comments-file putanja.txt
+    # scripts/collection/append_tiktok.py --url "..." --comments-file putanja.txt
     comments_dir: data/external/tiktok/
     source_label: tiktok
 
@@ -99,3 +100,24 @@ preprocessing:
   deduplicate: true
 
 random_seed: 42
+
+# =============================================================================
+# Modeling (fine-tune)
+# =============================================================================
+modeling:
+  model_name: classla/bcms-bertic
+  max_length: 128
+  batch_size: 8
+  eval_batch_size: 16
+  learning_rate: 2.0e-5
+  weight_decay: 0.01
+  num_epochs: 4
+  warmup_ratio: 0.1
+  max_grad_norm: 1.0
+  # null = auto (cuda ako postoji, inače cpu)
+  device: null
+  output_dir: models
+  multitask:
+    sentiment_loss_weight: 1.0
+    sarcasm_loss_weight: 1.0
+    dropout: 0.1

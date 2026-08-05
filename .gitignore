@@ -229,3 +229,6 @@ data/external/reviews/*
 !data/external/reddit/.gitkeep
 !data/external/reviews/.gitkeep
 !data/external/senticomments_sr/.gitkeep
+
+# Trained model checkpoints (large)
+models/

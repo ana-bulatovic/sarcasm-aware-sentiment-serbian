@@ -10,17 +10,23 @@ Dataset je **samostalan** (bez SentiComments.SR): YouTube + (opciono) TikTok pol
 config/                 # config.yaml, liste video ID-eva
 src/
   common/               # konfiguracija, šema, I/O, jezik
-  collection/           # posebni kolektori po izvoru
+  collection/           # kolektori po izvoru
   preprocessing/        # čišćenje i deduplikacija
   dataset/              # annotation CSV + statistike
+  modeling/             # fine-tune (single-task + multitask)
   pipeline.py           # end-to-end orkestracija
+scripts/
+  collection/           # skupljanje / append / pun pipeline
+  preprocessing/        # raw -> interim
+  dataset/              # build CSV, stats, draft anotacija
+  modeling/             # split, train, evaluate
+models/                 # checkpointi (gitignored)
 data/
-  external/             # eksporte / rucno nalepjeni komentari
+  external/             # eksporte / ručno nalepljeni komentari
   raw/                  # sirovi podaci po izvoru
   interim/              # očišćeni zapisi
-  processed/            # annotation_template.csv, dataset.csv
+  processed/            # annotation_template.csv, splits/
 docs/
-scripts/
 ```
 
 ## Brzi start
@@ -39,36 +45,54 @@ copy .env.example .env
 2. Skidanje / rebuild:
 
 ```bash
-python scripts/run_pipeline.py --sources youtube
+python scripts/collection/run_pipeline.py --sources youtube
 ```
 
 3. Append **samo novih** videa:
 
 ```bash
-python scripts/append_youtube.py
+python scripts/collection/append_youtube.py
 # ili
-python scripts/append_youtube.py --url "https://www.youtube.com/watch?v=NOVI_ID"
+python scripts/collection/append_youtube.py --url "https://www.youtube.com/watch?v=NOVI_ID"
 ```
 
 ### TikTok (polu-ručno, bez scrapinga)
 
 TikTok **zabranjuje scraping**. Zvaničan akademski put: [Research API](https://developers.tiktok.com/products/research-api).
 
-U projektu:
-
 ```bash
-python scripts/append_tiktok.py --url "https://www.tiktok.com/@nesto/video/123" --comments-file data/external/tiktok/comments_paste.txt
+python scripts/collection/append_tiktok.py --url "https://www.tiktok.com/@nesto/video/123" --comments-file data/external/tiktok/comments_paste.txt
 ```
 
-1. Skripta otvori URL u browseru.
-2. Ručno kopiraj **samo tekstove** komentara u TXT (jedan po liniji, bez username-a).
-3. Skripta očisti, deduplikuje i dopiše na `annotation_template.csv` (`source=tiktok`).
-
-### Statistike
+### Statistike i split
 
 ```bash
-python scripts/dataset_stats.py
+python scripts/dataset/dataset_stats.py --csv data/processed/annotation_template.csv
+python scripts/modeling/prepare_splits.py
 ```
+
+### Trening modela
+
+Posle anotacije i splita:
+
+```bash
+python scripts/modeling/prepare_splits.py
+
+# sva tri modela (sentiment, sarcasm, multitask)
+python scripts/modeling/train.py --task all
+
+# ili pojedinačno
+python scripts/modeling/train.py --task sentiment
+python scripts/modeling/train.py --task sarcasm
+python scripts/modeling/train.py --task multitask
+
+# evaluacija sačuvanog checkpointa
+python scripts/modeling/evaluate.py --task sentiment --split test
+```
+
+Encoder: `classla/bcms-bertic` (podešava se u `config/config.yaml` → `modeling`).  
+Rezultati: `models/<task>/best.pt`, `metrics.json`, `test_metrics.json`, plus `models/comparison.json` za `--task all`.  
+Metrike: accuracy, macro-F1, i posebno na podskupu `sarcasm=yes`.
 
 ## Konfiguracija
 

@@ -4,12 +4,18 @@
 from __future__ import annotations
 
 import argparse
-import sys
-from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
+from pathlib import Path
+import sys
+
+# scripts/<podfolder>/x.py -> project root
+_ROOT = Path(__file__).resolve().parents[2]
+if str(_ROOT) not in sys.path:
+    sys.path.insert(0, str(_ROOT))
+
+from scripts._bootstrap import ensure_project_root
+
+ensure_project_root()
 
 from src.collection.run_collection import run_collection
 from src.common.config import load_config
@@ -28,7 +34,7 @@ def main() -> None:
         "--sources",
         nargs="*",
         default=None,
-        help="Podskup izvora (npr. senticomments_sr youtube)",
+        help="Podskup izvora (npr. youtube tiktok)",
     )
     args = parser.parse_args()
     config = load_config(args.config)
