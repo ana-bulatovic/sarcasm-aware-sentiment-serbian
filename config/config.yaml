@@ -129,6 +129,9 @@ modeling:
   # null = auto (cuda ako postoji, inače cpu)
   device: null
   output_dir: models
+  # Balansiranje klasa (iz train.csv, dinamički)
+  use_class_weights: true
+  use_weighted_sampler: true
   multitask:
     sentiment_loss_weight: 1.0
     sarcasm_loss_weight: 1.0

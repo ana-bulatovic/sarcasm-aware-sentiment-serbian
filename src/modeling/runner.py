@@ -12,6 +12,10 @@ import torch
 from transformers import AutoTokenizer
 
 from src.common.config import ensure_dir, resolve_path
+from src.modeling.balancing import (
+    compute_class_weights_from_train,
+    compute_combo_sample_weights,
+)
 from src.modeling.data import load_splits, make_loader
 from src.modeling.models import MultiTaskModel, build_single_task_model
 from src.modeling.train_loop import (
@@ -49,6 +53,8 @@ def modeling_defaults(config: dict[str, Any]) -> dict[str, Any]:
     m.setdefault("max_grad_norm", 1.0)
     m.setdefault("output_dir", "models")
     m.setdefault("device", None)
+    m.setdefault("use_class_weights", True)
+    m.setdefault("use_weighted_sampler", True)
     mt = dict(m.get("multitask") or {})
     mt.setdefault("sentiment_loss_weight", 1.0)
     mt.setdefault("sarcasm_loss_weight", 1.0)
@@ -123,6 +129,22 @@ def run_training(
     for name, df in splits.items():
         print(f"[train] {name}: {len(df)} primera")
 
+    balance = compute_class_weights_from_train(splits["train"])
+    balance_info = balance["info"]
+    print(f"[train] sentiment class weights: {balance_info['sentiment_class_weights']}")
+    print(f"[train] sarcasm class weights: {balance_info['sarcasm_class_weights']}")
+    print(f"[train] combo counts: {balance_info['combo_counts']}")
+
+    use_cw = bool(mcfg.get("use_class_weights", True))
+    use_sampler = bool(mcfg.get("use_weighted_sampler", True))
+
+    sample_weights = None
+    if use_sampler:
+        sample_weights = compute_combo_sample_weights(splits["train"])
+        print("[train] WeightedRandomSampler: ON (train only, po sentiment|sarcasm kombinaciji)")
+    else:
+        print("[train] WeightedRandomSampler: OFF")
+
     tokenizer = AutoTokenizer.from_pretrained(mcfg["model_name"])
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
@@ -135,6 +157,7 @@ def run_training(
         max_length=int(mcfg["max_length"]),
         shuffle=True,
         seed=seed,
+        sample_weights=sample_weights,
     )
     val_loader = make_loader(
         splits["val"],
@@ -155,6 +178,9 @@ def run_training(
         seed=seed,
     )
 
+    sent_cw = balance["sentiment_weights_tensor"] if use_cw else None
+    sarc_cw = balance["sarcasm_weights_tensor"] if use_cw else None
+
     if task == "multitask":
         mt = mcfg["multitask"]
         model = MultiTaskModel(
@@ -162,9 +188,13 @@ def run_training(
             sentiment_weight=float(mt["sentiment_loss_weight"]),
             sarcasm_weight=float(mt["sarcasm_loss_weight"]),
             dropout=float(mt["dropout"]),
+            sentiment_class_weights=sent_cw,
+            sarcasm_class_weights=sarc_cw,
         )
+        task_class_weights = None
     else:
         model = build_single_task_model(mcfg["model_name"], task)
+        task_class_weights = sent_cw if task == "sentiment" else sarc_cw
 
     # Sačuvaj tokenizer + meta uz checkpoint
     tokenizer.save_pretrained(task_out)
@@ -174,9 +204,12 @@ def run_training(
         "max_length": mcfg["max_length"],
         "seed": seed,
         "splits_dir": str(splits_path),
+        "use_class_weights": use_cw,
+        "use_weighted_sampler": use_sampler,
+        "class_balance": balance_info,
     }
     (task_out / "run_meta.json").write_text(
-        json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8"
+        json.dumps(_to_jsonable(meta), ensure_ascii=False, indent=2), encoding="utf-8"
     )
 
     summary = train_one_task(
@@ -193,6 +226,8 @@ def run_training(
         warmup_ratio=float(mcfg["warmup_ratio"]),
         max_grad_norm=float(mcfg["max_grad_norm"]),
         seed=seed,
+        class_weights=task_class_weights,
+        balance_info=balance_info,
     )
 
     print(f"[train] TEST rezultati ({task}):")

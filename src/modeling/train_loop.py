@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 import torch
+import torch.nn as nn
 from torch.optim import AdamW
 from torch.utils.data import DataLoader
 from tqdm import tqdm
@@ -52,12 +53,22 @@ def _save_json(path: Path, payload: dict[str, Any]) -> None:
     )
 
 
+def _single_task_loss(
+    logits: torch.Tensor,
+    labels: torch.Tensor,
+    class_weights: torch.Tensor | None,
+) -> torch.Tensor:
+    weight = class_weights.to(logits.device) if class_weights is not None else None
+    return nn.CrossEntropyLoss(weight=weight)(logits, labels)
+
+
 @torch.no_grad()
 def evaluate_single_task(
     model: torch.nn.Module,
     loader: DataLoader,
     device: torch.device,
     task: str,
+    class_weights: torch.Tensor | None = None,
 ) -> dict[str, Any]:
     model.eval()
     losses: list[float] = []
@@ -70,10 +81,9 @@ def evaluate_single_task(
         outputs = model(
             input_ids=batch["input_ids"],
             attention_mask=batch["attention_mask"],
-            labels=batch["labels"],
         )
-        if outputs.loss is not None:
-            losses.append(float(outputs.loss.item()))
+        loss = _single_task_loss(outputs.logits, batch["labels"], class_weights)
+        losses.append(float(loss.item()))
         preds = outputs.logits.argmax(dim=-1)
         y_true.extend(batch["labels"].tolist())
         y_pred.extend(preds.tolist())
@@ -156,11 +166,19 @@ def train_one_task(
     warmup_ratio: float,
     max_grad_norm: float,
     seed: int,
+    class_weights: torch.Tensor | None = None,
+    balance_info: dict[str, Any] | None = None,
     log_fn: Callable[[str], None] | None = None,
 ) -> dict[str, Any]:
     log = log_fn or print
     output_dir.mkdir(parents=True, exist_ok=True)
     model.to(device)
+
+    if balance_info:
+        _save_json(output_dir / "class_balance.json", balance_info)
+        log(f"[{task}] class weights sačuvane → {output_dir / 'class_balance.json'}")
+        log(f"[{task}] sentiment class weights: {balance_info.get('sentiment_class_weights')}")
+        log(f"[{task}] sarcasm class weights: {balance_info.get('sarcasm_class_weights')}")
 
     optimizer = AdamW(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
     total_steps = max(1, len(train_loader) * num_epochs)
@@ -172,8 +190,6 @@ def train_one_task(
     best_score = float("-inf")
     best_path = output_dir / "best.pt"
     history: list[dict[str, Any]] = []
-
-    evaluate = evaluate_multitask if task == "multitask" else evaluate_single_task
 
     for epoch in range(1, num_epochs + 1):
         model.train()
@@ -195,9 +211,8 @@ def train_one_task(
                 outputs = model(
                     input_ids=batch["input_ids"],
                     attention_mask=batch["attention_mask"],
-                    labels=batch["labels"],
                 )
-                loss = outputs.loss
+                loss = _single_task_loss(outputs.logits, batch["labels"], class_weights)
 
             loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), max_grad_norm)
@@ -208,9 +223,11 @@ def train_one_task(
             pbar.set_postfix(loss=f"{running_loss / n_batches:.4f}")
 
         if task == "multitask":
-            val_metrics = evaluate(model, val_loader, device)
+            val_metrics = evaluate_multitask(model, val_loader, device)
         else:
-            val_metrics = evaluate(model, val_loader, device, task=task)
+            val_metrics = evaluate_single_task(
+                model, val_loader, device, task=task, class_weights=class_weights
+            )
 
         score = _selection_score(val_metrics, task)
         train_loss = running_loss / max(n_batches, 1)
@@ -236,20 +253,24 @@ def train_one_task(
                     "model_state": model.state_dict(),
                     "val_metrics": val_metrics,
                     "seed": seed,
+                    "balance_info": balance_info,
                 },
                 best_path,
             )
             log(f"[{task}] novi best checkpoint → {best_path}")
 
-    # Učitaj best i evaluiraj test
     checkpoint = torch.load(best_path, map_location=device)
     model.load_state_dict(checkpoint["model_state"])
     if task == "multitask":
-        test_metrics = evaluate(model, test_loader, device)
-        val_metrics = evaluate(model, val_loader, device)
+        test_metrics = evaluate_multitask(model, test_loader, device)
+        val_metrics = evaluate_multitask(model, val_loader, device)
     else:
-        test_metrics = evaluate(model, test_loader, device, task=task)
-        val_metrics = evaluate(model, val_loader, device, task=task)
+        test_metrics = evaluate_single_task(
+            model, test_loader, device, task=task, class_weights=class_weights
+        )
+        val_metrics = evaluate_single_task(
+            model, val_loader, device, task=task, class_weights=class_weights
+        )
 
     summary = {
         "task": task,
@@ -259,6 +280,7 @@ def train_one_task(
         "test_metrics": test_metrics,
         "history": history,
         "checkpoint": str(best_path),
+        "class_balance": balance_info,
     }
     _save_json(output_dir / "metrics.json", summary)
     _save_json(output_dir / "test_metrics.json", test_metrics)

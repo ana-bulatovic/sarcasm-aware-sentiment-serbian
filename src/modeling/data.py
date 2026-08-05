@@ -165,7 +165,9 @@ def make_loader(
     max_length: int,
     shuffle: bool,
     seed: int = 42,
+    sample_weights: torch.Tensor | None = None,
 ) -> DataLoader:
+    """Ako je sample_weights dat, koristi WeightedRandomSampler (samo za train)."""
     dataset = CommentDataset(frame, tokenizer, task=task, max_length=max_length)
     pad_id = tokenizer.pad_token_id
     if pad_id is None:
@@ -174,10 +176,28 @@ def make_loader(
     generator = torch.Generator()
     generator.manual_seed(seed)
 
+    sampler = None
+    use_shuffle = shuffle
+    if sample_weights is not None:
+        if len(sample_weights) != len(dataset):
+            raise ValueError(
+                f"sample_weights ({len(sample_weights)}) != dataset ({len(dataset)})"
+            )
+        from torch.utils.data import WeightedRandomSampler
+
+        sampler = WeightedRandomSampler(
+            weights=sample_weights.double(),
+            num_samples=len(sample_weights),
+            replacement=True,
+            generator=generator,
+        )
+        use_shuffle = False
+
     return DataLoader(
         dataset,
         batch_size=batch_size,
-        shuffle=shuffle,
+        shuffle=use_shuffle,
+        sampler=sampler,
         collate_fn=lambda batch: _collate(batch, pad_token_id=pad_id),
-        generator=generator if shuffle else None,
+        generator=generator if use_shuffle else None,
     )

@@ -44,6 +44,8 @@ class MultiTaskModel(nn.Module):
         sentiment_weight: float = 1.0,
         sarcasm_weight: float = 1.0,
         dropout: float = 0.1,
+        sentiment_class_weights: torch.Tensor | None = None,
+        sarcasm_class_weights: torch.Tensor | None = None,
     ) -> None:
         super().__init__()
         config = AutoConfig.from_pretrained(model_name)
@@ -55,6 +57,20 @@ class MultiTaskModel(nn.Module):
         self.sentiment_weight = sentiment_weight
         self.sarcasm_weight = sarcasm_weight
         self.config = config
+
+        if sentiment_class_weights is None:
+            sentiment_class_weights = torch.ones(len(SENTIMENT_LABEL2ID), dtype=torch.float32)
+        if sarcasm_class_weights is None:
+            sarcasm_class_weights = torch.ones(len(SARCASM_LABEL2ID), dtype=torch.float32)
+
+        self.register_buffer(
+            "sentiment_class_weights",
+            sentiment_class_weights.detach().float().clone(),
+        )
+        self.register_buffer(
+            "sarcasm_class_weights",
+            sarcasm_class_weights.detach().float().clone(),
+        )
 
     def forward(
         self,
@@ -72,9 +88,10 @@ class MultiTaskModel(nn.Module):
 
         loss = None
         if sentiment_labels is not None and sarcasm_labels is not None:
-            ce = nn.CrossEntropyLoss()
-            loss_s = ce(sentiment_logits, sentiment_labels)
-            loss_c = ce(sarcasm_logits, sarcasm_labels)
+            ce_s = nn.CrossEntropyLoss(weight=self.sentiment_class_weights)
+            ce_c = nn.CrossEntropyLoss(weight=self.sarcasm_class_weights)
+            loss_s = ce_s(sentiment_logits, sentiment_labels)
+            loss_c = ce_c(sarcasm_logits, sarcasm_labels)
             loss = self.sentiment_weight * loss_s + self.sarcasm_weight * loss_c
 
         return {
