@@ -221,7 +221,14 @@ __marimo__/
 .env
 data/raw/**/*.jsonl
 data/interim/**
+# Processed: ignoriši privremene / regenerabilne stvari, ALI prati anotacije
 data/processed/**
+!data/processed/.gitkeep
+!data/processed/annotation_template.csv
+!data/processed/dataset.csv
+!data/processed/dataset_stats.json
+!data/processed/splits/
+!data/processed/splits/**
 data/external/senticomments_sr/*.txt
 data/external/reddit/*
 data/external/reviews/*

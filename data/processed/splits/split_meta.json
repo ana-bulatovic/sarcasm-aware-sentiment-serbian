@@ -1,0 +1,21 @@
+{
+  "source_csv": "C:\\Users\\ANA\\Desktop\\Faks\\Master\\Master rad\\Master rad - Analiza sentimenta sa detekcijom sarkazma za srpski jezik\\sarcasm-aware-sentiment-serbian\\data\\processed\\annotation_template.csv",
+  "seed": 42,
+  "train_ratio": 0.7,
+  "val_ratio": 0.15,
+  "total_rows": 511,
+  "valid_labeled": 511,
+  "skipped_invalid": 0,
+  "train": 357,
+  "val": 77,
+  "test": 77,
+  "sentiment": {
+    "positive": 236,
+    "neutral": 154,
+    "negative": 121
+  },
+  "sarcasm": {
+    "no": 384,
+    "yes": 127
+  }
+}
