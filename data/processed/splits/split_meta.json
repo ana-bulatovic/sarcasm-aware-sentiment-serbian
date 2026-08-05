@@ -1,21 +1,21 @@
 {
-  "source_csv": "C:\\Users\\korisnik\\Desktop\\Ana Bulatovic\\sarcasm-aware-sentiment-serbian\\data\\processed\\annotation_template.csv",
+  "source_csv": "C:\\Users\\ANA\\Desktop\\Faks\\Master\\Master rad\\Master rad - Analiza sentimenta sa detekcijom sarkazma za srpski jezik\\sarcasm-aware-sentiment-serbian\\data\\processed\\annotation_template.csv",
   "seed": 42,
   "train_ratio": 0.7,
   "val_ratio": 0.15,
-  "total_rows": 884,
-  "valid_labeled": 884,
+  "total_rows": 1134,
+  "valid_labeled": 1134,
   "skipped_invalid": 0,
-  "train": 619,
-  "val": 133,
-  "test": 132,
+  "train": 795,
+  "val": 171,
+  "test": 168,
   "sentiment": {
-    "-1": 435,
+    "-1": 685,
     "1": 266,
     "0": 183
   },
   "sarcasm": {
-    "0": 452,
-    "1": 432
+    "0": 612,
+    "1": 522
   }
 }

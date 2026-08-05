@@ -781,3 +781,355 @@ sr-1047,,"Proizvod odgovara opisu, ali postoje i bolje opcije.",ostalo,0,0
 sr-1048,,"Usluga je bila korektna, ništa posebno.",ostalo,0,0
 sr-1049,,"Nisam imao problema, ali ne mogu da kažem da me je posebno oduševilo.",ostalo,0,0
 sr-1050,,"Prosečno iskustvo, ispunilo je osnovna očekivanja.",ostalo,0,0
+sr-1101,,"Baš odlično, još jedan servis gde moraš sam da rešavaš njihov posao.",ostalo,-1,1
+sr-1102,,"Proizvod je sasvim solidan, koristi se bez problema.",ostalo,0,0
+sr-1103,,Oduševljen sam koliko brzo su uspeli da zakomplikuju jednostavan proces.,ostalo,-1,1
+sr-1104,,"Veoma dobra kupovina, kvalitet je iznad očekivanja.",ostalo,1,0
+sr-1105,,"Divno iskustvo, posebno kada volite da čekate bez ikakvog objašnjenja.",ostalo,-1,1
+sr-1106,,"Restoran je prijatan, hrana ukusna i usluga korektna.",ostalo,1,0
+sr-1107,,"Ma genijalno, baš sam tražio aplikaciju koja će me svaki put izbaciti.",ostalo,-1,1
+sr-1108,,"Nije savršeno, ali za ovu cenu sasvim zadovoljava.",ostalo,0,0
+sr-1109,,"Sjajan sistem, uspeo je da napravi problem tamo gde ga nije bilo.",ostalo,-1,1
+sr-1110,,Osoblje je bilo ljubazno i profesionalno.,ostalo,1,0
+sr-1111,,"Kakva inovacija, nikad nisam video da nešto ovako jednostavno može biti ovako teško.",ostalo,-1,1
+sr-1112,,Proizvod izgleda lepo i funkcioniše kako treba.,ostalo,1,0
+sr-1113,,"Baš hvala, trebalo mi je još jedno nerviranje danas.",ostalo,-1,1
+sr-1114,,"Iskustvo je bilo prosečno, ništa posebno.",ostalo,0,0
+sr-1115,,"Odličan način da se potroši vreme, novac i strpljenje.",ostalo,-1,1
+sr-1116,,Veoma sam zadovoljan uslugom i sigurno ću ponovo doći.,ostalo,1,0
+sr-1117,,"Stvarno impresivno, čak su i greške urađene sa velikom pažnjom.",ostalo,-1,1
+sr-1118,,"Kvalitet odgovara ceni, nema većih problema.",ostalo,0,0
+sr-1119,,"Prelepo, baš sam čekao još jednu lošu odluku u aplikaciji.",ostalo,-1,1
+sr-1120,,Dostava je bila brza i paket je stigao neoštećen.,ostalo,1,0
+sr-1121,,"Baš profesionalno, tri osobe su mi dale tri različita odgovora.",ostalo,-1,1
+sr-1122,,"Proizvod je dobar, ali bi cena mogla biti malo niža.",ostalo,0,0
+sr-1123,,"Fenomenalno rešeno, sada problem više niko ne može da pronađe.",ostalo,-1,1
+sr-1124,,Veoma prijatno iskustvo od početka do kraja.,ostalo,1,0
+sr-1125,,"Super posao, samo još da korisnici mogu normalno da ga koriste.",ostalo,-1,1
+sr-1126,,Aplikacija ima sve osnovne opcije koje su mi potrebne.,ostalo,0,0
+sr-1127,,"Baš sjajno, upravo sam dobio odgovor na pitanje koje sam poslao prošlog meseca.",ostalo,-1,1
+sr-1128,,"Odličan proizvod, preporučio bih ga drugima.",ostalo,1,0
+sr-1129,,"Ovo je stvarno vrhunac organizacije, niko ništa ne zna.",ostalo,-1,1
+sr-1130,,"Nije loše, radi posao za koji je namenjeno.",ostalo,0,0
+sr-1131,,"Neverovatno dobro, uspešno su sakrili sve važne informacije.",ostalo,-1,1
+sr-1132,,Usluga je bila iznad mojih očekivanja.,ostalo,1,0
+sr-1133,,"Baš korisno, pogotovo ako imate vremena za beskonačno klikanje.",ostalo,-1,1
+sr-1134,,"Proizvod je stigao, ali nisam još testirao sve funkcije.",ostalo,0,0
+sr-1135,,"Svaka čast, ovako nešto se retko viđa čak i kada se trudite.",ostalo,-1,1
+sr-1136,,Kvalitet izrade je odličan i materijali deluju izdržljivo.,ostalo,1,0
+sr-1137,,Preporuka svima koji žele da iskuse kako izgleda loša podrška.,ostalo,-1,1
+sr-1138,,Cena je pristupačna i proizvod odgovara mojim potrebama.,ostalo,1,0
+sr-1139,,"Ma savršeno, taman kada sam mislio da stvari ne mogu gore.",ostalo,-1,1
+sr-1140,,"Iskustvo je bilo standardno, bez posebnih utisaka.",ostalo,0,0
+sr-1141,,"Odličan potez, stvarno su uspeli da odbiju sve korisnike.",ostalo,-1,1
+sr-1142,,Sajt je pregledan i lako se pronalaze informacije.,ostalo,1,0
+sr-1143,,Baš lepo što su napravili funkciju koja ne radi ni u jednoj situaciji.,ostalo,-1,1
+sr-1144,,"Proizvod nije loš, ali postoje bolje alternative.",ostalo,0,0
+sr-1145,,"Ovo je neverovatno dostignuće, uspeli su da pokvare i ono što je bilo dobro.",ostalo,-1,1
+sr-1146,,Veoma dobra komunikacija i brzo rešavanje problema.,ostalo,1,0
+sr-1147,,"Kakav kvalitet, plastika izgleda kao da je pozajmljena od igračke.",ostalo,-1,1
+sr-1148,,"Iskustvo je bilo prihvatljivo, dobio sam ono što sam očekivao.",ostalo,0,0
+sr-1149,,"Baš sam impresioniran, ovakav nivo neorganizacije nije lako postići.",ostalo,-1,1
+sr-1150,,Zadovoljan sam kupovinom i koristim proizvod svakodnevno.,ostalo,1,0
+sr-1151,,"Baš radi savršeno, kad ne radi.",ostalo,-1,1
+sr-1152,,"Fenomenalno, opet je puklo.",ostalo,-1,1
+sr-1153,,"Bravo, ovo je baš trebalo.",ostalo,-1,1
+sr-1154,,"Odlično, još jedan problem.",ostalo,-1,1
+sr-1155,,"Prelepo, baš sam se obradovao.",ostalo,-1,1
+sr-1156,,"Sjajno, ništa ne funkcioniše.",ostalo,-1,1
+sr-1157,,"Vrhunski, nema šta.",ostalo,-1,1
+sr-1158,,"Divno, baš korisno.",ostalo,-1,1
+sr-1159,,"Savršeno, kao i uvek.",ostalo,-1,1
+sr-1160,,"Ma ekstra, baš sam oduševljen.",ostalo,-1,1
+sr-1161,,"Odličan potez, stvarno.",ostalo,-1,1
+sr-1162,,Baš profesionalno odrađeno.,ostalo,-1,1
+sr-1163,,"Genijalno, ko se ovoga setio?",ostalo,-1,1
+sr-1164,,"Kakav napredak, svaka čast.",ostalo,-1,1
+sr-1165,,"Top stvar, nema greške.",ostalo,-1,1
+sr-1166,,"Hvala, baš mi je trebalo.",ostalo,-1,1
+sr-1167,,"Super, sad je još gore.",ostalo,-1,1
+sr-1168,,"Bravo majstori, uspeli ste.",ostalo,-1,1
+sr-1169,,"Fenomenalna usluga, čekanje sat vremena.",ostalo,-1,1
+sr-1170,,"Odlična aplikacija, stalno pada.",ostalo,-1,1
+sr-1171,,"Savršen proizvod, pokvario se odmah.",ostalo,-1,1
+sr-1172,,"Predivno iskustvo, nema šta.",ostalo,-1,1
+sr-1173,,Baš ste se potrudili da ne radi.,ostalo,-1,1
+sr-1174,,"Kvalitet za primer, negativan primer.",ostalo,-1,1
+sr-1175,,"Sve pohvale, ali ne za ovo.",ostalo,-1,1
+sr-1176,,"Sjajna ideja, loša realizacija.",ostalo,-1,1
+sr-1177,,"Brutalno dobro, ako voliš probleme.",ostalo,-1,1
+sr-1178,,"Lepo, još jedna greška.",ostalo,-1,1
+sr-1179,,"Ma fantastično, stvarno.",ostalo,-1,1
+sr-1180,,"Odlično iskustvo, za izbegavanje.",ostalo,-1,1
+sr-1181,,"Baš jednostavno, ako znaš nemoguće.",ostalo,-1,1
+sr-1182,,"Neverovatno, opet isto.",ostalo,-1,1
+sr-1183,,"Svaka čast, uspeli ste.",ostalo,-1,1
+sr-1184,,"Perfektno, baš kao što nije.",ostalo,-1,1
+sr-1185,,"Divan sistem, pun rupa.",ostalo,-1,1
+sr-1186,,"Odlična podrška, nema odgovora.",ostalo,-1,1
+sr-1187,,"Preporuka, ako imate živaca.",ostalo,-1,1
+sr-1188,,"Baš korisno, nikome ne treba.",ostalo,-1,1
+sr-1189,,"Sjajno rešeno, nije rešeno.",ostalo,-1,1
+sr-1190,,"Ma radi kao sat, pokvaren sat.",ostalo,-1,1
+sr-1191,,"Vrh ponuda, preskupa.",ostalo,-1,1
+sr-1192,,"Odličan kvalitet, kratko trajanje.",ostalo,-1,1
+sr-1193,,"Fenomenalno, baš ste pomogli.",ostalo,-1,1
+sr-1194,,"Lepo iznenađenje, nažalost.",ostalo,-1,1
+sr-1195,,"Sve je super, osim svega.",ostalo,-1,1
+sr-1196,,"Najbolje moguće rešenje, naravno.",ostalo,-1,1
+sr-1197,,Baš sam srećan zbog ovoga.,ostalo,-1,1
+sr-1198,,"Kakav uspeh, stvarno neverovatno.",ostalo,-1,1
+sr-1199,,"Bravo, još ste pogoršali.",ostalo,-1,1
+sr-1200,,"Idealno, ako želite haos.",ostalo,-1,1
+sr-1200,,Jaako lose,ostalo,-1,0
+sr-1200,,Uopste nije dobro,ostalo,-1,0
+sr-1200,,"Film je bio loš, radnja dosadna i kraj potpuno razočaravajući.",ostalo,-1,0
+sr-1201,,Usluga je bila spora i nisam zadovoljan iskustvom.,ostalo,-1,0
+sr-1202,,Proizvod je lošeg kvaliteta i ne vredi uloženog novca.,ostalo,-1,0
+sr-1203,,Aplikacija često baguje i otežava osnovne funkcije.,ostalo,-1,0
+sr-1204,,Hrana je bila hladna i ukus nije opravdao cenu.,ostalo,-1,0
+sr-1205,,"Film mi se nije dopao, previše je spor i bez zanimljive priče.",ostalo,-1,0
+sr-1206,,"Kupovina je bila razočaranje, proizvod ne odgovara opisu.",ostalo,-1,0
+sr-1207,,Osoblje nije bilo ljubazno i čekanje je trajalo predugo.,ostalo,-1,0
+sr-1208,,Sajt je nepregledan i teško je pronaći potrebne informacije.,ostalo,-1,0
+sr-1209,,Kvalitet izrade je slab i očekivao sam mnogo više.,ostalo,-1,0
+sr-1210,,Dostava je kasnila nekoliko dana i paket je stigao oštećen.,ostalo,-1,0
+sr-1211,,"Iskustvo nije bilo prijatno, ne bih ponovio kupovinu.",ostalo,-1,0
+sr-1212,,Aplikacija se stalno zatvara i veoma je frustrirajuća za korišćenje.,ostalo,-1,0
+sr-1213,,Film je predvidiv i gluma nije na dobrom nivou.,ostalo,-1,0
+sr-1214,,"Restoran nije ispunio očekivanja, hrana je bila prosečna.",ostalo,-1,0
+sr-1215,,Podrška korisnicima nije pomogla da rešim problem.,ostalo,-1,0
+sr-1216,,Proizvod izgleda jeftino i ne deluje kvalitetno.,ostalo,-1,0
+sr-1217,,Usluga je bila razočaravajuća od početka do kraja.,ostalo,-1,0
+sr-1218,,Interfejs je komplikovan i neprijatan za korišćenje.,ostalo,-1,0
+sr-1219,,"Nisam zadovoljan kupovinom, očekivao sam bolji kvalitet.",ostalo,-1,0
+sr-1220,,Film je predugačak i izgubio sam interesovanje posle pola sata.,ostalo,-1,0
+sr-1221,,Aplikacija ima previše problema i često ne funkcioniše.,ostalo,-1,0
+sr-1222,,Hrana je bila preskupa za ono što je ponuđeno.,ostalo,-1,0
+sr-1223,,Proizvod nije ispunio ono što je obećano.,ostalo,-1,0
+sr-1224,,Sistem je spor i svakodnevno pravi probleme.,ostalo,-1,0
+sr-1225,,Korisnička podrška je bila neefikasna i spora.,ostalo,-1,0
+sr-1226,,Naručeni proizvod nije stigao u očekivanom stanju.,ostalo,-1,0
+sr-1227,,Film je bio nezanimljiv i teško sam ga odgledao do kraja.,ostalo,-1,0
+sr-1228,,Kvalitet usluge je mnogo slabiji nego ranije.,ostalo,-1,0
+sr-1229,,Ovo iskustvo nije vredelo vremena ni novca.,ostalo,-1,0
+sr-1230,,"Baš lepo, opet su uspeli da naprave problem tamo gde ga nije bilo.",ostalo,-1,1
+sr-1231,,"Fenomenalno, aplikacija je pala baš kada mi je bila potrebna.",ostalo,-1,1
+sr-1232,,"Odlično urađeno, sada ništa ne funkcioniše kako treba.",ostalo,-1,1
+sr-1233,,"Predivna usluga, posebno deo gde niko ne odgovara.",ostalo,-1,1
+sr-1234,,"Svaka čast, retko ko može ovako lepo da zakomplikuje stvari.",ostalo,-1,1
+sr-1235,,"Savršeno iskustvo, baš sam želeo da čekam sat vremena.",ostalo,-1,1
+sr-1236,,"Briljantno rešenje, problem je sada još veći.",ostalo,-1,1
+sr-1237,,Obožavam kada sistem odluči da prestane da radi.,ostalo,-1,1
+sr-1238,,"Vrhunska organizacija, niko ne zna šta se dešava.",ostalo,-1,1
+sr-1239,,"Sjajan potez, korisnici će sigurno biti oduševljeni.",ostalo,-1,1
+sr-1240,,"Hvala puno, baš mi je nedostajao još jedan kvar.",ostalo,-1,1
+sr-1241,,"Fenomenalan kvalitet, skoro kao da je napravljen da se pokvari.",ostalo,-1,1
+sr-1242,,Odličan način da izgubim vreme i strpljenje.,ostalo,-1,1
+sr-1243,,"Divno, konačno nešto što radi samo ponekad.",ostalo,-1,1
+sr-1244,,"Genijalno, trebalo je mnogo truda da se napravi ovakav haos.",ostalo,-1,1
+sr-1245,,"Prelepo iskustvo, naročito ako volite probleme.",ostalo,-1,1
+sr-1246,,"Bravo, stvarno ste nadmašili očekivanja u pogrešnom smeru.",ostalo,-1,1
+sr-1247,,"Savršena aplikacija, svaki klik donosi novo iznenađenje.",ostalo,-1,1
+sr-1248,,"Odličan posao, sada je sve mnogo komplikovanije.",ostalo,-1,1
+sr-1249,,"Baš profesionalno, tri osobe daju tri različita odgovora.",ostalo,-1,1
+sr-1250,,"Neverovatno, uspeli ste da pokvarite nešto jednostavno.",ostalo,-1,1
+sr-1251,,"Fantastično, još jedan servis koji ne radi kada treba.",ostalo,-1,1
+sr-1252,,"Fenomenalna ideja, šteta što u praksi ne funkcioniše.",ostalo,-1,1
+sr-1253,,"Sjajno, upravo ono što je svima trebalo da izbegnu.",ostalo,-1,1
+sr-1254,,"Odličan sistem, posebno kada imate višak vremena za greške.",ostalo,-1,1
+sr-1255,,"Predivno, još jedan razlog da izgubim živce.",ostalo,-1,1
+sr-1256,,"Ma savršeno, čekao sam baš ovakav nivo problema.",ostalo,-1,1
+sr-1257,,"Kakav uspeh, uspeli ste da razočarate sve korisnike.",ostalo,-1,1
+sr-1258,,"Divno rešenje, sada imamo još više pitanja nego odgovora.",ostalo,-1,1
+sr-1259,,"Sjajno iskustvo, ako volite da se nervirate.",ostalo,-1,1
+sr-1260,,"Odlično, konačno proizvod koji ne radi kako je opisano.",ostalo,-1,1
+sr-1261,,"Fantastično, plaćam uslugu koju jedva mogu da koristim.",ostalo,-1,1
+sr-1262,,"Bravo, ovakav nivo neorganizacije nije lako postići.",ostalo,-1,1
+sr-1263,,"Savršeno, baš sam želeo dodatne komplikacije.",ostalo,-1,1
+sr-1264,,"Genijalno, svaki novi update napravi novi problem.",ostalo,-1,1
+sr-1265,,"Prelepo, još jedan dan sa aplikacijom koja ne sarađuje.",ostalo,-1,1
+sr-1266,,"Odličan rad, posebno deo gde ništa nije završeno.",ostalo,-1,1
+sr-1267,,"Sjajno, čekanje od nekoliko sati je baš ono što sam želeo.",ostalo,-1,1
+sr-1268,,"Fenomenalno, korisnička podrška je uspela da ne pomogne.",ostalo,-1,1
+sr-1269,,"Divno, baš sam tražio način da dodatno zakomplikujem život.",ostalo,-1,1
+sr-1270,,"Film je bio veliko razočaranje, priča je loša i kraj nema smisla.",ostalo,-1,0
+sr-1271,,Knjiga je dosadna i nisam uspeo da je završim.,ostalo,-1,0
+sr-1272,,Usluga nije bila na nivou koji sam očekivao.,ostalo,-1,0
+sr-1273,,Aplikacija je nestabilna i često pravi greške.,ostalo,-1,0
+sr-1274,,Proizvod deluje nekvalitetno i ne preporučujem ga.,ostalo,-1,0
+sr-1275,,"Restoran me je razočarao, hrana nije bila ukusna.",ostalo,-1,0
+sr-1276,,Dostava je trajala predugo i nisam zadovoljan.,ostalo,-1,0
+sr-1277,,Sajt je spor i teško se koristi.,ostalo,-1,0
+sr-1278,,"Kupovina nije bila dobra odluka, kvalitet je slab.",ostalo,-1,0
+sr-1279,,Nisam zadovoljan performansama ovog proizvoda.,ostalo,-1,0
+sr-1280,,Film nema zanimljivu radnju i deluje nedovršeno.,ostalo,-1,0
+sr-1281,,Kamera na telefonu je lošija nego što sam očekivao.,ostalo,-1,0
+sr-1282,,Podrška nije rešila moj problem ni posle više pokušaja.,ostalo,-1,0
+sr-1283,,Interfejs je zbunjujuć i nepotrebno komplikovan.,ostalo,-1,0
+sr-1284,,Aplikacija mi je više smetala nego što mi je pomogla.,ostalo,-1,0
+sr-1285,,Proizvod nije vredan novca koji sam platio.,ostalo,-1,0
+sr-1286,,Osoblje nije bilo zainteresovano da pomogne.,ostalo,-1,0
+sr-1287,,Iskustvo je bilo neprijatno i ne bih ga ponovio.,ostalo,-1,0
+sr-1288,,Kvalitet materijala je ispod očekivanja.,ostalo,-1,0
+sr-1289,,Film je previše spor i nema dovoljno sadržaja.,ostalo,-1,0
+sr-1290,,Aplikacija se stalno ruši bez razloga.,ostalo,-1,0
+sr-1291,,Usluga je bila spora i neorganizovana.,ostalo,-1,0
+sr-1292,,Nisam dobio ono što je reklamirano.,ostalo,-1,0
+sr-1293,,Proizvod ima mnogo mana koje nisu navedene.,ostalo,-1,0
+sr-1294,,Cena je previsoka za ovakav kvalitet.,ostalo,-1,0
+sr-1295,,Film je gubljenje vremena.,ostalo,-1,0
+sr-1296,,"Hrana je bila prosečna, ali cena previsoka.",ostalo,-1,0
+sr-1297,,Sistem često prestaje da radi.,ostalo,-1,0
+sr-1298,,Narudžbina je kasnila i komunikacija je bila loša.,ostalo,-1,0
+sr-1299,,Nisam imao dobro iskustvo sa ovom uslugom.,ostalo,-1,0
+sr-1300,,"Baš sjajno, još jedan servis koji ne zna šta radi.",ostalo,-1,1
+sr-1301,,"Odlično, sada moram tri puta da ponavljam istu stvar.",ostalo,-1,1
+sr-1302,,"Predivno, aplikacija me je ponovo izbacila.",ostalo,-1,1
+sr-1303,,"Fenomenalno, baš sam uživao u čekanju.",ostalo,-1,1
+sr-1304,,"Bravo, ovo je stvarno remek-delo loše organizacije.",ostalo,-1,1
+sr-1305,,"Savršeno, ništa nije moglo da prođe gore.",ostalo,-1,1
+sr-1306,,"Genijalno, rešili ste problem tako što ste napravili novi.",ostalo,-1,1
+sr-1307,,"Kakav kvalitet, baš se vidi trud u pravljenju grešaka.",ostalo,-1,1
+sr-1308,,"Odličan proizvod, posebno ako volite bacanje para.",ostalo,-1,1
+sr-1309,,"Sjajno iskustvo, nerviranje nikad nije bilo lakše.",ostalo,-1,1
+sr-1310,,"Hvala puno, baš mi je falio još jedan problem.",ostalo,-1,1
+sr-1311,,"Divno, čekanje od dva sata je baš ono što sam želeo.",ostalo,-1,1
+sr-1312,,"Fenomenalna podrška, niko nije uspeo da pomogne.",ostalo,-1,1
+sr-1313,,"Prelepo, još jedan update koji je sve pokvario.",ostalo,-1,1
+sr-1314,,"Vrhunski sistem, svaki put pronađe novi način da pogreši.",ostalo,-1,1
+sr-1315,,"Odlično urađeno, jednostavne stvari su sada komplikovane.",ostalo,-1,1
+sr-1316,,"Bravo, korisnici su sigurno presrećni ovim promenama.",ostalo,-1,1
+sr-1317,,"Savršen servis, ako vam je cilj da izgubite živce.",ostalo,-1,1
+sr-1318,,"Neverovatno, uspeli ste da napravite još veći haos.",ostalo,-1,1
+sr-1319,,"Sjajno, baš mi je nedostajao ovakav problem.",ostalo,-1,1
+sr-1320,,"Odlična odluka, stvarno niko nije očekivao nešto gore.",ostalo,-1,1
+sr-1321,,"Ma predivno, sve radi osim onoga što treba.",ostalo,-1,1
+sr-1322,,"Fantastično, konačno aplikacija koja me razočara svaki put.",ostalo,-1,1
+sr-1323,,"Briljantno, trebalo je mnogo truda da ovo ovako ne radi.",ostalo,-1,1
+sr-1324,,"Fenomenalno iskustvo, posebno deo sa čekanjem.",ostalo,-1,1
+sr-1325,,"Odlično, sada je pronalaženje informacije prava avantura.",ostalo,-1,1
+sr-1326,,"Baš profesionalno, svako ima drugačiji odgovor.",ostalo,-1,1
+sr-1327,,"Savršeno, još samo da počne normalno da funkcioniše.",ostalo,-1,1
+sr-1328,,"Divan sistem, napravljen da oteža najjednostavnije stvari.",ostalo,-1,1
+sr-1329,,"Sjajno, baš sam tražio dodatne probleme.",ostalo,-1,1
+sr-1330,,"Kakav napredak, sada imamo još više grešaka.",ostalo,-1,1
+sr-1331,,"Odlično, proizvod je uspeo da me iznenadi koliko je loš.",ostalo,-1,1
+sr-1332,,"Fenomenalno, plaćam nešto što jedva mogu da koristim.",ostalo,-1,1
+sr-1333,,"Prelepo iskustvo, ako uživate u komplikacijama.",ostalo,-1,1
+sr-1334,,"Bravo, ovo je novi nivo neefikasnosti.",ostalo,-1,1
+sr-1335,,"Savršena organizacija, niko ne zna šta se dešava.",ostalo,-1,1
+sr-1336,,"Sjajno rešenje, sada imamo više pitanja nego odgovora.",ostalo,-1,1
+sr-1337,,"Genijalno, uspeli ste da pokvarite i ono što je radilo.",ostalo,-1,1
+sr-1338,,"Odličan potez, korisnici će ga dugo pamtiti.",ostalo,-1,1
+sr-1339,,"Divno, konačno nešto što ne radi kada treba.",ostalo,-1,1
+sr-1340,,"Fenomenalno, baš sam želeo još jedno razočaranje.",ostalo,-1,1
+sr-1341,,"Vrhunska usluga, naročito ako volite ignorisanje.",ostalo,-1,1
+sr-1342,,"Predivno, baš ste uspeli da zakomplikujete sve.",ostalo,-1,1
+sr-1343,,"Briljantno, jednostavno rešenje za stvaranje problema.",ostalo,-1,1
+sr-1344,,"Odlično, sada znam šta više nikada neću koristiti.",ostalo,-1,1
+sr-1345,,"Ma savršeno, bolje stvarno nije moglo da se pokvari.",ostalo,-1,1
+sr-1346,,"Kakav uspeh, uspeli ste da odbijete sve korisnike.",ostalo,-1,1
+sr-1347,,"Sjajno, još jedan dokaz da može i gore.",ostalo,-1,1
+sr-1348,,"Fantastično, baš sam očekivao ovakav haos.",ostalo,-1,1
+sr-1349,,"Bravo, ovakav nivo problema je za pohvalu.",ostalo,-1,1
+sr-1350,,"Film je bio razočaravajuć, radnja je slaba i gluma nije ubedljiva.",ostalo,-1,0
+sr-1351,,"Nisam zadovoljan kvalitetom proizvoda, očekivao sam mnogo više.",ostalo,-1,0
+sr-1352,,Aplikacija je spora i često ne reaguje na komande.,ostalo,-1,0
+sr-1353,,Usluga je bila loša i dugo sam čekao odgovor.,ostalo,-1,0
+sr-1354,,Proizvod se pokvario nakon nekoliko dana korišćenja.,ostalo,-1,0
+sr-1355,,"Restoran nije ispunio očekivanja, hrana je bila bez ukusa.",ostalo,-1,0
+sr-1356,,Dostava je kasnila i paket nije stigao u dobrom stanju.,ostalo,-1,0
+sr-1357,,Film je bio previše dug i imao je mnogo nepotrebnih scena.,ostalo,-1,0
+sr-1358,,Korisnička podrška nije rešila moj problem.,ostalo,-1,0
+sr-1359,,Sajt je nepregledan i teško se snalazi u njemu.,ostalo,-1,0
+sr-1360,,Kvalitet slike je loš i ne odgovara opisu.,ostalo,-1,0
+sr-1361,,Naručeni proizvod nije isti kao na fotografijama.,ostalo,-1,0
+sr-1362,,Aplikacija ima previše grešaka i nije stabilna.,ostalo,-1,0
+sr-1363,,Usluga je prespora i komunikacija je loša.,ostalo,-1,0
+sr-1364,,Film mi je bio dosadan od samog početka.,ostalo,-1,0
+sr-1365,,Proizvod izgleda jeftino i nije izdržljiv.,ostalo,-1,0
+sr-1366,,Nisam dobio pomoć kada mi je bila potrebna.,ostalo,-1,0
+sr-1367,,Cena nije opravdana kvalitetom proizvoda.,ostalo,-1,0
+sr-1368,,Hrana je bila hladna kada je stigla.,ostalo,-1,0
+sr-1369,,Iskustvo kupovine nije bilo prijatno.,ostalo,-1,0
+sr-1370,,Telefon ima slabiju bateriju nego što je navedeno.,ostalo,-1,0
+sr-1371,,Program često baguje i prekida rad.,ostalo,-1,0
+sr-1372,,Interfejs je komplikovan i nije jednostavan za korišćenje.,ostalo,-1,0
+sr-1373,,Film nije opravdao očekivanja nakon pozitivnih preporuka.,ostalo,-1,0
+sr-1374,,Knjiga je bila nezanimljiva i teško sam je čitao.,ostalo,-1,0
+sr-1375,,Usluga nije profesionalna i postoji mnogo propusta.,ostalo,-1,0
+sr-1376,,Proizvod ima lošu završnu obradu.,ostalo,-1,0
+sr-1377,,Aplikacija zauzima mnogo prostora i sporo radi.,ostalo,-1,0
+sr-1378,,Dostava je trajala duže nego što je obećano.,ostalo,-1,0
+sr-1379,,Osoblje nije bilo ljubazno prema gostima.,ostalo,-1,0
+sr-1380,,Film nema dobar scenario i likovi nisu razvijeni.,ostalo,-1,0
+sr-1381,,Nisam zadovoljan kupovinom i ne bih preporučio ovaj proizvod.,ostalo,-1,0
+sr-1382,,Sistem je nepouzdan i često dolazi do grešaka.,ostalo,-1,0
+sr-1383,,Kvalitet usluge se značajno pogoršao.,ostalo,-1,0
+sr-1384,,Proizvod ne radi kako je opisano u specifikaciji.,ostalo,-1,0
+sr-1385,,Aplikacija nema dovoljno korisnih funkcija.,ostalo,-1,0
+sr-1386,,Film je bio slab i nije me zainteresovao.,ostalo,-1,0
+sr-1387,,Hrana nije bila sveža i kvalitet nije bio dobar.,ostalo,-1,0
+sr-1388,,Podrška je odgovorila kasno i nije rešila problem.,ostalo,-1,0
+sr-1389,,Proizvod je stigao oštećen.,ostalo,-1,0
+sr-1390,,Sajt često ne učitava stranice.,ostalo,-1,0
+sr-1391,,Iskustvo nije vredelo uloženog vremena.,ostalo,-1,0
+sr-1392,,Film ima loš tempo i previše praznog hoda.,ostalo,-1,0
+sr-1393,,Aplikacija je nepraktična za svakodnevnu upotrebu.,ostalo,-1,0
+sr-1394,,Cena je previsoka u odnosu na kvalitet.,ostalo,-1,0
+sr-1395,,Usluga nije odgovarala onome što je reklamirano.,ostalo,-1,0
+sr-1396,,Proizvod je slabiji nego što sam očekivao.,ostalo,-1,0
+sr-1397,,Komunikacija sa podrškom je bila veoma loša.,ostalo,-1,0
+sr-1398,,Restoran ima spor servis i prosečnu hranu.,ostalo,-1,0
+sr-1399,,Film nije uspeo da zadrži pažnju gledalaca.,ostalo,-1,0
+sr-1400,,Nisam preporučio ovaj proizvod prijateljima.,ostalo,-1,0
+sr-1401,,Aplikacija se često zamrzava tokom korišćenja.,ostalo,-1,0
+sr-1402,,Usluga je bila ispod očekivanog nivoa.,ostalo,-1,0
+sr-1403,,Proizvod ima više nedostataka nego prednosti.,ostalo,-1,0
+sr-1404,,Film je slabije kvalitete nego prethodni delovi.,ostalo,-1,0
+sr-1405,,Dostava je bila neorganizovana i spora.,ostalo,-1,0
+sr-1406,,Nisam zadovoljan radom ovog uređaja.,ostalo,-1,0
+sr-1407,,Sistem nije dovoljno brz za normalan rad.,ostalo,-1,0
+sr-1408,,Korisnička podrška nije bila od pomoći.,ostalo,-1,0
+sr-1409,,Proizvod nije ispunio ono što sam očekivao.,ostalo,-1,0
+sr-1410,,Film je imao lošu priču i predvidiv kraj.,ostalo,-1,0
+sr-1411,,Aplikacija je komplikovana za nove korisnike.,ostalo,-1,0
+sr-1412,,Kvalitet materijala nije dobar.,ostalo,-1,0
+sr-1413,,Hrana je bila preslana i nije mi se dopala.,ostalo,-1,0
+sr-1414,,Usluga je bila spora i neefikasna.,ostalo,-1,0
+sr-1415,,Proizvod se ne ponaša kako je obećano.,ostalo,-1,0
+sr-1416,,Film je bio razočaranje u svakom smislu.,ostalo,-1,0
+sr-1417,,Aplikacija ne radi pouzdano.,ostalo,-1,0
+sr-1418,,Kupovina ovog proizvoda nije bila dobra odluka.,ostalo,-1,0
+sr-1419,,Sajt ima previše problema sa prijavljivanjem.,ostalo,-1,0
+sr-1420,,Nisam dobio kvalitet koji sam platio.,ostalo,-1,0
+sr-1421,,Usluga nije bila na profesionalnom nivou.,ostalo,-1,0
+sr-1422,,Film je bio monoton i nezanimljiv.,ostalo,-1,0
+sr-1423,,Proizvod je nepraktičan za svakodnevnu upotrebu.,ostalo,-1,0
+sr-1424,,Aplikacija mi je otežala posao umesto da pomogne.,ostalo,-1,0
+sr-1425,,Dostava nije ispoštovala dogovoreni rok.,ostalo,-1,0
+sr-1426,,Kvalitet nije opravdao cenu.,ostalo,-1,0
+sr-1427,,Restoran nije ostavio dobar utisak.,ostalo,-1,0
+sr-1428,,Film nije bio vredan gledanja.,ostalo,-1,0
+sr-1429,,Proizvod ima ozbiljne probleme u radu.,ostalo,-1,0
+sr-1430,,Podrška nije pružila adekvatno rešenje.,ostalo,-1,0
+sr-1431,,Aplikacija je loše dizajnirana.,ostalo,-1,0
+sr-1432,,Iskustvo je bilo mnogo gore nego što sam očekivao.,ostalo,-1,0
+sr-1433,,Proizvod nije dovoljno kvalitetan za tu cenu.,ostalo,-1,0
+sr-1434,,Film nije uspeo da me zainteresuje.,ostalo,-1,0
+sr-1435,,Usluga je bila razočaravajuća.,ostalo,-1,0
+sr-1436,,Aplikacija ima previše ograničenja.,ostalo,-1,0
+sr-1437,,Kvalitet izrade je loš.,ostalo,-1,0
+sr-1438,,Nisam imao dobro iskustvo sa ovom kupovinom.,ostalo,-1,0
+sr-1439,,Sistem je spor i često pravi greške.,ostalo,-1,0
+sr-1440,,Proizvod ne bih ponovo kupio.,ostalo,-1,0
+sr-1441,,Film je bio ispod proseka.,ostalo,-1,0
+sr-1442,,Usluga nije opravdala cenu.,ostalo,-1,0
+sr-1443,,Aplikacija nije dovoljno funkcionalna.,ostalo,-1,0
+sr-1444,,Nisam zadovoljan konačnim rezultatom.,ostalo,-1,0
+sr-1445,,Proizvod je razočarao u odnosu na očekivanja.,ostalo,-1,0
+sr-1446,,Iskustvo nije bilo pozitivno.,ostalo,-1,0
+sr-1447,,Film je bio predug i naporan za gledanje.,ostalo,-1,0
+sr-1448,,Korisnička podrška nije ispunila očekivanja.,ostalo,-1,0
+sr-1449,,Aplikacija ima ozbiljne probleme sa radom.,ostalo,-1,0
