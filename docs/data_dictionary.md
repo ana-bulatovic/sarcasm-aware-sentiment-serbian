@@ -6,12 +6,14 @@ Kodiranje: **UTF-8 with BOM** (`utf-8-sig`) radi lakog otvaranja u Excel-u.
 
 | Kolona | Tip | Obavezno | Opis | Dozvoljene vrednosti |
 |--------|-----|----------|------|----------------------|
-| `id` | string | da | Stabilni identifikator uzorka | Format `sr-00001`, … |
-| `source` | string | da | Pun URL snimka/videa | npr. YouTube / TikTok / Reddit URL |
+| `id` | string | ne* | Identifikator uzorka | npr. `sr-00001`; ako fali, split/train generišu privremeni |
+| `source` | string | ne* | URL / izvor | može biti prazan; nije potreban za trening |
 | `text` | string | da | Očišćen srpski tekst | Interpunkcija sačuvana |
-| `tip` | string | da | Domen / tip sadržaja | npr. `filmovi` (proširivo) |
-| `sentiment` | string/int | ručno | Polaritet (preneseni stav) | `1` (pozitivno), `0` (neutralno), `-1` (negativno); prazno dok nije anotirano |
-| `sarcasm` | string/int | ručno | Da li je tekst sarkastičan | `1` (da), `0` (ne) |
+| `tip` | string | preporučeno | Domen / tip sadržaja | npr. `filmovi` |
+| `sentiment` | string/int | da (za trening) | Polaritet (preneseni stav) | `1` / `0` / `-1` |
+| `sarcasm` | string/int | da (za trening) | Da li je tekst sarkastičan | `1` / `0` |
+
+\* Za trening su dovoljni `text` + `sentiment` + `sarcasm`.
 
 ## Napomene
 

@@ -26,7 +26,13 @@ class CommentDataset(Dataset):
         max_length: int = 128,
     ) -> None:
         self.texts = frame["text"].astype(str).tolist()
-        self.ids = frame["id"].astype(str).tolist() if "id" in frame.columns else [str(i) for i in range(len(frame))]
+        if "id" in frame.columns:
+            raw_ids = frame["id"].astype(str).str.strip().tolist()
+            self.ids = [
+                rid if rid else f"row-{i:05d}" for i, rid in enumerate(raw_ids, start=1)
+            ]
+        else:
+            self.ids = [f"row-{i:05d}" for i in range(1, len(frame) + 1)]
         self.sarcasm_raw = (
             frame["sarcasm"].astype(str).str.strip().str.lower().tolist()
             if "sarcasm" in frame.columns
@@ -114,13 +120,32 @@ def load_split_csv(path: Path) -> pd.DataFrame:
             f"Nedostaje split fajl: {path}. Pokreni scripts/modeling/prepare_splits.py"
         )
     df = pd.read_csv(path, encoding="utf-8-sig", dtype=str).fillna("")
+    # Za trening su obavezni samo text + labele; id/source/tip su opcionalni
     required = {"text", "sentiment", "sarcasm"}
     missing = required - set(df.columns)
     if missing:
         raise ValueError(f"{path} nema kolone: {sorted(missing)}")
+    if "id" not in df.columns:
+        df["id"] = [f"row-{i:05d}" for i in range(1, len(df) + 1)]
+    else:
+        empty_id = df["id"].astype(str).str.strip() == ""
+        if empty_id.any():
+            df.loc[empty_id, "id"] = [
+                f"row-{i:05d}" for i in range(1, int(empty_id.sum()) + 1)
+            ]
+    if "source" not in df.columns:
+        df["source"] = ""
+    if "tip" not in df.columns:
+        df["tip"] = ""
+
     df["sentiment"] = df["sentiment"].str.strip().str.lower()
     df["sarcasm"] = df["sarcasm"].str.strip().str.lower()
-    mask = df["sentiment"].isin(SENTIMENT_LABEL2ID) & df["sarcasm"].isin(SARCASM_LABEL2ID)
+    has_text = df["text"].astype(str).str.strip() != ""
+    mask = (
+        has_text
+        & df["sentiment"].isin(SENTIMENT_LABEL2ID)
+        & df["sarcasm"].isin(SARCASM_LABEL2ID)
+    )
     return df.loc[mask].reset_index(drop=True)
 
 

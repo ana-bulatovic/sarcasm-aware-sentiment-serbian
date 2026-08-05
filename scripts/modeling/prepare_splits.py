@@ -103,10 +103,31 @@ def main() -> None:
     seed = int(config.get("random_seed", 42))
 
     df = pd.read_csv(csv_path, encoding="utf-8-sig", dtype=str).fillna("")
+    if "text" not in df.columns:
+        raise SystemExit(f"{csv_path} mora imati kolonu 'text'")
+    if "sentiment" not in df.columns or "sarcasm" not in df.columns:
+        raise SystemExit(f"{csv_path} mora imati kolone 'sentiment' i 'sarcasm'")
+
+    # id / source (URL) nisu obavezni za trening — popuni praznim ako fale
+    if "id" not in df.columns:
+        df["id"] = [f"row-{i:05d}" for i in range(1, len(df) + 1)]
+    else:
+        empty_id = df["id"].astype(str).str.strip() == ""
+        if empty_id.any():
+            df.loc[empty_id, "id"] = [
+                f"row-{i:05d}" for i in range(1, int(empty_id.sum()) + 1)
+            ]
+    if "source" not in df.columns:
+        df["source"] = ""
+    if "tip" not in df.columns:
+        df["tip"] = ""
+
     df["sentiment"] = df["sentiment"].str.strip().str.lower()
     df["sarcasm"] = df["sarcasm"].str.strip().str.lower()
+    # Prazan tekst ne ulazi u split
+    has_text = df["text"].astype(str).str.strip() != ""
 
-    valid = df["sentiment"].isin(VALID_SENT) & df["sarcasm"].isin(VALID_SARC)
+    valid = has_text & df["sentiment"].isin(VALID_SENT) & df["sarcasm"].isin(VALID_SARC)
     labeled = df.loc[valid].copy()
     skipped = int((~valid).sum())
 
