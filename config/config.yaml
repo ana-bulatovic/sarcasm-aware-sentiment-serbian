@@ -120,6 +120,7 @@ collection:
 
 # Lagano čišćenje pri kolekciji / build dataseta.
 # ISTI tekst ide u BERTić (bez dodatnog baseline pretprocesiranja).
+# NAMERNO: nema lowercase, nema transliteracije — BERTić čuva velika/mala slova i pismo.
 preprocessing:
   remove_emojis: true
   remove_mentions: true  # skini @username (npr. @n1srbija u reply-ima)
@@ -135,7 +136,7 @@ preprocessing:
   deduplicate: true
 
 # Samo za klasične ML baseline modele (TF-IDF + LR/SVM/NB).
-# BERTić / transformer pipeline OVO NE KORISTI.
+# BERTić / transformer pipeline OVO NE KORISTI (naročito ne lowercase).
 # CLI: python scripts/preprocessing/text_preprocessing.py --use-config --csv ...
 baseline_preprocessing:
   remove_urls: true
@@ -143,7 +144,7 @@ baseline_preprocessing:
   normalize_unicode: true
   remove_emojis: false
   cyrillic_to_latin: true
-  lowercase: true
+  lowercase: true  # SAMO baseline; BERTić ne radi lowercase
   lemmatize: false
   # simplemma kod za BCMS; 'sr'/'hr'/'bs' se mapiraju na hbs
   lemma_lang: hbs

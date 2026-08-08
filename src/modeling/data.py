@@ -68,8 +68,11 @@ class CommentDataset(Dataset):
 
     def __getitem__(self, idx: int) -> dict[str, Any]:
         """Jedan primer: tokeni + labele (HF ``labels`` i/ili ``*_labels``)."""
-        # Tekst ide direktno u BERTić tokenizator — bez baseline pretprocesiranja
-        # (lowercase / ćirilica→latinica / lematizacija). Vidi src/preprocessing/baseline.py.
+        # Tekst ide DIREKTNO u BERTić tokenizator.
+        # NAMERNO bez baseline pretprocesiranja: NEMА lowercase, NEMА
+        # ćirilica→latinica, NEMА lematizacije. Samo tekst kakav je u dataset.csv
+        # (već lagano očišćen u clean.preprocess_text pri kolekciji).
+        # Vidi src/preprocessing/baseline.py (samo za TF-IDF).
         encoded = self.tokenizer(
             self.texts[idx],
             truncation=True,

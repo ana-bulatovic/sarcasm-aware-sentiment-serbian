@@ -1,5 +1,6 @@
 """Lagano čišćenje teksta za dataset i BERTić (očuvanje interpunkcije i pisma).
 
+Nema lowercase i nema transliteracije — to je namerno (važno za BERTić).
 Za agresivnije pretprocesiranje TF-IDF baseline-a vidi ``baseline.clean_text``.
 """
 
