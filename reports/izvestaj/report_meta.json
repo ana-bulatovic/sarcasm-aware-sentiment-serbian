@@ -1,0 +1,405 @@
+{
+  "dataset_rows": 1297,
+  "source_counts": {
+    "youtube": 1134,
+    "twitter": 143,
+    "instagram": 20
+  },
+  "tip_counts": {
+    "filmovi": 520,
+    "muzika": 334,
+    "zabava": 170,
+    "sport": 130,
+    "politika": 126,
+    "fakultet": 14,
+    "0": 1,
+    "tenis": 1,
+    "hrana": 1
+  },
+  "sentiment_counts": {
+    "-1": 492,
+    "1": 478,
+    "0": 327
+  },
+  "sarcasm_counts": {
+    "0": 728,
+    "1": 565
+  },
+  "split_meta": {
+    "source_csv": "C:\\Users\\korisnik\\Desktop\\Ana Bulatovic\\sarcasm-aware-sentiment-serbian\\data\\processed\\annotation_template.csv",
+    "seed": 42,
+    "train_ratio": 0.7,
+    "val_ratio": 0.15,
+    "total_rows": 1615,
+    "valid_labeled": 1359,
+    "skipped_invalid": 256,
+    "train": 951,
+    "val": 204,
+    "test": 204,
+    "sentiment": {
+      "-1": 664,
+      "1": 447,
+      "0": 248
+    },
+    "sarcasm": {
+      "0": 858,
+      "1": 501
+    }
+  },
+  "baseline": {
+    "sentiment": {
+      "naive_bayes": {
+        "accuracy": 0.49748743718592964,
+        "precision_macro": 0.4589846743295019,
+        "recall_macro": 0.43915367351759976,
+        "macro_f1": 0.40586339958199247,
+        "weighted_f1": 0.44998868710391143,
+        "confusion_matrix": {
+          "labels": [
+            "1",
+            "0",
+            "-1"
+          ],
+          "matrix": [
+            [
+              59,
+              4,
+              20
+            ],
+            [
+              27,
+              3,
+              18
+            ],
+            [
+              30,
+              1,
+              37
+            ]
+          ]
+        },
+        "per_class": {
+          "1": {
+            "precision": 0.5086206896551724,
+            "recall": 0.7108433734939759,
+            "f1-score": 0.5929648241206029,
+            "support": 83.0
+          },
+          "0": {
+            "precision": 0.375,
+            "recall": 0.0625,
+            "f1-score": 0.10714285714285714,
+            "support": 48.0
+          },
+          "-1": {
+            "precision": 0.49333333333333335,
+            "recall": 0.5441176470588235,
+            "f1-score": 0.5174825174825175,
+            "support": 68.0
+          },
+          "accuracy": 0.49748743718592964,
+          "macro avg": {
+            "precision": 0.4589846743295019,
+            "recall": 0.43915367351759976,
+            "f1-score": 0.40586339958199247,
+            "support": 199.0
+          },
+          "weighted avg": {
+            "precision": 0.4711667533067637,
+            "recall": 0.49748743718592964,
+            "f1-score": 0.44998868710391143,
+            "support": 199.0
+          }
+        },
+        "n": 199
+      },
+      "logistic_regression": {
+        "accuracy": 0.5125628140703518,
+        "precision_macro": 0.5036855838225701,
+        "recall_macro": 0.5077269863768801,
+        "macro_f1": 0.5040876997398737,
+        "weighted_f1": 0.5148204792076324,
+        "confusion_matrix": {
+          "labels": [
+            "1",
+            "0",
+            "-1"
+          ],
+          "matrix": [
+            [
+              42,
+              20,
+              21
+            ],
+            [
+              15,
+              22,
+              11
+            ],
+            [
+              16,
+              14,
+              38
+            ]
+          ]
+        },
+        "per_class": {
+          "1": {
+            "precision": 0.5753424657534246,
+            "recall": 0.5060240963855421,
+            "f1-score": 0.5384615384615384,
+            "support": 83.0
+          },
+          "0": {
+            "precision": 0.39285714285714285,
+            "recall": 0.4583333333333333,
+            "f1-score": 0.4230769230769231,
+            "support": 48.0
+          },
+          "-1": {
+            "precision": 0.5428571428571428,
+            "recall": 0.5588235294117647,
+            "f1-score": 0.5507246376811593,
+            "support": 68.0
+          },
+          "accuracy": 0.5125628140703518,
+          "macro avg": {
+            "precision": 0.5036855838225701,
+            "recall": 0.5077269863768801,
+            "f1-score": 0.5040876997398737,
+            "support": 199.0
+          },
+          "weighted avg": {
+            "precision": 0.5202253931103659,
+            "recall": 0.5125628140703518,
+            "f1-score": 0.5148204792076324,
+            "support": 199.0
+          }
+        },
+        "n": 199
+      },
+      "linear_svm": {
+        "accuracy": 0.47104247104247104,
+        "precision_macro": 0.45440306819617166,
+        "recall_macro": 0.4528033370138633,
+        "macro_f1": 0.4526928985912795,
+        "weighted_f1": 0.4684492825616681,
+        "confusion_matrix": {
+          "labels": [
+            "1",
+            "0",
+            "-1"
+          ],
+          "matrix": [
+            [
+              48,
+              18,
+              29
+            ],
+            [
+              18,
+              20,
+              27
+            ],
+            [
+              25,
+              20,
+              54
+            ]
+          ]
+        },
+        "per_class": {
+          "1": {
+            "precision": 0.5274725274725275,
+            "recall": 0.5052631578947369,
+            "f1-score": 0.5161290322580645,
+            "support": 95.0
+          },
+          "0": {
+            "precision": 0.3448275862068966,
+            "recall": 0.3076923076923077,
+            "f1-score": 0.3252032520325204,
+            "support": 65.0
+          },
+          "-1": {
+            "precision": 0.4909090909090909,
+            "recall": 0.5454545454545454,
+            "f1-score": 0.5167464114832535,
+            "support": 99.0
+          },
+          "accuracy": 0.47104247104247104,
+          "macro avg": {
+            "precision": 0.45440306819617166,
+            "recall": 0.4528033370138633,
+            "f1-score": 0.4526928985912795,
+            "support": 259.0
+          },
+          "weighted avg": {
+            "precision": 0.467659008545708,
+            "recall": 0.47104247104247104,
+            "f1-score": 0.4684492825616681,
+            "support": 259.0
+          }
+        },
+        "n": 259
+      }
+    },
+    "sarcasm": {
+      "naive_bayes": {
+        "accuracy": 0.7222222222222222,
+        "precision_macro": 0.7479729729729729,
+        "recall_macro": 0.6910463300364393,
+        "macro_f1": 0.6909323116219668,
+        "weighted_f1": 0.7048389385554136,
+        "confusion_matrix": {
+          "labels": [
+            "1",
+            "0"
+          ],
+          "matrix": [
+            [
+              40,
+              45
+            ],
+            [
+              10,
+              103
+            ]
+          ]
+        },
+        "per_class": {
+          "1": {
+            "precision": 0.8,
+            "recall": 0.47058823529411764,
+            "f1-score": 0.5925925925925927,
+            "support": 85.0
+          },
+          "0": {
+            "precision": 0.6959459459459459,
+            "recall": 0.911504424778761,
+            "f1-score": 0.7892720306513409,
+            "support": 113.0
+          },
+          "accuracy": 0.7222222222222222,
+          "macro avg": {
+            "precision": 0.7479729729729729,
+            "recall": 0.6910463300364393,
+            "f1-score": 0.6909323116219668,
+            "support": 198.0
+          },
+          "weighted avg": {
+            "precision": 0.7406156156156155,
+            "recall": 0.7222222222222222,
+            "f1-score": 0.7048389385554136,
+            "support": 198.0
+          }
+        },
+        "n": 198
+      },
+      "logistic_regression": {
+        "accuracy": 0.7222222222222222,
+        "precision_macro": 0.7245710784313726,
+        "recall_macro": 0.7289432587194169,
+        "macro_f1": 0.7213622291021672,
+        "weighted_f1": 0.723551302498671,
+        "confusion_matrix": {
+          "labels": [
+            "1",
+            "0"
+          ],
+          "matrix": [
+            [
+              66,
+              19
+            ],
+            [
+              36,
+              77
+            ]
+          ]
+        },
+        "per_class": {
+          "1": {
+            "precision": 0.6470588235294118,
+            "recall": 0.7764705882352941,
+            "f1-score": 0.7058823529411765,
+            "support": 85.0
+          },
+          "0": {
+            "precision": 0.8020833333333334,
+            "recall": 0.6814159292035398,
+            "f1-score": 0.7368421052631579,
+            "support": 113.0
+          },
+          "accuracy": 0.7222222222222222,
+          "macro avg": {
+            "precision": 0.7245710784313726,
+            "recall": 0.7289432587194169,
+            "f1-score": 0.7213622291021672,
+            "support": 198.0
+          },
+          "weighted avg": {
+            "precision": 0.7355324074074076,
+            "recall": 0.7222222222222222,
+            "f1-score": 0.723551302498671,
+            "support": 198.0
+          }
+        },
+        "n": 198
+      },
+      "linear_svm": {
+        "accuracy": 0.6459143968871596,
+        "precision_macro": 0.6401360544217687,
+        "recall_macro": 0.6392576204523107,
+        "macro_f1": 0.6396067372443868,
+        "weighted_f1": 0.6453578386833854,
+        "confusion_matrix": {
+          "labels": [
+            "1",
+            "0"
+          ],
+          "matrix": [
+            [
+              66,
+              47
+            ],
+            [
+              44,
+              100
+            ]
+          ]
+        },
+        "per_class": {
+          "1": {
+            "precision": 0.6,
+            "recall": 0.584070796460177,
+            "f1-score": 0.5919282511210762,
+            "support": 113.0
+          },
+          "0": {
+            "precision": 0.6802721088435374,
+            "recall": 0.6944444444444444,
+            "f1-score": 0.6872852233676975,
+            "support": 144.0
+          },
+          "accuracy": 0.6459143968871596,
+          "macro avg": {
+            "precision": 0.6401360544217687,
+            "recall": 0.6392576204523107,
+            "f1-score": 0.6396067372443868,
+            "support": 257.0
+          },
+          "weighted avg": {
+            "precision": 0.6449773683792583,
+            "recall": 0.6459143968871596,
+            "f1-score": 0.6453578386833854,
+            "support": 257.0
+          }
+        },
+        "n": 257
+      }
+    }
+  },
+  "html": "C:\\Users\\ANA\\Desktop\\Faks\\Master\\Master rad\\Master rad - Analiza sentimenta sa detekcijom sarkazma za srpski jezik\\sarcasm-aware-sentiment-serbian\\reports\\izvestaj\\izvestaj.html",
+  "figures_dir": "C:\\Users\\ANA\\Desktop\\Faks\\Master\\Master rad\\Master rad - Analiza sentimenta sa detekcijom sarkazma za srpski jezik\\sarcasm-aware-sentiment-serbian\\reports\\izvestaj\\figures"
+}
