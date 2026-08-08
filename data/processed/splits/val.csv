@@ -1,194 +1,231 @@
 ﻿id,source,text,tip,sentiment,sarcasm
-230,youtube,Oce biti premijera u bioskopu kao film il na rts svake nedelje,filmovi,0,0
-611,youtube,Debilčino svaka čast,zabava,-1,1
-414,youtube,"milina za gledanje, predivan film",filmovi,1,0
-824,youtube,Zamoljavam vlast ako moze da se gurne jos koja parica u HSD Partizan jer ovo je vise i glupo gledati!,sport,-1,1
-512,youtube,"Kaaakav spoj, ovo nam je trebaloo!",zabava,1,0
-1215,twitter,"Људииии остварила ми се највећа жељаааа!!!! Примљена сам на еминентни факултет у Чачку, одсјек онесвешћивање по еминентним локалима и наркоманија",fakultet,-1,1
-277,youtube,45:07 Bogdan Diklić ko Dejvid Geta,filmovi,0,1
-586,youtube,Kucica za kera ima 20 kvadrata i terasu hahaha,zabava,0,1
-1073,youtube,Ako ga ne voliš što si mu posvetila pesmu?,muzika,0,1
-293,youtube,"Celo bombardovanje sam proveo na basketaskom iza srednje skole. Da, mator sam",filmovi,0,1
-535,youtube,Iskreno najbolja epizoda,zabava,1,0
-443,youtube,Kako bi zivot bio lep da je više Prof. Vujica i njegovih mangupa na ovoj planeti,filmovi,1,0
-1138,twitter,"Istina,dozvolila je sebi da im strani agenti zavedu dobar deo studenata i omladine, ubedi ih da ustanu protiv države! To treba pod hitno da se reši!",politika,-1,0
-680,youtube,Nezna ona iznjet taj stil...,muzika,-1,0
-1165,twitter,"Naspite zemlju ovde malo niže kod našeg auta, donesite kamen i to je to. Sunce ti bogovo!!",politika,-1,1
-405,youtube,"Otužan prijevod, film vrhunski",filmovi,0,0
-1173,twitter,Građevinski inženjer dame i gospodo...,politika,-1,1
-1158,twitter,"Koja većina? Od 1000 ispitanih to je 500 +1, a gde su ostali milioni gradjana?",politika,-1,0
-605,youtube,hahahahahhahaha,zabava,1,0
-1122,youtube,Ovo nema veze sa zdravim razumom,muzika,-1,0
-1250,twitter,Ma nema problema narod samo izmislja,politika,-1,1
+yt-00994,youtube,"Ja klao, ja sek'o, ja pek'o.",zabava,1,1
+yt-02645,youtube,"Sta nam komunjare uradise , sta smo postali sramota od naroda , pi gadite mi se svi do jednog, sramota reci da sam Srbin, kakvi nam preci bili, a sta smo postali otpad zivi",sport,-1,0
+yt-04493,youtube,Kako je ovde gnjavila dok pjeva kao lijeno kroz nos pjevanje hahah a sad kako vrijeme prolazi sve ljepse pjeva,muzika,0,1
 1284,instagram,Indijske serije placu za tobom…,politika,-1,1
-741,youtube,Svaka cast voditelju i gostu.,sport,1,0
-302,youtube,"Kakva serija kako se nekad ovo sa uzivanjem gledalo dok smo bili klinci, kako me vraca u neko lepse vreme",filmovi,1,0
-1036,youtube,Seljacine najobicnije.,muzika,-1,0
-678,youtube,"RESPECT koliko se potrudi oko spotova. Koreografija, sve, u korak sa profesionalnim plesacima.",muzika,1,0
-23,youtube,"stanujem u tom kraju,tu i idem u kladionicu,doduse ti lavovi vise ne postoje,sad je tu market,mozart je deset metara tu dalje,95% filma he snuiman u vojvode stepe,deo sa kengurovim stanom je sniman u kumodraskoj,mislim",filmovi,0,0
-1134,youtube,mogla je vise malo sise izbaciti realno da vidimo taj potencijal njenog pevanja,muzika,-1,1
-148,youtube,"u ovoj prvoj epizodi ova cura mi se gadi , videcemo dalje",filmovi,-1,0
-958,youtube,Ne mogu da verujem s ove moje uši,muzika,-1,1
-1028,youtube,Zasto niko ovu pesmu ne pusta na tik toku,muzika,1,0
-972,youtube,Sta je ovo?????uzas,muzika,-1,1
-869,youtube,Splav u Dobanovcima,zabava,0,0
-435,youtube,Trebali bi ga cesto prikazivat u Skolama. Da djeca nauce osnovno ponasanje i postovanje.,filmovi,1,0
-775,youtube,Sta je ovo afrička liga gde su Srbi?,sport,-1,1
-884,youtube,Beba place zato sto bebe placu.,zabava,0,1
-447,youtube,Sve mi se čini da će ovo biti mjuzikl umesto filma,filmovi,-1,1
-454,youtube,"Sram Vas bilo! Evakuisete ljude posle 30 minuta projekcije sa premijere u Ada Mallu, doslovno ih izbacite napolje, ne obavestite da ce se premijera nastaviti ubrzo i celokupnu pricu oko pozara iskulirate i dovedete glumce da im tapse 15 ljudi u sali! Svaka cast, mnogi nisu to ocekivali!",filmovi,-1,1
-1137,youtube,Ovo je dokaz da u današnje vreme svako može biti pevač,muzika,-1,1
-194,youtube,Svaka cas na glumi,filmovi,1,0
-529,youtube,Kao kreten se smejem u 2 ujutru. Bravo carevi.,zabava,1,0
-1252,twitter,"Taman da vam nesmetano na beli račun ležu crne pare iz inostranstva, za rušenje sosptvene države.",politika,-1,1
-642,youtube,ko kaze da ova SLOBODNA zna da glumi i dobar je glumac taj nema veze sta ne kinematografija.,zabava,0,0
-152,youtube,Ta vremena kad muškarac nije htio oženiti ženu ako nema dobar miraz a danas je obrnuta situacija. Sve se vraća sve se plaća,filmovi,-1,1
-276,youtube,"1:22:58 da li neko zna kako se zove ova pesma,nigde ne mogu da je nadjem :(",filmovi,0,0
-728,youtube,Konačno neka pesma gde se ne peva o drogi,muzika,1,1
-285,youtube,Od svih replika iz Andjela ne može čovek da se odluči koja je najbolja.Sve su vrhunske i dan danas rado ih ponavljam.Hvala Srdjanu Dragojeviću na filmu za večnost,filmovi,1,0
-785,youtube,"Sta nam komunjare uradise , sta smo postali sramota od naroda , pi gadite mi se svi do jednog, sramota reci da sam Srbin, kakvi nam preci bili, a sta smo postali otpad zivi",sport,-1,0
-504,youtube,"Loše ...ali baš loše odradjeno...scenario za malu djecu, a gluma preko one stvari odradjena...u odnosu na prvi dio, nebo i zemlja...",filmovi,-1,0
-121,youtube,Moja mama I ja smo voljele ovaj film I zajedno ga Gledale mnogo puta iako ga dobro znamo. Ona je preminula prije godinu dana ali meni ostaje lijepa uspomena..,filmovi,1,0
-1159,twitter,"Ne ide nikud, tu je gde je.",politika,0,0
-498,youtube,"Eto, da se klinci izgasiraju još malo",filmovi,-1,1
-1141,twitter,Mediji bi trebalo da pruže više konteksta a manje bombastičnih naslova koji izazivaju podele!,politika,-1,0
-338,youtube,Koliko je iritantan ovaj nalepljeni logo koji veze nema s estetikom serije.,filmovi,-1,0
-1194,twitter,"Hešteguješ samog sebe!? Imate li vi u toj vašoj sekti nekog ko NIJE narcisoidan? Ahahahahahahahaha, koliko si ti bolestan čovek!",sport,-1,1
-980,youtube,E sad ovako ja te poštujem kao muzičara ali ovo nije normalno,muzika,0,0
-27,youtube,Koja pesma se čuje u pozadini 58:15,filmovi,0,0
-1234,twitter,Kakav napredak sad cekamo samo duplo duze,politika,-1,1
-717,youtube,"Momcilo, trepni na levo oko 3 puta ako si otet",muzika,0,1
-1027,youtube,Htela bi drip‍‍,muzika,0,0
-466,youtube,"Hahaha meni ovo liči na Janes Bonda, malo su se preigrali sa ovim filmom",filmovi,-1,1
-531,youtube,sad će napokon da imaju za kiflu,zabava,1,1
-1205,twitter,Da li si i ti uplatio tiket na Engleze⁉,sport,1,1
-877,youtube,"Nema čoveka da moze tako imitirati lukasa, svaka cast",zabava,1,0
-420,youtube,"Koji glumac prica na pocetku filma. ..poznat mi glas ,a ne mogu odgonetnuti",filmovi,0,0
-409,youtube,Ovo je najbolja serija.,filmovi,1,0
-130,youtube,"17ti put je gledam i nikad mi nece dosaditi,koliko ih obozavam,serija je najbolja",filmovi,1,0
-699,youtube,I dalje se sluša,muzika,1,0
-629,youtube,То што си ти таква нема везе....,zabava,0,1
-1097,youtube,koje cigare pusi u spotu?,muzika,0,0
-299,youtube,"Jest odglumio bosanca, prejako",filmovi,1,0
-936,youtube,1:42 Koliko je ova djevojka talentirana. Čudo.,muzika,1,0
-1181,twitter,Xaxaxa vidikovac bez prilaza kakvi graditelji,politika,-1,1
-63,youtube,"Brate, Bože.... nemoj, Šomi!",filmovi,0,0
-1069,youtube,Bar nije gola u spotu kao neke,muzika,1,1
-373,youtube,Od 1:37:41 do 1:38:19 scena da se naježiš.Film koji nikad neću prestat gledati,filmovi,0,0
-544,youtube,Mladja uzeo Zagora kao stric poslednju sarmu na slavi,zabava,1,1
-1029,youtube,Novi hit ima da se slusa na jesen i zimu,muzika,1,0
-12,youtube,Jedan od filmova koje znam napamet u reč..antologijsko remek delo i pokazatelj mentaliteta ovog naseg napacenog naroda,filmovi,1,0
-630,youtube,Ko smo mi? Da li smo mi srecni ljudi ili *iluzija u vremenu* ?,zabava,0,1
-436,youtube,Ja kad pogledam ovaj film mi dan bude bolji,filmovi,1,0
-1152,twitter,Bas me zanima ko je istrazivao!Ovu N1 prvo ukinuti pa sve ostale blokaderske medije.,politika,-1,1
-1020,youtube,Pusti ga kući....,muzika,0,1
-385,youtube,"Lepo, ali to je davno prošlo vreme koje se nikada neće vratiti. Treba živeti neke vrednosti danas u današnjim uslovima.",filmovi,0,0
-37,youtube,"Znam sve od.pocetka do kraja napamet, ali i dalje rado pogledam",filmovi,1,0
-519,youtube,Ovaj brat je preduvan dosao za ovaj kviz,zabava,0,1
-46,youtube,"Prvi UFO domaći film. Izašli tek iz 90ih i nije nas globalizacija toliko zahvatila, pa je zato film prijatan.",filmovi,0,0
-696,youtube,Ehh da je ovo islo na Evroviziju,muzika,1,0
-595,youtube,komunikaciju medija severoatlansko pravo menadzment biorazgradivog,zabava,-1,1
-532,youtube,obozavam ovu aktivnost 2 videa u jednoj nedelji,zabava,1,0
-1253,twitter,"Znači nema promene za narod, samo za studente. Super.  Snašli ste se, baš vas briga.",politika,-1,1
-1093,youtube,Fight club na aparatima,muzika,0,1
-1129,youtube,Tragedija za ovaj narod.,muzika,-1,0
-349,youtube,"Hvala ti do neba. A snimak je ne može bolji, konačno da odgledam ponovo.",filmovi,1,0
-467,youtube,"Jedna od rijetkih serija/filmova koju su pokvarile glavne uloge, mada i pored katastrofalne glume i ovog drugog opet je dobra. Kad bi se nekako mogli isijeći svi dijelovi u kojima se oni pojavljuju bilo bi top, jer su sve ""sporedne"" uloge vrhunski odradile posao sa antologijskim scenama, a ova dvojica su odglumila opasne kriminalce isto dva Micky mausa ...",filmovi,-1,1
-978,youtube,Ja sam beo ko fasada hahahah,muzika,0,1
-32,youtube,"Kad porastem biće kladionica 100m od škole , i to ne jedna nego 10. Kockanje na sve strane .",filmovi,-1,1
-952,youtube,Nekako uvek jeftino izgleda,muzika,-1,1
-543,youtube,Hoćemo nazad stari intro!!!!!!!!!!!!!!!!,zabava,-1,0
-999,youtube,"Možemo mi pričati šta hoćemo o tekstu, lažnih moralista kod Srba je uvijek bilo i biće...ali ovo vozi opasno.",muzika,1,1
-206,youtube,"Zamislite da je npr Nikola Kojo glumio,Juzni Vjetar bi oborio sve rekorde a ne bio prosjecan film,npr Cetvrti Covjek sa Nikola Kojom koji nije imao ni blizu ovakav scenario je duplo bolji,steta sto nisu uzeli nekog ozbiljnijeg glumca ravnog ovom scenariju,a ne ovo dijete koje pojavom nimalo ne podsjeca niti ima taj filmski smek da igra ulogu kriminalca.Pozzz",filmovi,-1,0
-510,youtube,Ludilo u najavi,filmovi,0,0
-347,youtube,"Izbacite sve epizode molim vas,svaka čast i hvala",filmovi,1,0
-987,youtube,Ovu pesmu peva tetka moje drugarice,muzika,0,0
-925,youtube,"Previše autune, mogli ste malo manje. Inace preljepa je pesma",muzika,0,0
-569,youtube,opa milane dva videa u jednoj nedelji,zabava,1,1
-786,youtube,"Коментаторе забoлeло, као да су им узели 50% од плате",sport,-1,1
-533,youtube,Kakav je to intro,zabava,0,0
-160,youtube,Ja se pitam zasto se u to vreme trazio miraz a sad se zeni ko kako hoce,filmovi,0,0
-1267,twitter,Sta je ovde dobro? Jel mozda to sto ce stranac da unisti domacu proizvodnju i iskoristi izvoz u Rusiju!,politika,-1,1
-1229,twitter,Bas su mislili na gradjane kada su ovo doneli,politika,-1,1
-366,youtube,"Predivni steeee ,haha sve mangup do mangupa .........",filmovi,1,0
-800,youtube,Mnogo lep fudbal zvezde za nas koji malo duže pratimo fudbal i podržavamo igranje srcem,sport,1,0
-520,youtube,O BOZE NISAM SE SMEJAO OVOLIKO U POSLEDNIH 7 GODINA BOG TE MAZOOO....,zabava,1,0
-525,youtube,Ovo treeba nasem yt,zabava,1,0
-672,youtube,Brate koji je ovo zanr?,muzika,0,0
-211,youtube,"Svaka scena oduzima dah, sreca pa je pandemija prosla",filmovi,1,0
-325,youtube,"Bravo kao da je juče bilo, prođe 15 godina..",filmovi,1,0
-901,youtube,Odlicnee pesme jakee,muzika,1,0
-653,youtube,Ovakvu muziku se vise ne krejira.... to je ono sto je nekad imalo dusu... a sad to vise nema..... tehnologija i pare uzele dusu,muzika,1,1
-726,youtube,Moj prijatelj invalid je usto iz kolica samo da ugasi ovu glupost,muzika,-1,1
-252,youtube,"hahha eee sinovci 92% istinske realnosti trenutne prikazuje se kroz FILM! BUM,BUM samo ‍",filmovi,0,0
-559,youtube,"Moje detinjstvo, srednja škola i faks u jednom videu - ŠTOGOD",zabava,1,0
-295,youtube,"Kako god, uvijek nevini nastradaju. Ko rat želio u kući mu bio 24/7",filmovi,-1,1
-772,youtube,Da smo godinu dana igrali jos ne bi nas stigli,sport,1,1
-506,youtube,Nema veze sa mozgom niti prvim delom. Ovo je uzas,filmovi,-1,0
-470,youtube,"Drugi put gledam drugi film i stvarno prvi se film može gledati iz nova više puta te svaka čast svima, ali ovaj drugi je kritičnog scenarija.. ne znam zašto su išli u smjeru toga da se sve svodi na spašavanje lika iz prvog filma koji nije ostavio nikakav osobit trag da bi se nešto očekivalo od njega u nastavku.",filmovi,-1,0
-259,youtube,Juzni vetar nema granica ni vreme,filmovi,0,0
-240,youtube,"Jel moze da mi neko kaze neku stranicu, gde mogu na internetu da gledam seriju..",filmovi,0,0
-1168,twitter,"Samo još taj put nije renoviran........... i nadstrešnica , zašto ?",politika,-1,1
-894,youtube,Tripuje da je Severina,muzika,0,1
-331,youtube,"Odlično, svaka čast! Samo još jedan predlog, da ubacite prevode za strance, šteta da ovo propuste!",filmovi,1,0
-969,youtube,Koji odvratan spot evo meni je muka sto mi nije nista ne znam kako njegova zena gleda na ovo,muzika,-1,0
-885,youtube,"Kamen bi zaplakao, strasno, isto kao kada udjes na sve portale",zabava,-1,1
-1174,twitter,Nemojte da me maltretirate sa ocuvanjem prirode,politika,1,1
-809,youtube,Ovo je jedan od onih derbija gde odmah žališ što nije bilo bar 6:0.,sport,1,1
-1104,youtube,Jel mi se samo cini ili je ovo najbolji spot koji sam ikada video,muzika,1,1
-469,youtube,Najgori domaći film svih vremena.,filmovi,-1,0
-207,youtube,"Amerikanci mogu samo željeti imati ovakvu kvalitetu filma i radnju, definitivno jedni od rijetkih koji su nastavili sa vrhunskom kinematografijom na prostorima bivše države. Nakon pregledanih svih dijelova i filma svaki put sam se pitao može li bolje, a uvijek novi dio ispadne iznad svih očekivanja i bolje od prethodnog!!! Ako se po jutru dan poznaje po traileru vidimo da će ovo biti top! Znači gori",filmovi,1,0
-949,youtube,piksi je sudija,muzika,0,0
-621,youtube,Ako je ovako kad si naduvan onda sam ja rođen naduvan,zabava,0,1
-910,youtube,Tekst vec znam napamet,muzika,1,0
-930,youtube,Ma najjace ste kunem ti se :D,muzika,1,0
-99,youtube,Imam samo 12 godina ali preporučujem ovaj film,filmovi,1,0
-1117,youtube,zamisli njihove oceve koji ovo gledaju...,muzika,-1,1
-811,youtube,i dalje je partizan jedini pravi klub,sport,1,1
-89,youtube,Nikad ne dosadi!,filmovi,1,0
-816,youtube,Pitam se za koga navija komentator,sport,0,1
-1115,youtube,hoce malo sutra,muzika,0,1
-72,youtube,Gluplji film u životu nisam gledao..,filmovi,-1,0
-1265,twitter,Mars baksuze... gde si nasao sad da se javis pred finale da izmalerises,politika,-1,1
-577,youtube,A znam ja sta je problem ne znate vi da otvorite pivo,zabava,-1,1
-15,youtube,Klinci idite u skolu.,filmovi,0,1
-965,youtube,Koji blam lik snima,muzika,-1,0
+yt-05636,youtube,krenule ljute suze,muzika,0,1
+sr-00698,youtube,"Hahaha meni ovo liči na Janes Bonda, malo su se preigrali sa ovim filmom",filmovi,-1,1
+yt-04444,youtube,"Pjesme odlične,samo što je ona malo priglupa,jbg",muzika,0,0
+1180,twitter,Još malo ugradjivanja,politika,-1,1
+1233,twitter,Ma sve funkcionise savrseno samo sto niko nije zadovoljan,politika,-1,1
+yt-03222,youtube,Presla igricuu kraljica,muzika,1,0
+1170,twitter,"O, pa Drobnjak živ , on ko Rolling Stonesi",politika,1,1
+yt-01151,youtube,Izgleda da se ove godine nece ici nigde,zabava,0,1
+yt-04766,youtube,bog i batina repa,muzika,1,0
+yt-01053,youtube,komunikaciju medija severoatlansko pravo menadzment biorazgradivog,zabava,-1,1
+yt-02741,youtube,Трећи гол је уметност,sport,1,1
+yt-05442,youtube,Ovo zasluzuje 100 miliona pregleda najmanjee !,muzika,1,0
+sr-00129,youtube,Moja mama I ja smo voljele ovaj film I zajedno ga Gledale mnogo puta iako ga dobro znamo. Ona je preminula prije godinu dana ali meni ostaje lijepa uspomena..,filmovi,1,0
+sr-00024,youtube,"stanujem u tom kraju,tu i idem u kladionicu,doduse ti lavovi vise ne postoje,sad je tu market,mozart je deset metara tu dalje,95% filma he snuiman u vojvode stepe,deo sa kengurovim stanom je sniman u kumodraskoj,mislim",filmovi,0,0
+yt-01466,youtube,"баш лепо, срце ми куца јаче",zabava,1,1
+yt-05290,youtube,Mene sramota sto sam cuo ovo,muzika,-1,1
+sr-00625,youtube,Trebali bi ga cesto prikazivat u Skolama. Da djeca nauce osnovno ponasanje i postovanje.,filmovi,1,0
+yt-05694,youtube,Vise smeca na jednom mjestu nisam vidio !!!,muzika,-1,1
+yt-02605,youtube,Sta je ovo afrička liga gde su Srbi?,sport,-1,1
+yt-03653,youtube,Ne mogu da verujem s ove moje uši,muzika,-1,1
+yt-05485,youtube,Doktorski urađeno,muzika,1,0
+yt-02214,youtube,"""U 2026 ćemo imati leteće automobile"" 2026:",muzika,0,1
+sr-00012,youtube,Jedan od filmova koje znam napamet u reč..antologijsko remek delo i pokazatelj mentaliteta ovog naseg napacenog naroda,filmovi,1,0
+sr-00536,youtube,"Predivni steeee ,haha sve mangup do mangupa .........",filmovi,1,0
+sr-00139,youtube,"17ti put je gledam i nikad mi nece dosaditi,koliko ih obozavam,serija je najbolja",filmovi,1,0
+yt-03675,youtube,Koji blam lik snima,muzika,-1,0
+yt-05054,youtube,Ovo je dokaz da u današnje vreme svako može biti pevač,muzika,-1,1
+yt-05142,youtube,Sram vas bilo što imate kanal,muzika,-1,0
+sr-00463,youtube,"Jest odglumio bosanca, prejako",filmovi,1,0
+yt-05104,youtube,koje su im ovo cigare bele,muzika,0,0
+yt-05437,youtube,Ovi nekršteni a o ribi pričaju,muzika,0,1
+yt-00860,youtube,Kao kreten se smejem u 2 ujutru. Bravo carevi.,zabava,1,0
+yt-00871,youtube,yaser u sledeci kviz dovedi nekog pametnog,zabava,-1,1
+sr-00443,youtube,Od svih replika iz Andjela ne može čovek da se odluči koja je najbolja.Sve su vrhunske i dan danas rado ih ponavljam.Hvala Srdjanu Dragojeviću na filmu za večnost,filmovi,1,0
+yt-00910,youtube,Hoćemo nazad stari intro!!!!!!!!!!!!!!!!,zabava,-1,0
+yt-02128,youtube,"Neobicna pesma, svidja mi se",muzika,1,0
+sr-00697,youtube,kako da gledam nema bioskopa u mom selu,filmovi,-1,0
+yt-05625,youtube,Ja sam kriv sto placam internet...,muzika,-1,1
+sr-00590,youtube,Ovo je najbolja serija.,filmovi,1,0
+yt-05830,youtube,Ovo je bilo previse prostacki...ima doze sarkazma ali i cinizma.,zabava,-1,0
+yt-02145,youtube,Zanimljiva pesma,muzika,1,0
+yt-00956,youtube,Sedem da jedem i vidim ovo idemo bre,zabava,1,0
+yt-05597,youtube,On ima žensko dete a ovakve pesme snima ma bravo,muzika,-1,1
+yt-05122,youtube,Koj minut je tuca,muzika,0,0
+sr-00515,youtube,"""Da ne bismo ulazili sad u to, ko je ovde lud a ko paranormalan""",filmovi,-1,1
+yt-02844,youtube,"Koliko je ovo samo depresivno... Studije su pravi stres, pogotovo ako ste na nekom od tehničkih fakulteta.",fakultet,-1,0
+yt-05400,youtube,"Jako malouman tekst , bolje da su pitali Vestacku Inteligenciju",muzika,-1,1
+yt-04684,youtube,Ovo ne zasluzuje 19 mesto u trendu ovo zasluzuje barem 2-3 majke mi,muzika,1,0
+sr-00110,youtube,"2026 -a i trajaće kroz generacije,jedan od naših najboljih filmova",filmovi,1,0
+yt-04308,youtube,ne daj boze da vam neko stavi ovu pesmu za alarm uvek se poplasim kad sestri za zvoni alarm,muzika,-1,0
+yt-05348,youtube,Jezivo glupa stvar,muzika,-1,0
+yt-01865,youtube,Bravo cure za 100 miliona pregleda! Estradi nedostaje ovaj trio!,muzika,1,0
+yt-01385,youtube,Kad si u bedu uzmi kredu nacrtaj medu i pogledaj ovaj video da popravi ti dan,zabava,1,1
+sr-00143,youtube,nnajbolja serija na planeti ko se slaze samnom,filmovi,1,0
+sr-00047,youtube,"Prvi UFO domaći film. Izašli tek iz 90ih i nije nas globalizacija toliko zahvatila, pa je zato film prijatan.",filmovi,0,0
+yt-00846,youtube,Ovaj brat je preduvan dosao za ovaj kviz,zabava,0,1
+yt-05902,youtube,"Ovo je katastrofa , nije zabavno uopste.",zabava,-1,0
+yt-05917,youtube,pesma slusljiva ko ja na wcu,muzika,-1,1
+yt-03699,youtube,Sta je ovo?????uzas,muzika,-1,1
+sr-00091,youtube,"U ovom filmu, ko i ima lovu, psuje.",filmovi,0,1
+sr-00025,youtube,Cile najjaci lik,filmovi,1,0
+sr-00178,youtube,Ja se pitam zasto se u to vreme trazio miraz a sad se zeni ko kako hoce,filmovi,0,0
+yt-05350,youtube,ovo samo umobolni mogu da slusaju,muzika,-1,1
+1145,twitter,Jedno istraživanje ne može da predstavlja mišljenje svih građana Srbije!,politika,-1,0
+sr-00256,youtube,"Zamislite da je npr Nikola Kojo glumio,Juzni Vjetar bi oborio sve rekorde a ne bio prosjecan film,npr Cetvrti Covjek sa Nikola Kojom koji nije imao ni blizu ovakav scenario je duplo bolji,steta sto nisu uzeli nekog ozbiljnijeg glumca ravnog ovom scenariju,a ne ovo dijete koje pojavom nimalo ne podsjeca niti ima taj filmski smek da igra ulogu kriminalca.Pozzz",filmovi,-1,0
+yt-05848,youtube,Gle čuda komentari nisu isključeni.,zabava,0,1
+yt-03656,youtube,Ne slusam ovu vrstu muzike ali ok nije lose zabavno,muzika,0,0
+sr-00516,youtube,"Hvala ti do neba. A snimak je ne može bolji, konačno da odgledam ponovo.",filmovi,1,0
+sr-00626,youtube,Ja kad pogledam ovaj film mi dan bude bolji,filmovi,1,0
+1236,twitter,Bas odgovorna politika vidi se po svakom racunu,politika,-1,1
+yt-02888,youtube,Uopste nije smesno ni za glumu...,zabava,-1,0
+yt-00875,youtube,obozavam ovu aktivnost 2 videa u jednoj nedelji,zabava,1,0
+1256,twitter,"Дела нашег храброг председника, има још пуно, али овде где продаје целу земљу се показао као највећи међу нама",politika,-1,1
+1185,twitter,"Navijamo za Srpsku, navijamo za borce, samo napred !",sport,1,0
+yt-00877,youtube,Kakav je to intro,zabava,0,0
+yt-05576,youtube,"A kontam da se lik zeza al' u nekim pesmama se zapravo nasmejem i ima smisla, ova je bukvlano test koliko ljudi mogu da podnesu šunda...",muzika,0,1
+yt-05537,youtube,Da li vam poznata matrica?,muzika,0,0
+sr-00545,youtube,Od 1:37:41 do 1:38:19 scena da se naježiš.Film koji nikad neću prestat gledati,filmovi,0,0
+sr-00064,youtube,"Brate, Bože.... nemoj, Šomi!",filmovi,0,0
+yt-01021,youtube,Ko osam ruku da ima - Mortal Kombat ahahahh,zabava,1,1
+yt-03672,youtube,On bi trebao na evroviziju pobedio bi,muzika,1,0
+yt-05218,youtube,Ko slusa ovo neironicno,muzika,-1,1
+sr-00823,youtube,Ludilo u najavi,filmovi,0,0
+yt-00826,youtube,"Kaaakav spoj, ovo nam je trebaloo!",zabava,1,0
+1257,twitter,i sada su ministri ti zuti,politika,-1,1
+yt-05168,youtube,"Svako ko slusa ovo,ko kaze da je dobro, je debil tezak,papak glupi O ukusima ne treba raspravljati,ali ovaj ukus je retardiran...samo za sline kakve i jeste.",muzika,-1,0
+yt-01629,youtube,"Kako je bila lijepa,a sad Boze sacuvaj ni nalik na sebe,a pjesma vel.0 ni ona sama nezna sta pjeva,bruka od pjesme",muzika,0,0
+sr-00243,youtube,41:14 ne mogu se nagledati i naslušati,filmovi,1,0
+sr-00514,youtube,"Izbacite sve epizode molim vas,svaka čast i hvala",filmovi,1,0
+yt-05859,youtube,Ja nevidim nista smesno ovde ovi prsli ili naduvani sto posto.,zabava,-1,0
+yt-01811,youtube,Šteta sto se ponovo ne aktiviraju. Ovo je za svetske okvire vrh,muzika,1,0
+yt-05649,youtube,Moze insta od plavuse?,muzika,0,0
+sr-00082,youtube,"zivele semenke, semenke svih zemalja, ujedinite se!",filmovi,1,1
+1231,twitter,Sjajno stvarno nam je falilo jos jedno poskupljenje,politika,-1,1
+yt-05256,youtube,"Zašto lik uopšte mrda usta, bolje jednostavno da samo mrda ruke i cao",muzika,-1,1
+yt-05255,youtube,I onda kao nismo zajedno,muzika,0,1
+yt-03382,youtube,"Imam samo jedno pitanje, zašto baš pola 6?",muzika,0,1
+yt-01719,youtube,Nezna ona iznjet taj stil...,muzika,-1,0
+yt-01668,youtube,"Devojka ima lep glas i lepo izgleda al nikako da ubode neki hit koji ce da se slusa na duze staze,steta",muzika,0,0
+yt-00847,youtube,O BOZE NISAM SE SMEJAO OVOLIKO U POSLEDNIH 7 GODINA BOG TE MAZOOO....,zabava,1,0
+yt-02804,youtube,Odlicna utakmica,sport,1,0
+yt-02368,youtube,Kakva jedna ljudska veličina u svakom smislu !!,sport,1,0
+1296,instagram,"pa kamen da se kandiduje za njega cu da glasam, samo ne za vucica",politika,-1,1
+1161,twitter,A koje i čije istraživanje? Laž!,politika,-1,0
+sr-00707,youtube,"Drugi put gledam drugi film i stvarno prvi se film može gledati iz nova više puta te svaka čast svima, ali ovaj drugi je kritičnog scenarija.. ne znam zašto su išli u smjeru toga da se sve svodi na spašavanje lika iz prvog filma koji nije ostavio nikakav osobit trag da bi se nešto očekivalo od njega u nastavku.",filmovi,-1,0
+sr-00595,youtube,Ovome je stalno u glavi neprijatelj,filmovi,-1,1
+yt-02588,youtube,Malo slabiji trening...,sport,-1,1
+yt-00937,youtube,Скуп најјачих људи икад,zabava,1,0
+sr-00584,youtube,"Otužan prijevod, film vrhunski",filmovi,0,0
+sr-00665,youtube,"Sram Vas bilo! Evakuisete ljude posle 30 minuta projekcije sa premijere u Ada Mallu, doslovno ih izbacite napolje, ne obavestite da ce se premijera nastaviti ubrzo i celokupnu pricu oko pozara iskulirate i dovedete glumce da im tapse 15 ljudi u sali! Svaka cast, mnogi nisu to ocekivali!",filmovi,-1,1
+yt-02456,youtube,"sto ne volim kad voditelj postavlja pitanje kroz celu neku njegovu pricu, ma daj gledaj da pitanja budu koncizna i da gost sto vise govori odgovori a ne pitanje maltene duze od odgovora gosta",sport,-1,0
+1146,twitter,"Naslov zvuči senzacionalistički! Bilo bi korisno objaviti i uzorak, način anketiranja i marginu greške!",politika,0,1
+yt-04751,youtube,Od ovog se moze umrijeti koliko je dobro,muzika,1,1
+1213,twitter,"""Студенти блокирали Филозофски факултет"" - jel to simbolično kao: nemojte ljudi na ovaj fakultet, nema svrhe.",fakultet,-1,1
+sr-00559,youtube,"Lepo, ali to je davno prošlo vreme koje se nikada neće vratiti. Treba živeti neke vrednosti danas u današnjim uslovima.",filmovi,0,0
+yt-02119,youtube,Nemojte da budete toliko opasni uplasice se vanzemaljci,muzika,0,1
+yt-00969,youtube,opa milane dva videa u jednoj nedelji,zabava,1,1
+yt-02628,youtube,Уживам док гледам ову велику тугу на ћаци арени спорт.,sport,1,1
+yt-03107,youtube,Tripuje da je Severina,muzika,0,1
+sr-00296,youtube,Zna li neko gde ce se emituje?,filmovi,0,0
+sr-00114,youtube,"Glumci glumice za 10 neki su pokojni,al nikad se vise ovakvi glumci nece radjat...",filmovi,1,0
+1216,twitter,Nova vest - Saša Popović otvara Fakultet za estradu? Jedva cekam kolokvijum iz hitova Bore Drljace,fakultet,1,1
+yt-02369,youtube,Rijedak slucaj pametnog covjeka. Sve pohvale,sport,1,1
+yt-04096,youtube,kao da si idot???,muzika,-1,1
+yt-05914,youtube,Prva nozdrva Srbije,zabava,0,1
+sr-00038,youtube,"Znam sve od.pocetka do kraja napamet, ali i dalje rado pogledam",filmovi,1,0
+sr-00603,youtube,"Koji glumac prica na pocetku filma. ..poznat mi glas ,a ne mogu odgonetnuti",filmovi,0,0
+yt-05041,youtube,"Ne zna se sta je gore,da li pesma,striptizeta ili ovaj teletabis?Tezak izbor",muzika,-1,1
+sr-00504,youtube,Koliko je iritantan ovaj nalepljeni logo koji veze nema s estetikom serije.,filmovi,-1,0
+yt-02683,youtube,Mnogo lep fudbal zvezde za nas koji malo duže pratimo fudbal i podržavamo igranje srcem,sport,1,0
+sr-00033,youtube,"Kad porastem biće kladionica 100m od škole , i to ne jedna nego 10. Kockanje na sve strane .",filmovi,-1,1
+yt-03100,youtube,I 3 dinara je previse za ovo…,muzika,-1,1
+sr-00073,youtube,Gluplji film u životu nisam gledao..,filmovi,-1,0
+yt-02779,youtube,vucic kriv.... nacrtao liniju sesnaesterca ukrivo...,sport,-1,1
+yt-03692,youtube,Koji odvratan spot evo meni je muka sto mi nije nista ne znam kako njegova zena gleda na ovo,muzika,-1,0
+sr-00502,youtube,Samo da se vrati nova sezona i miran sam,filmovi,0,0
+sr-00124,youtube,Ja gledam ovo i plačem ovo je najbolji film na svetu,filmovi,1,0
+yt-04648,youtube,Spojio jokera i eminema u spot,muzika,0,0
+sr-00496,youtube,"Odlično, svaka čast! Samo još jedan predlog, da ubacite prevode za strance, šteta da ovo propuste!",filmovi,1,0
+yt-01417,youtube,Ko smo mi? Da li smo mi srecni ljudi ili *iluzija u vremenu* ?,zabava,0,1
+yt-03785,youtube,"Bravo klosari, buducnost je pred vama!",muzika,-1,1
 1176,twitter,"Naš KLOŠarkaški trener, sportista ceo život",politika,-1,1
-829,youtube,vucic kriv.... nacrtao liniju sesnaesterca ukrivo...,sport,-1,1
-473,youtube,Ehh sta ti je zivot.. nekad Brazilu cepao mreze a sad krade automobile.. Jedna prosecna prica fudbalera u drzavi xd,filmovi,-1,1
-634,youtube,Koji vrhunski ludaci,zabava,1,1
-1031,youtube,"Od repera priznajem samo Marcela ,ovo ostalo je prazna prica bez talenta i vrednosti.",muzika,-1,0
-867,youtube,Uopste nije smesno ni za glumu...,zabava,-1,0
-1034,youtube,Samo tako nastavite,muzika,1,0
-750,youtube,"sto ne volim kad voditelj postavlja pitanje kroz celu neku njegovu pricu, ma daj gledaj da pitanja budu koncizna i da gost sto vise govori odgovori a ne pitanje maltene duze od odgovora gosta",sport,-1,0
-564,youtube,Stariji ljudi igraju wow,zabava,1,1
-849,youtube,"Koliko je ovo samo depresivno... Studije su pravi stres, pogotovo ako ste na nekom od tehničkih fakulteta.",fakultet,-1,0
-228,youtube,Gde moze da se gleda serija za sezonu 2 i tri? Samo bilm mogu da nadjem za 2. A trecu ni film ni seriju,filmovi,0,0
-114,youtube,Jedini film u kojem neces cuti JEDNU ruznu rec! Ni jednu......!,filmovi,1,0
-229,youtube,Zna li neko gde ce se emituje?,filmovi,0,0
-1155,twitter,Niko normalan u ovo neće poverovati. Dosta je bilo laži.,politika,-1,0
-236,youtube,Vucicevi stakori...pojmasi od glume,filmovi,-1,1
-640,youtube,"баш лепо, срце ми куца јаче",zabava,1,1
+1150,twitter,"Na koja se imbecilna istraživanja pozivaju ovi degeni, baš nikom nije jasno?! Trebate da znate da su građani Srbije svesna bića.",politika,-1,0
+sr-00382,youtube,Juzni vetar nema granica ni vreme,filmovi,0,0
+yt-05061,youtube,iznenadjujuce gotivna pesma,muzika,1,1
+yt-04435,youtube,Ova pesma je obiležila moj 18.-ti rođendan,muzika,0,0
+sr-00019,youtube,Odličan film 35:33 39:01-39:08 navijač liverpoola 59:19-59:30 1:00:26-1:00:33 živac u mraku 1:02:22 ode kemijska 1:08:44-1:08:48 1:11:34-1:11:48,filmovi,1,0
+yt-00997,youtube,A znam ja sta je problem ne znate vi da otvorite pivo,zabava,-1,1
+yt-03415,youtube,Jel sam samo ja ili njih dve zvuce isto,muzika,0,0
+sr-00265,youtube,"Svaka scena oduzima dah, sreca pa je pandemija prosla",filmovi,1,0
+sr-00794,youtube,"Eto, da se klinci izgasiraju još malo",filmovi,-1,1
+yt-02941,youtube,Al tekst ispod sto ide,zabava,0,1
+sr-00122,youtube,Jedini film u kojem neces cuti JEDNU ruznu rec! Ni jednu......!,filmovi,1,0
+yt-03873,youtube,Moj drug voli da sluša ovu pesmu,muzika,0,0
+yt-03153,youtube,Odlicnee pesme jakee,muzika,1,0
+sr-00755,youtube,kad odete na projekciju ovog filma i odgledate ga smatrajte da ste FILMSKI RETARDIRANI !!,filmovi,-1,1
+sr-00166,youtube,Ta vremena kad muškarac nije htio oženiti ženu ako nema dobar miraz a danas je obrnuta situacija. Sve se vraća sve se plaća,filmovi,-1,1
+yt-01544,youtube,"Ovo je knjiga,nije pjesma",muzika,1,1
+sr-00424,youtube,"1:22:58 da li neko zna kako se zove ova pesma,nigde ne mogu da je nadjem :(",filmovi,0,0
+1197,twitter,"Genocidni marš za Rusiju, zločinačka nacijo",sport,-1,0
+yt-05258,youtube,Jel se meni čini ili se pjesma malo ubrzava i usporava,muzika,0,0
+sr-00063,youtube,Pitaj je da li je bila u šemi sa Bredom Pitom?,filmovi,0,1
+sr-00077,youtube,15:32 ja sam se cepao kad sam gledao ovu scenu prvi put. Legendarno!,filmovi,1,0
+yt-05201,youtube,Odrekni se muzicke karijere,muzika,-1,0
+sr-00764,youtube,"Ja sam u šoku posle samo kraja ovog filma....Da li je moguće da se ovako završava i nastavlja dalje? A sta ce biti dalje, to je pitanje?",filmovi,-1,0
+yt-05622,youtube,na deseto slusanje moram reci da mi se svidja(izgubio sam aparat za sluh),muzika,-1,1
+sr-00275,youtube,Jednom davno jedan mudri baca je reko znam ja ovog indijanca,filmovi,1,1
+1274,twitter,Зато што немају хлеба да једу.,politika,-1,0
+yt-06044,youtube,Samo da se brace ne predoziraju od bijelog,muzika,0,1
+sr-00159,youtube,Koliko ima samaca u braku,filmovi,0,1
+sr-00705,youtube,Najgori domaći film svih vremena.,filmovi,-1,0
+yt-05798,youtube,"Sta se desilo sa onim divnom dragim Ivanom? Postao je cinican , nesimpstican I neduhovit.Vredjane neistomisljenika bez kraja.Od opustene emisije nista- samo ironija mrznja .Ima potencijal da bude zabavan ali postao je pun sebe- mnogo se uzvisio. Steta",zabava,-1,1
+sr-00641,youtube,Kako bi zivot bio lep da je više Prof. Vujica i njegovih mangupa na ovoj planeti,filmovi,1,0
+yt-05906,youtube,Zakucali ekser cao,zabava,0,1
 1247,twitter,Odlicno ste objasnili sada je jos manje jasno,politika,-1,1
-336,youtube,Samo da se vrati nova sezona i miran sam,filmovi,0,0
-1285,instagram,Bolesnik sta napisati drugo…?,politika,-1,1
-633,youtube,Da li smo mi srecni ljudi ili smo samo neka iluzija u vremenu,zabava,1,1
-428,youtube,"Čuješ li ovo Švabo neće ti ovaj oteti Zemun, ja ću",filmovi,0,1
-66,youtube,"Teško je reći šta je tačno najgore u filmu 15% – da li je to “radnja” o golmanu zvanom Kengur, koji ima harizmu mokrog sunđera, ili činjenica da je neko zaista odlučio da ovakvo filmsko ruglo ugleda svetlost dana. Jedno je sigurno: ovo nije film, ovo je kazna.",filmovi,-1,0
-1249,twitter,Kakva efikasnost mesec dana za jedan papir,politika,-1,1
-893,youtube,I 3 dinara je previse za ovo…,muzika,-1,1
-669,youtube,Nicki Minaj sa Temu-a,muzika,-1,1
-137,youtube,2025 nikad mi ne dosadi,filmovi,1,0
-133,youtube,nnajbolja serija na planeti ko se slaze samnom,filmovi,1,0
-1186,twitter,Srbija je uz našu braću!,sport,1,0
-659,youtube,Ovo je bolje od 95% danasnjih pesama,muzika,1,0
-1295,instagram,Sama facijalna gestikulacija govori da je ovaj čovek lažovčina!,politika,-1,0
-107,youtube,"Glumci glumice za 10 neki su pokojni,al nikad se vise ovakvi glumci nece radjat...",filmovi,1,0
-77,youtube,Danas sam prvi put pogledao ovaj film u 21. godini. Šta sam čekao do sada?,filmovi,1,1
-1045,youtube,Imam istu frizuru ko ti,muzika,0,0
-487,youtube,"Ja sam u šoku posle samo kraja ovog filma....Da li je moguće da se ovako završava i nastavlja dalje? A sta ce biti dalje, to je pitanje?",filmovi,-1,0
-104,youtube,"2026 -a i trajaće kroz generacije,jedan od naših najboljih filmova",filmovi,1,0
-376,youtube,A jel izvuko on one ribe ili,filmovi,0,1
-76,youtube,15:32 ja sam se cepao kad sam gledao ovu scenu prvi put. Legendarno!,filmovi,1,0
-580,youtube,"Četri gajbe piva, šnicle i skripta, kakva kombinacija nisam je ranije kapirao",zabava,1,1
-24,youtube,Cile najjaci lik,filmovi,1,0
+sr-00813,youtube,Nema veze sa mozgom niti prvim delom. Ovo je uzas,filmovi,-1,0
+yt-05300,youtube,Ovaj repuje a ne otvara usta,muzika,-1,1
+yt-05376,youtube,hvala vam sto postojite,muzika,1,0
+yt-05550,youtube,volim ovo slusati u okruzenju svoje obitelji nedeljom,muzika,-1,1
+yt-01535,youtube,ja gubim a dobijem,muzika,1,1
+sr-00067,youtube,"Teško je reći šta je tačno najgore u filmu 15% – da li je to “radnja” o golmanu zvanom Kengur, koji ima harizmu mokrog sunđera, ili činjenica da je neko zaista odlučio da ovakvo filmsko ruglo ugleda svetlost dana. Jedno je sigurno: ovo nije film, ovo je kazna.",filmovi,-1,0
+yt-06124,youtube,"Kome ovo zvuci malo kao od Raste ""Mama"" ??? ;)",muzika,0,0
+yt-02341,youtube,Svaka cast voditelju i gostu.,sport,1,0
+sr-00316,youtube,"Jel moze da mi neko kaze neku stranicu, gde mogu na internetu da gledam seriju..",filmovi,0,0
+yt-03038,youtube,"Kamen bi zaplakao, strasno, isto kao kada udjes na sve portale",zabava,-1,1
+1165,twitter,"Naspite zemlju ovde malo niže kod našeg auta, donesite kamen i to je to. Sunce ti bogovo!!",politika,-1,1
+yt-05210,youtube,Primite moje saučešće svi koji pravite i slušate ovakve bljuvotine.,muzika,-1,1
+yt-02708,youtube,i dalje je partizan jedini pravi klub,sport,1,1
+yt-04898,youtube,zamisli njihove oceve koji ovo gledaju...,muzika,-1,1
+1144,twitter,Hvala N1 što nam svaki dan javljate kako nam je loše. Bez vas ne bismo ni znali da smo nesrećni.,politika,-1,1
+sr-00295,youtube,Gde moze da se gleda serija za sezonu 2 i tri? Samo bilm mogu da nadjem za 2. A trecu ni film ni seriju,filmovi,0,0
+yt-05578,youtube,Aj  nova pesma za 3 dana ako može ?,muzika,0,0
+yt-05681,youtube,Ispiranje mozga,muzika,-1,0
+yt-01001,youtube,Dimcina ko na derbiju,zabava,0,1
+sr-00360,youtube,"hahha eee sinovci 92% istinske realnosti trenutne prikazuje se kroz FILM! BUM,BUM samo ‍",filmovi,0,0
+sr-00718,youtube,Ehh sta ti je zivot.. nekad Brazilu cepao mreze a sad krade automobile.. Jedna prosecna prica fudbalera u drzavi xd,filmovi,-1,1
+yt-01510,youtube,Pravi srpski country,muzika,1,1
+yt-05458,youtube,šta ljudi neće smisliti da se prikriju epstein files,muzika,-1,1
+1254,twitter,"Ma, nek je sve istina, a nije...samo da vam vidimo leđa.",politika,-1,1
+yt-04286,youtube,Svaki put kad idemo na izlet sa drugim slusamo ovo,muzika,1,0
+sr-00028,youtube,Koja pesma se čuje u pozadini 58:15,filmovi,0,0
+yt-02575,youtube,Jesi li mogao vise reklama da ubacis???,sport,-1,1
+yt-01158,youtube,I Tata bi sine :),zabava,1,1
+yt-04325,youtube,Luster mi je zapao za oko!,muzika,0,1
+sr-00297,youtube,Oce biti premijera u bioskopu kao film il na rts svake nedelje,filmovi,0,0
+sr-00055,youtube,"Slika i prilika Beograda,umjesto sedam hiljada,prodao za petsto eura",filmovi,-1,1
+yt-01149,youtube,I evo cetvrte godine zaredom gledam ovo,zabava,1,0
+1248,twitter,Bravo bas ste pogodili sta ljudima treba,politika,-1,1
+yt-00855,youtube,Ovo treeba nasem yt,zabava,1,0
+yt-05733,youtube,Ovo je jedini film koji je jaci od knjige.,filmovi,1,0
+sr-00467,youtube,"Kakva serija kako se nekad ovo sa uzivanjem gledalo dok smo bili klinci, kako me vraca u neko lepse vreme",filmovi,1,0
+yt-05876,youtube,"Ovo je majmunisanje ,narkomani i psihopate ...emisija za bolesne ...odvratno ...",zabava,-1,0
+1192,twitter,Bak'suzu jedan.,sport,-1,1
+yt-04229,youtube,"Od repera priznajem samo Marcela ,ovo ostalo je prazna prica bez talenta i vrednosti.",muzika,-1,0
+yt-06015,youtube,Zna se ko je tata,muzika,1,1
+yt-02851,youtube,"Samo da pitam kako vas nije sramota ovako nesto da NE pravite vise, je l vas grize savest dnevnjace?",zabava,1,1
+sr-00150,youtube,2025 nikad mi ne dosadi,filmovi,1,0
+yt-03988,youtube,"Možemo mi pričati šta hoćemo o tekstu, lažnih moralista kod Srba je uvijek bilo i biće...ali ovo vozi opasno.",muzika,1,1
+yt-04159,youtube,Pusti ga kući....,muzika,0,1
+yt-05183,youtube,ako je on nasao ribu ima nade i za mene,muzika,-1,1
+sr-00162,youtube,"u ovoj prvoj epizodi ova cura mi se gadi , videcemo dalje",filmovi,-1,0
+sr-00093,youtube,Nikad ne dosadi!,filmovi,1,0
+yt-02617,youtube,"Jutrić, kafica...",sport,0,1
+sr-00810,youtube,"Loše ...ali baš loše odradjeno...scenario za malu djecu, a gluma preko one stvari odradjena...u odnosu na prvi dio, nebo i zemlja...",filmovi,-1,0
+sr-00311,youtube,Vucicevi stakori...pojmasi od glume,filmovi,-1,1
+sr-00239,youtube,Svaka cas na glumi,filmovi,1,0
