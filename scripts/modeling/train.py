@@ -49,13 +49,30 @@ def main() -> None:
         default=None,
         help="Root za checkpointe (default: models/)",
     )
-    parser.add_argument("--model-name", default=None, help="HF model id")
+    parser.add_argument("--model-name", default=None, help="HF model id (npr. classla/bcms-bertic, jerteh/Jerteh-81)")
     parser.add_argument("--epochs", type=int, default=None)
     parser.add_argument("--batch-size", type=int, default=None)
     parser.add_argument("--device", default=None, help="cpu | cuda | cuda:0 ...")
+    parser.add_argument(
+        "--list-encoders",
+        action="store_true",
+        help="Ispisi known_encoders iz configa i izadji",
+    )
     args = parser.parse_args()
 
     config = load_config(args.config)
+    if args.list_encoders:
+        known = (config.get("modeling") or {}).get("known_encoders") or [
+            "classla/bcms-bertic",
+            "jerteh/Jerteh-81",
+            "jerteh/Jerteh-355",
+        ]
+        current = (config.get("modeling") or {}).get("model_name", "")
+        print("Poznati encoderi:")
+        for name in known:
+            mark = " (default)" if name == current else ""
+            print(f"  - {name}{mark}")
+        return
     splits_dir = resolve_path(args.splits_dir) if args.splits_dir else None
     output_dir = resolve_path(args.output_dir) if args.output_dir else None
 

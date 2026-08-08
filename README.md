@@ -142,7 +142,8 @@ Balansiranje klasa (baseline + BERTić): `training.use_class_weights` u `config.
 - `false` → običan loss  
 Korišćene težine se čuvaju u `run_meta.json` (`class_weights_used`).
 
-Encoder (BERTić): `classla/bcms-bertic` (podešava se u `config/config.yaml` → `modeling`).  
+Encoder (podrazumevano): `classla/bcms-bertic`. Alternative: `jerteh/Jerteh-81`, `jerteh/Jerteh-355`
+(`config/config.yaml` → `modeling`, ili CLI `--model-name` + `--output-dir models/jerteh81`).  
 Rezultati: `models/<task>/best.pt`, `metrics.json`, `test_metrics.json`, `run_meta.json`, plus `models/comparison.json` za `--task all`.  
 Metrike: accuracy, macro-F1, i posebno na podskupu `sarcasm=1`.
 
@@ -152,7 +153,7 @@ Postoje **dva** nivoa čišćenja — ne mešati ih.
 
 | Model | Šta se radi sa tekstom | Modul / config |
 |-------|------------------------|----------------|
-| **BERTić** (`classla/bcms-bertic`) | Samo lagano čišćenje iz kolekcije: HTML, `@mention`, URL → `[URL]`, emoji (po configu), beline. **Bez** lowercase, **bez** ćirilica→latinica, **bez** lematizacije. Tokenizator radi na prirodnom tekstu. | `src/preprocessing/clean.py` → `preprocessing:` u `config.yaml` |
+| **BERTić / Jerteh** (`classla/bcms-bertic`, `jerteh/Jerteh-81`, …) | Samo lagano čišćenje iz kolekcije: HTML, `@mention`, URL → `[URL]`, emoji (po configu), beline. **Bez** lowercase, **bez** ćirilica→latinica, **bez** lematizacije. Tokenizator radi na prirodnom tekstu. | `src/preprocessing/clean.py` → `preprocessing:` u `config.yaml` |
 | **Klasični ML baseline** (TF-IDF + LR/SVM/NB) | Dodatni pipeline: uklanjanje URL-ova, Unicode NFC, sažimanje belina; opciono emoji, ćirilica→latinica, lowercase, lematizacija. Zatim TF-IDF → klasifikator. Balans: `training.use_class_weights` → `class_weight='balanced'` (LR/SVM) ili `sample_weight` (NB). | `src/baselines/` + `baseline_preprocessing:` / `baselines:` / `training:` |
 
 ```bash

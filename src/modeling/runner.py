@@ -155,8 +155,14 @@ def run_training(
         print("[train] WeightedRandomSampler: OFF")
 
     tokenizer = AutoTokenizer.from_pretrained(mcfg["model_name"])
+    # RoBERTa/Jerteh obično već imaju pad; Electra ponekad treba fallback
     if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
+        if tokenizer.eos_token is not None:
+            tokenizer.pad_token = tokenizer.eos_token
+        elif tokenizer.unk_token is not None:
+            tokenizer.pad_token = tokenizer.unk_token
+        else:
+            tokenizer.add_special_tokens({"pad_token": "[PAD]"})
 
     train_loader = make_loader(
         splits["train"],
@@ -204,6 +210,10 @@ def run_training(
     else:
         model = build_single_task_model(mcfg["model_name"], task)
         task_class_weights = sent_cw if task == "sentiment" else sarc_cw
+
+    # Uskladi pad_token_id (važno za neke HF modele / RoBERTa)
+    if getattr(model.config, "pad_token_id", None) is None and tokenizer.pad_token_id is not None:
+        model.config.pad_token_id = tokenizer.pad_token_id
 
     # Sačuvaj tokenizer + meta uz checkpoint
     tokenizer.save_pretrained(task_out)
