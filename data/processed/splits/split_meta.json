@@ -1,21 +1,21 @@
 {
-  "source_csv": "C:\\Users\\korisnik\\Desktop\\Ana Bulatovic\\sarcasm-aware-sentiment-serbian\\data\\processed\\annotation_template.csv",
+  "source_csv": "data\\processed\\dataset\\dataset.csv",
   "seed": 42,
   "train_ratio": 0.7,
   "val_ratio": 0.15,
-  "total_rows": 1615,
-  "valid_labeled": 1359,
-  "skipped_invalid": 256,
-  "train": 951,
-  "val": 204,
-  "test": 204,
+  "total_rows": 1297,
+  "valid_labeled": 1293,
+  "skipped_invalid": 4,
+  "train": 905,
+  "val": 193,
+  "test": 195,
   "sentiment": {
-    "-1": 664,
-    "1": 447,
-    "0": 248
+    "-1": 492,
+    "1": 476,
+    "0": 325
   },
   "sarcasm": {
-    "0": 858,
-    "1": 501
+    "0": 728,
+    "1": 565
   }
 }
