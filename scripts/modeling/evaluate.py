@@ -21,6 +21,10 @@ from src.modeling.runner import run_evaluation
 
 
 def main() -> None:
+    """CLI ulazna tačka; poziva ``src.modeling.runner.run_evaluation``.
+
+    Evaluira sačuvani ``best.pt`` na train/val/test splitu.
+    """
     configure_utf8_stdio()
     parser = argparse.ArgumentParser(description="Evaluiraj best.pt na izabranom splitu.")
     parser.add_argument("--config", default="config/config.yaml")

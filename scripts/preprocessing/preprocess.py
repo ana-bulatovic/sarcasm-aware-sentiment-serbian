@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""CLI: preprocesiranje sirovih podataka."""
+"""CLI: preprocesiranje sirovih podataka (raw → interim).
+
+Za baseline čišćenje teksta (TF-IDF) vidi ``text_preprocessing.py``.
+"""
 
 from __future__ import annotations
 
@@ -23,6 +26,10 @@ from src.preprocessing.pipeline import run_preprocessing
 
 
 def main() -> None:
+    """CLI ulazna tačka; poziva ``src.preprocessing.pipeline.run_preprocessing``.
+
+    Pokreće čišćenje/normalizaciju sirovih podataka prema config-u.
+    """
     configure_utf8_stdio()
     parser = argparse.ArgumentParser(description="Preprocesiranje raw -> interim.")
     parser.add_argument("--config", default="config/config.yaml")

@@ -13,6 +13,7 @@ from src.modeling.labels import SARCASM_LABEL2ID, SENTIMENT_LABEL2ID
 
 
 def _label_ids(series: pd.Series, label2id: dict[str, int]) -> np.ndarray:
+    """Mapiraj string labele iz Series u numpy niz ID-jeva."""
     return np.asarray(
         [label2id[str(x).strip()] for x in series.astype(str)],
         dtype=np.int64,

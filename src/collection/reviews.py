@@ -18,9 +18,12 @@ from src.common.schema import RawRecord
 
 
 class ReviewsCollector(BaseCollector):
+    """Učitava lokalne recenzije iz CSV/TSV/JSON(L)/TXT; bez web scrapinga."""
+
     source_name = "reviews"
 
     def collect(self, max_records: int) -> list[RawRecord]:
+        """Prođi input_paths i vrati do max_records RawRecord-a (source = source_label)."""
         input_paths = self.source_cfg.get("input_paths", ["data/external/reviews/"])
         text_col = self.source_cfg.get("text_column", "text")
         source_label = self.source_cfg.get("source_label", self.source_name)
@@ -57,6 +60,7 @@ class ReviewsCollector(BaseCollector):
         return records[:max_records]
 
     def _load_file(self, path: Path, text_col: str, source_label: str) -> list[RawRecord]:
+        """Učitaj jedan fajl u RawRecord listu; text_col = ime tekstualne kolone."""
         suffix = path.suffix.lower()
         records: list[RawRecord] = []
 

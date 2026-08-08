@@ -6,7 +6,7 @@ Kratak vodič: šta prebaciti, kako podesiti okruženje i koje komande pokrenuti
 
 ## 1. Šta prebaciti sa laptopa
 
-Ceo projekat (kod + config + anotirani CSV). Anotacije (`annotation_template.csv`) **jesu** u gitu — posle `git push` / `git pull` stignu na drugi računar.
+Ceo projekat (kod + config + anotirani CSV). Anotacije (`data/processed/annotation/annotation_template.csv`) **jesu** u gitu — posle `git push` / `git pull` stignu na drugi računar.
 
 Ne moraš: `.env` (YouTube ključ nije potreban za trening), `models/` (checkpointi su lokalni / veliki).
 
@@ -151,7 +151,7 @@ python scripts/modeling/predict.py --task multitask --file moji_tekstovi.txt
 
 ## 6. Redosled kad anotiraš na laptopu, treniraš na GPU
 
-1. Završi / proširi anotaciju na laptopu (`annotation_template.csv`).
+1. Završi / proširi anotaciju na laptopu (`data/processed/annotation/annotation_template.csv`).
 2. `git add` + `commit` + `push` anotiranog CSV-a, pa na GPU mašini `git pull`.
 3. Na GPU: `prepare_splits.py` pa `train.py --task all --device cuda`.
 4. Po želji prebaci nazad ceo folder `models/` na laptop za inferencu / pisanje rada (modeli nisu u gitu).

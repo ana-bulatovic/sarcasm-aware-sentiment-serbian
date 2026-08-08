@@ -21,6 +21,10 @@ from src.modeling.runner import run_all_tasks, run_training
 
 
 def main() -> None:
+    """CLI ulazna tačka; poziva ``run_training`` ili ``run_all_tasks``.
+
+    Fine-tune BERTić (sentiment / sarcasm / multitask) prema config i CLI flagovima.
+    """
     configure_utf8_stdio()
     parser = argparse.ArgumentParser(
         description=(

@@ -21,6 +21,10 @@ from src.dataset.statistics import compute_dataset_statistics, print_statistics
 
 
 def main() -> None:
+    """CLI ulazna tačka; poziva ``compute_dataset_statistics`` / ``print_statistics``.
+
+    Računa i ispisuje brojčane statistike annotation / dataset CSV-a.
+    """
     configure_utf8_stdio()
     parser = argparse.ArgumentParser(description="Statistike annotation dataseta.")
     parser.add_argument("--config", default="config/config.yaml")

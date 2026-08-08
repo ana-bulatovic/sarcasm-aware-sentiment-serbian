@@ -1,4 +1,8 @@
-"""Mapiranje originalnih SentiComments.SR labela na nasu semu."""
+"""Mapiranje originalnih SentiComments.SR labela na našu šemu.
+
+Ulaz: npr. ``+1``, ``-M``, ``+NS``, sa opcionim sufiksom ``s`` (sarkazam).
+Izlaz: ``(sentiment, sarcasm)`` gde je sentiment ``\"1\"|\"0\"|\"-1\"``, sarcasm ``\"1\"|\"0\"``.
+"""
 
 from __future__ import annotations
 

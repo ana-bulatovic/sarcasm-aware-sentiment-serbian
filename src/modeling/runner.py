@@ -12,6 +12,7 @@ import torch
 from transformers import AutoTokenizer
 
 from src.common.config import ensure_dir, resolve_path
+from src.common.training_flags import resolve_use_class_weights
 from src.modeling.balancing import (
     compute_class_weights_from_train,
     compute_combo_sample_weights,
@@ -27,6 +28,7 @@ from src.modeling.train_loop import (
 
 
 def set_seed(seed: int) -> None:
+    """Fiksiranje seed-a za random / numpy / torch (i CUDA ako postoji)."""
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
@@ -35,12 +37,14 @@ def set_seed(seed: int) -> None:
 
 
 def resolve_device(requested: str | None = None) -> torch.device:
+    """Vrati ``torch.device``; podrazumevano CUDA ako je dostupna, inače CPU."""
     if requested:
         return torch.device(requested)
     return torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 def modeling_defaults(config: dict[str, Any]) -> dict[str, Any]:
+    """Popuni podrazumevana ``modeling`` podešavanja iz config-a."""
     m = dict(config.get("modeling") or {})
     m.setdefault("model_name", "classla/bcms-bertic")
     m.setdefault("max_length", 128)
@@ -53,7 +57,8 @@ def modeling_defaults(config: dict[str, Any]) -> dict[str, Any]:
     m.setdefault("max_grad_norm", 1.0)
     m.setdefault("output_dir", "models")
     m.setdefault("device", None)
-    m.setdefault("use_class_weights", True)
+    # training.use_class_weights ima prioritet (vidi resolve_use_class_weights)
+    m["use_class_weights"] = resolve_use_class_weights(config, default=True)
     m.setdefault("use_weighted_sampler", True)
     mt = dict(m.get("multitask") or {})
     mt.setdefault("sentiment_loss_weight", 1.0)
@@ -64,6 +69,7 @@ def modeling_defaults(config: dict[str, Any]) -> dict[str, Any]:
 
 
 def _print_metrics_brief(task: str, metrics: dict[str, Any]) -> None:
+    """Kratak ispis accuracy / macro-F1 (i podskup sarcasm=yes)."""
     if task == "multitask":
         s = metrics["sentiment"]["overall"]
         c = metrics["sarcasm"]["overall"]
@@ -98,6 +104,7 @@ def run_training(
     batch_size: int | None = None,
     device_name: str | None = None,
 ) -> dict[str, Any]:
+    """Fine-tune jednog taska (sentiment / sarcasm / multitask) i sačuvaj artefakte."""
     if task not in {"sentiment", "sarcasm", "multitask"}:
         raise ValueError(f"Nepoznat task: {task}")
 
@@ -137,6 +144,8 @@ def run_training(
 
     use_cw = bool(mcfg.get("use_class_weights", True))
     use_sampler = bool(mcfg.get("use_weighted_sampler", True))
+    print(f"[train] use_class_weights={use_cw} (weighted CrossEntropyLoss)")
+    print(f"[train] use_weighted_sampler={use_sampler}")
 
     sample_weights = None
     if use_sampler:
@@ -198,6 +207,21 @@ def run_training(
 
     # Sačuvaj tokenizer + meta uz checkpoint
     tokenizer.save_pretrained(task_out)
+
+    if use_cw:
+        class_weights_used = {
+            "sentiment": balance_info["sentiment_class_weights"],
+            "sarcasm": balance_info["sarcasm_class_weights"],
+        }
+        loss_note = "weighted_cross_entropy"
+    else:
+        # Običan CE — efektivne težine 1.0 (ne ulaze u loss kao weight=None za single-task)
+        class_weights_used = {
+            "sentiment": {k: 1.0 for k in balance_info["sentiment_class_weights"]},
+            "sarcasm": {k: 1.0 for k in balance_info["sarcasm_class_weights"]},
+        }
+        loss_note = "cross_entropy"
+
     meta = {
         "task": task,
         "model_name": mcfg["model_name"],
@@ -206,6 +230,8 @@ def run_training(
         "splits_dir": str(splits_path),
         "use_class_weights": use_cw,
         "use_weighted_sampler": use_sampler,
+        "loss": loss_note,
+        "class_weights_used": class_weights_used,
         "class_balance": balance_info,
     }
     (task_out / "run_meta.json").write_text(
@@ -239,6 +265,7 @@ def run_all_tasks(
     config: dict[str, Any],
     **kwargs: Any,
 ) -> dict[str, dict[str, Any]]:
+    """Pokreni trening za sentiment, sarcasm i multitask; uporedi rezultate."""
     results = {}
     for task in ("sentiment", "sarcasm", "multitask"):
         results[task] = run_training(config, task=task, **kwargs)
@@ -267,6 +294,7 @@ def load_model_for_eval(
     device: torch.device,
     multitask_cfg: dict[str, Any] | None = None,
 ) -> torch.nn.Module:
+    """Učitaj best.pt checkpoint za evaluaciju / inferencu."""
     ckpt_path = task_dir / "best.pt"
     if not ckpt_path.exists():
         raise FileNotFoundError(f"Nema checkpointa: {ckpt_path}")
@@ -297,6 +325,7 @@ def run_evaluation(
     model_dir: Path | None = None,
     device_name: str | None = None,
 ) -> dict[str, Any]:
+    """Evaluiraj sačuvani model na datom splitu; upisi ``{split}_metrics.json``."""
     mcfg = modeling_defaults(config)
     device = resolve_device(device_name or mcfg.get("device"))
     splits_path = splits_dir or resolve_path(

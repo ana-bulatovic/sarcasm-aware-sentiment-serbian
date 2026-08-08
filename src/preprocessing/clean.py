@@ -1,4 +1,7 @@
-"""Čišćenje teksta uz očuvanje interpunkcije i pisma (latinica/ćirilica)."""
+"""Lagano čišćenje teksta za dataset i BERTić (očuvanje interpunkcije i pisma).
+
+Za agresivnije pretprocesiranje TF-IDF baseline-a vidi ``baseline.clean_text``.
+"""
 
 from __future__ import annotations
 
@@ -27,10 +30,14 @@ _URL_RE = re.compile(
     flags=re.IGNORECASE,
 )
 
+# @handle na početku / u tekstu (Twitter replies često počinju sa @nalog)
+_MENTION_RE = re.compile(r"(?<!\w)@[A-Za-z0-9_]{1,50}\b")
+
 _MULTI_SPACE_RE = re.compile(r"[ \t\f\v]+")
 
 
 def strip_html(text: str) -> str:
+    """Ukloni HTML tagove i dekoduj entitete; inače vrati tekst neizmenjen."""
     if "<" not in text and "&" not in text:
         return text
     # Prvo dekoduj HTML entitete, zatim ukloni tagove
@@ -40,14 +47,22 @@ def strip_html(text: str) -> str:
 
 
 def remove_emojis(text: str) -> str:
+    """Ukloni emoji znakove (osnovni + suplementarni Unicode opsezi)."""
     return _EMOJI_RE.sub("", text)
 
 
+def remove_mentions(text: str) -> str:
+    """Ukloni @username pominjanja (npr. @n1srbija na početku reply-a)."""
+    return _MENTION_RE.sub("", text)
+
+
 def replace_urls(text: str, replacement: str = "[URL]") -> str:
+    """Zameni URL-ove tokenom (podrazumevano ``[URL]``)."""
     return _URL_RE.sub(replacement, text)
 
 
 def normalize_whitespace(text: str) -> str:
+    """Sažmi beline i pretvori prelome u razmake (jedan CSV red)."""
     text = text.replace("\r\n", "\n").replace("\r", "\n")
     # Prelomi unutar teksta -> razmak (CSV red mora ostati u jednoj liniji)
     text = text.replace("\n", " ")
@@ -56,10 +71,11 @@ def normalize_whitespace(text: str) -> str:
 
 
 def preprocess_text(text: str, cfg: dict[str, Any] | None = None) -> str:
-    """Primeni preprocesiranje prema konfiguraciji.
+    """Lagano čišćenje za dataset / BERTić (HTML, emoji, mention, URL, beline).
 
     Ne uklanja interpunkciju, stop reči ni sarkastične izraze.
     Ne radi transliteraciju latinica ↔ ćirilica.
+    Za TF-IDF baseline-e koristi ``baseline.clean_text``.
     """
     cfg = cfg or {}
     if text is None:
@@ -72,6 +88,9 @@ def preprocess_text(text: str, cfg: dict[str, Any] | None = None) -> str:
 
     if cfg.get("remove_emojis", True):
         out = remove_emojis(out)
+
+    if cfg.get("remove_mentions", True):
+        out = remove_mentions(out)
 
     url_token = cfg.get("replace_urls_with", "[URL]")
     if url_token is not None:

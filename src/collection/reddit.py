@@ -42,9 +42,12 @@ _PII_KEYS = {
 
 
 class RedditExportCollector(BaseCollector):
+    """Učitava odobreni Reddit eksport (JSONL/CSV); source = 'reddit'."""
+
     source_name = "reddit"
 
     def collect(self, max_records: int) -> list[RawRecord]:
+        """Učitaj export_path i mapiraj redove u RawRecord (bez PII u metadata)."""
         export_path = resolve_path(
             self.source_cfg.get("export_path", "data/external/reddit/export.jsonl")
         )
@@ -95,6 +98,7 @@ class RedditExportCollector(BaseCollector):
         return records[:max_records]
 
     def _load_rows(self, path: Path) -> list[dict[str, Any]]:
+        """Učitaj JSONL/JSON/CSV/TSV eksport kao listu dict redova."""
         suffix = path.suffix.lower()
         if suffix == ".jsonl":
             rows: list[dict[str, Any]] = []

@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Izvoz validno anotiranih primera + stratifikovani train/val/test split."""
+"""Izvoz validno anotiranih primera + stratifikovani train/val/test split.
+
+Tok: učitaj annotation CSV → filtriraj validne labele → strata=sentiment|sarcasm
+→ ``_stratified_split`` → labeled/train/val/test.csv + split_meta.json.
+"""
 
 from __future__ import annotations
 
@@ -32,7 +36,15 @@ def _stratified_split(
     train_ratio: float,
     val_ratio: float,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
-    """Stratifikacija po sentiment+sarcasm; bez sklearn zavisnosti."""
+    """Stratifikovani split po koloni ``strata`` (bez sklearn zavisnosti).
+
+    Za svaku stratum grupu meša redove (``seed``), pa deli na train/val/test
+    prema ratio-ima. Posebni slučajevi: n=1 → samo train; n=2 → train+test.
+    Garantuje bar 1 primer u testu kad je n≥3 (po mogućnosti).
+
+    Returns:
+        (train_df, val_df, test_df) — svaki ponovo izmešan istim seed-om.
+    """
     train_parts: list[pd.DataFrame] = []
     val_parts: list[pd.DataFrame] = []
     test_parts: list[pd.DataFrame] = []
@@ -62,6 +74,7 @@ def _stratified_split(
         test_parts.append(g.iloc[n_train + n_val :])
 
     def _cat(parts: list[pd.DataFrame]) -> pd.DataFrame:
+        """Spoji delove split-a i izmešaj; prazna lista → prazan DataFrame."""
         if not parts:
             return df.iloc[0:0].copy()
         out = pd.concat(parts, ignore_index=True)
@@ -71,6 +84,11 @@ def _stratified_split(
 
 
 def main() -> None:
+    """CLI: filtrira validne labele i pravi stratifikovani train/val/test.
+
+    Čita annotation CSV (ili ``--csv``), odbacuje nevalidne/prazne redove,
+    poziva ``_stratified_split``, upisuje CSV-ove i ``split_meta.json``.
+    """
     configure_utf8_stdio()
     parser = argparse.ArgumentParser(
         description=(

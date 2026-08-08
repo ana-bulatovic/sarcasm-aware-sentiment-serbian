@@ -1,4 +1,8 @@
-"""Pronađi root projekta i stavi ga na sys.path (radi iz bilo kog scripts/ podfoldera)."""
+"""Bootstrap: pronađi root projekta i stavi ga na ``sys.path``.
+
+Koristi se iz bilo kog ``scripts/`` podfoldera da bi ``import src...`` radio
+bez obzira odakle je skripta pokrenuta.
+"""
 
 from __future__ import annotations
 
@@ -7,6 +11,14 @@ from pathlib import Path
 
 
 def ensure_project_root() -> Path:
+    """Pronađi root (folder sa ``config/config.yaml``), dodaj ga na ``sys.path``.
+
+    Traži unazad od ``scripts/`` preko parent direktorijuma. Ako root nije
+    pronađen, baca ``RuntimeError``.
+
+    Returns:
+        Apsolutna putanja do root-a projekta.
+    """
     here = Path(__file__).resolve().parent
     for candidate in [here, *here.parents]:
         if (candidate / "config" / "config.yaml").is_file():

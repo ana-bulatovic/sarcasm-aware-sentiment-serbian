@@ -1,7 +1,0 @@
-﻿# Nalepi TikTok komentare ovde — JEDAN komentar po liniji.
-# Bez username-a / profila / @tagova ako nisu deo same poruke.
-# Linije koje počinju sa # se ignorišu.
-#
-# Primer:
-# Bas genijalno snimanje stvarno
-# Odlicno, jos jedan "kvalitetan" sadrzaj

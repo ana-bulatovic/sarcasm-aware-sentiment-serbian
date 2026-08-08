@@ -14,6 +14,7 @@ def classification_metrics(
     labels: Sequence[int] | None = None,
     target_names: Sequence[str] | None = None,
 ) -> dict[str, Any]:
+    """Accuracy, macro/weighted F1 i per-class report."""
     y_true_arr = np.asarray(y_true)
     y_pred_arr = np.asarray(y_pred)
     report = classification_report(
@@ -44,6 +45,7 @@ def subset_where(
     labels: Sequence[int] | None = None,
     target_names: Sequence[str] | None = None,
 ) -> dict[str, Any] | None:
+    """Iste metrike na podskupu (npr. sarcasm=yes); ``None`` ako je prazan."""
     mask_arr = np.asarray(mask, dtype=bool)
     if not mask_arr.any():
         return None
@@ -60,6 +62,7 @@ def pack_single_task_metrics(
     sarcasm_raw: Sequence[str],
     label_names: Sequence[str],
 ) -> dict[str, Any]:
+    """Overall metrike + podskup gde je sarcasm=yes."""
     labels = list(range(len(label_names)))
     overall = classification_metrics(
         y_true, y_pred, labels=labels, target_names=label_names
@@ -84,6 +87,7 @@ def pack_multitask_metrics(
     sentiment_names: Sequence[str],
     sarcasm_names: Sequence[str],
 ) -> dict[str, Any]:
+    """Metrike za oba taska (isti format kao single-task, ugnježdeno)."""
     return {
         "sentiment": pack_single_task_metrics(
             sent_true, sent_pred, sarcasm_raw, sentiment_names

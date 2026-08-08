@@ -1,4 +1,7 @@
-"""Osnovne statistike dataseta (radi i pre i posle anotacije)."""
+"""Osnovne statistike dataseta (radi i pre i posle anotacije).
+
+source u CSV-u može biti pun URL ili alias platforme (npr. youtube, twitter).
+"""
 
 from __future__ import annotations
 
@@ -14,6 +17,7 @@ from src.common.schema import SARCASM_VALUES, SENTIMENT_VALUES
 
 
 def _norm_label(value: Any) -> str:
+    """Normalizuj labelu (strip + lower); None → prazan string."""
     if value is None:
         return ""
     text = str(value).strip().lower()
@@ -24,7 +28,10 @@ def compute_dataset_statistics(
     config: dict[str, Any] | None = None,
     csv_path: str | Path | None = None,
 ) -> dict[str, Any]:
-    """Izračunaj brojeve po izvoru, sentimentu, sarkazmu i kombinacijama."""
+    """Izračunaj brojeve po izvoru, sentimentu, sarkazmu i kombinacijama.
+
+    Ako je dat config, upiše i paths.stats_json.
+    """
     if csv_path is None:
         if config is None:
             raise ValueError("Potreban je config ili csv_path.")
@@ -85,6 +92,7 @@ def compute_dataset_statistics(
 
 
 def print_statistics(stats: dict[str, Any]) -> None:
+    """Ispisi čitljiv pregled statistika na stdout."""
     print("\n=== Dataset statistike ===")
     print(f"Ukupno tekstova: {stats['total_texts']}")
     print("\nPo izvoru:")

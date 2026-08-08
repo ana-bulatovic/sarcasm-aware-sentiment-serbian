@@ -16,7 +16,11 @@ TaskName = Literal["sentiment", "sarcasm", "multitask"]
 
 
 class CommentDataset(Dataset):
-    """Tokenizovani komentari sa jednom ili obe labele."""
+    """Tokenizovani komentari sa HF ``labels`` i/ili multitask poljima.
+
+    Single-task: paralelno ``labels`` (HF) + ``sentiment_labels`` ili
+    ``sarcasm_labels``. Multitask: oba ``*_labels``, bez ``labels``.
+    """
 
     def __init__(
         self,
@@ -25,6 +29,7 @@ class CommentDataset(Dataset):
         task: TaskName,
         max_length: int = 128,
     ) -> None:
+        """Pripremi tekstove i ID labela prema ``task`` (sentiment/sarcasm/multitask)."""
         self.texts = frame["text"].astype(str).tolist()
         if "id" in frame.columns:
             raw_ids = frame["id"].astype(str).str.strip().tolist()
@@ -62,6 +67,9 @@ class CommentDataset(Dataset):
         return len(self.texts)
 
     def __getitem__(self, idx: int) -> dict[str, Any]:
+        """Jedan primer: tokeni + labele (HF ``labels`` i/ili ``*_labels``)."""
+        # Tekst ide direktno u BERTić tokenizator — bez baseline pretprocesiranja
+        # (lowercase / ćirilica→latinica / lematizacija). Vidi src/preprocessing/baseline.py.
         encoded = self.tokenizer(
             self.texts[idx],
             truncation=True,
@@ -79,6 +87,7 @@ class CommentDataset(Dataset):
             item["sentiment_labels"] = self.sentiment_labels[idx]
         if self.task in ("sarcasm", "multitask"):
             item["sarcasm_labels"] = self.sarcasm_labels[idx]
+        # HF single-task očekuje „labels“; multitask koristi samo sentiment_/sarcasm_labels
         if self.task == "sentiment":
             item["labels"] = self.sentiment_labels[idx]
         elif self.task == "sarcasm":
@@ -87,6 +96,7 @@ class CommentDataset(Dataset):
 
 
 def _collate(batch: list[dict[str, Any]], pad_token_id: int) -> dict[str, Any]:
+    """Paduj batch na max dužinu; spoji ``labels`` / ``*_labels`` u tenzore."""
     max_len = max(len(x["input_ids"]) for x in batch)
     input_ids = []
     attention_mask = []
@@ -115,6 +125,7 @@ def _collate(batch: list[dict[str, Any]], pad_token_id: int) -> dict[str, Any]:
 
 
 def load_split_csv(path: Path) -> pd.DataFrame:
+    """Učitaj jedan split CSV; filtriraj prazan tekst i nevalidne labele."""
     if not path.exists():
         raise FileNotFoundError(
             f"Nedostaje split fajl: {path}. Pokreni scripts/modeling/prepare_splits.py"
@@ -150,6 +161,7 @@ def load_split_csv(path: Path) -> pd.DataFrame:
 
 
 def load_splits(splits_dir: Path) -> dict[str, pd.DataFrame]:
+    """Učitaj train/val/test CSV iz direktorijuma splitova."""
     return {
         "train": load_split_csv(splits_dir / "train.csv"),
         "val": load_split_csv(splits_dir / "val.csv"),

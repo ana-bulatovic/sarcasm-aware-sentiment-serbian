@@ -1,4 +1,15 @@
-"""Šema zapisa dataseta i dozvoljene vrednosti labela."""
+"""Šema zapisa dataseta i dozvoljene vrednosti labela.
+
+Kolone finalnog CSV-a: ``id``, ``source``, ``text``, ``tip``, ``sentiment``, ``sarcasm``.
+
+Napomena o ``source``:
+  - u raw/pipeline zapisu često stoji **pun URL** (npr. YouTube watch link);
+  - u posebnim ``*_comments.csv`` fajlovima često stoji **alias** platforme
+    (``youtube``, ``twitter``…).
+  Za mapiranje na platformu koristi ``src.common.source_utils.platform_from_source``.
+
+``tip`` = domen sadržaja (filmovi, politika…), **ne** tip fajla.
+"""
 
 from __future__ import annotations
 
@@ -12,12 +23,13 @@ SENTIMENT_VALUES = ("1", "0", "-1")
 # Sarkazam: 1 = da, 0 = ne
 SARCASM_VALUES = ("1", "0")
 
-# Dozvoljene vrednosti tipa sadržaja / domena
-TIP_VALUES = ("filmovi",)
+# Dozvoljene vrednosti tipa sadržaja / domena (subject)
+TIP_VALUES = ("filmovi", "serije", "politika", "sport", "ostalo", "reddit")
 
 # Dozvoljene vrednosti izvora (lako proširivo)
 KNOWN_SOURCES = (
     "youtube",
+    "twitter",
     "tiktok",
     "instagram",
     "reddit",
@@ -27,7 +39,10 @@ KNOWN_SOURCES = (
 
 @dataclass
 class RawRecord:
-    """Sirovi zapis pre preprocesiranja (bez PII)."""
+    """Sirovi zapis pre preprocesiranja (bez PII).
+
+    ``source`` može biti URL ili alias platforme — vidi module docstring.
+    """
 
     source: str
     text: str
@@ -41,12 +56,13 @@ class RawRecord:
     metadata: dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        """Pretvori dataclass u običan dict (za JSONL/CSV)."""
         return asdict(self)
 
 
 @dataclass
 class DatasetRecord:
-    """Finalni zapis za anotaciju."""
+    """Finalni zapis za anotaciju / trening (kolone = ``FINAL_COLUMNS``)."""
 
     id: str
     source: str
@@ -56,6 +72,7 @@ class DatasetRecord:
     sarcasm: str = ""
 
     def to_dict(self) -> dict[str, str]:
+        """Vrati red spreman za upis u annotation/dataset CSV."""
         return {
             "id": self.id,
             "source": self.source,

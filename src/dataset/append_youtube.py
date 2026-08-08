@@ -1,222 +1,245 @@
-"""Dodavanje komentara samo sa novih YouTube videa na postojeci annotation CSV."""
+"""Prikupljanje YouTube komentara u POSEBAN CSV (ne u annotation_template).
+
+Automatski fetch preko YouTube Data API v3 (YOUTUBE_API_KEY).
+
+Kolone: id, source, text, tip, sentiment, sarcasm
+  - source = uvek alias "youtube" (ne pun watch URL)
+  - tip    = tema (--tip), šema kolona tip
+"""
 
 from __future__ import annotations
 
-import json
 import re
 from pathlib import Path
 from typing import Any
 
+import pandas as pd
+
 from src.collection.base import text_fingerprint
 from src.collection.youtube import YouTubeCollector
 from src.common.config import ensure_dir, resolve_path
-from src.common.io_utils import load_csv, load_jsonl, save_csv, save_jsonl
+from src.common.io_utils import save_csv
 from src.common.language import is_likely_serbian
 from src.common.schema import FINAL_COLUMNS, DatasetRecord
-from src.common.source_utils import platform_from_source, youtube_watch_url
 from src.preprocessing.clean import preprocess_text
 from src.preprocessing.deduplicate import normalize_for_dedup
 
-_ID_RE = re.compile(r"^sr-(\d+)$")
+_ID_PREFIX = "yt"
 
 
-def _parse_next_id(existing_ids: list[str]) -> int:
+def load_youtube_urls(path: Path) -> list[str]:
+    """TXT: jedan video ID ili URL po liniji; # komentari se ignorišu."""
+    if not path.exists():
+        return []
+    urls: list[str] = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        urls.append(line)
+    return urls
+
+
+def _next_youtube_id(existing_ids: list[str]) -> int:
+    """Sledeći broj: yt-XXXXX ili postojeći sr-XXXXX iz annotation exporta."""
     max_n = 0
+    pats = (
+        re.compile(rf"^{_ID_PREFIX}-(\d+)$", re.I),
+        re.compile(r"^sr-(\d+)$", re.I),
+    )
     for raw in existing_ids:
-        m = _ID_RE.match(str(raw).strip())
-        if m:
-            max_n = max(max_n, int(m.group(1)))
+        s = str(raw).strip()
+        for pat in pats:
+            m = pat.match(s)
+            if m:
+                max_n = max(max_n, int(m.group(1)))
+                break
     return max_n + 1
 
 
-def _load_known_video_ids(config: dict[str, Any]) -> set[str]:
-    """Video ID-evi koji su vec obradjeni (state + raw metadata)."""
-    state_path = resolve_path(config["paths"]["processed_dir"]) / "youtube_collected_ids.txt"
-    known: set[str] = set()
-    if state_path.exists():
-        for line in state_path.read_text(encoding="utf-8").splitlines():
-            line = line.strip()
-            if line and not line.startswith("#"):
-                known.add(line)
-
-    raw_path = resolve_path(config["paths"]["raw_dir"]) / "youtube" / "raw.jsonl"
-    for rec in load_jsonl(raw_path):
-        vid = (rec.get("metadata") or {}).get("video_id")
-        if vid:
-            known.add(str(vid))
-    return known
-
-
-def _save_known_video_ids(config: dict[str, Any], video_ids: set[str]) -> None:
-    path = ensure_dir(resolve_path(config["paths"]["processed_dir"])) / "youtube_collected_ids.txt"
-    lines = sorted(video_ids)
-    path.write_text("\n".join(lines) + ("\n" if lines else ""), encoding="utf-8")
-
-
-def _append_jsonl(path: Path, records: list[dict[str, Any]]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("a", encoding="utf-8") as f:
-        for rec in records:
-            f.write(json.dumps(rec, ensure_ascii=False) + "\n")
-
-
-def append_new_youtube_videos(
-    config: dict[str, Any],
-    only_video_ids: list[str] | None = None,
-) -> list[dict[str, str]]:
-    """Skini samo nove YouTube ID-eve i dopisi ih na annotation_template.csv."""
-    annotation_path = resolve_path(config["paths"]["annotation_csv"])
-    dataset_path = resolve_path(config["paths"]["dataset_csv"])
-    processed_dir = ensure_dir(resolve_path(config["paths"]["processed_dir"]))
-
-    if not annotation_path.exists():
-        raise FileNotFoundError(
-            f"Nema {annotation_path}. Prvo napravi osnovni dataset "
-            "(python scripts/collection/run_pipeline.py), pa tek onda append."
+def _load_existing(out_path: Path) -> list[dict[str, str]]:
+    """Učitaj postojeći youtube_comments CSV ili vrati praznu listu."""
+    if not out_path.exists():
+        return []
+    return (
+        pd.read_csv(
+            out_path,
+            encoding="utf-8-sig",
+            dtype=str,
+            engine="python",
+            on_bad_lines="warn",
         )
-
-    df = load_csv(annotation_path)
-    existing_rows = df.to_dict(orient="records")
-    existing_texts = {normalize_for_dedup(str(r.get("text", ""))) for r in existing_rows}
-    existing_fps = {text_fingerprint(str(r.get("text", ""))) for r in existing_rows}
-
-    max_total = int(config["dataset"]["max_total_samples"])
-    yt_limit = int(config.get("per_source_limits", {}).get("youtube", max_total))
-    current_total = len(existing_rows)
-    current_yt = sum(
-        1
-        for r in existing_rows
-        if platform_from_source(str(r.get("source", ""))) == "youtube"
+        .fillna("")
+        .to_dict(orient="records")
     )
-    room_total = max(0, max_total - current_total)
-    room_yt = max(0, yt_limit - current_yt)
-    room = min(room_total, room_yt)
 
-    if room <= 0:
-        print(
-            f"[append-youtube] Nema mesta (ukupno {current_total}/{max_total}, "
-            f"youtube {current_yt}/{yt_limit}). Povecaj limite u config.yaml."
-        )
-        return []
 
-    collector = YouTubeCollector(config)
-    all_ids = collector._load_video_ids()
-    known = _load_known_video_ids(config)
-
-    if only_video_ids:
-        candidates = [collector._normalize_video_id(v) for v in only_video_ids]
-        candidates = [v for v in candidates if v]
-    else:
-        candidates = all_ids
-
-    new_ids = [vid for vid in candidates if vid not in known]
-    deduped: list[str] = []
-    seen_new: set[str] = set()
-    for vid in new_ids:
-        if vid not in seen_new:
-            seen_new.add(vid)
-            deduped.append(vid)
-    new_ids = deduped
-
-    if not new_ids:
-        print("[append-youtube] Nema novih video ID-eva za dodavanje.")
-        print(f"  Vec poznato: {len(known)} | U listi: {len(all_ids)}")
-        return []
-
-    print(f"[append-youtube] Novi videi ({len(new_ids)}): {', '.join(new_ids)}")
-    print(f"[append-youtube] Dostupno mesta: {room} (ukupno room={room_total}, yt room={room_yt})")
-
-    # Oversample raw pa filtriraj
-    factor = float(config["dataset"].get("raw_oversample_factor", 1.5))
-    raw_budget = max(room, int(room * factor))
-    raw_records = collector.collect_specific_videos(new_ids, max_records=raw_budget)
-
-    # Sacuvaj/append raw
-    raw_path = ensure_dir(resolve_path(config["paths"]["raw_dir"]) / "youtube") / "raw.jsonl"
-    existing_raw = load_jsonl(raw_path)
-    existing_raw_fps = {
-        text_fingerprint(str(r.get("text", ""))) for r in existing_raw
-    }
-    new_raw_dicts: list[dict[str, Any]] = []
-    for rec in raw_records:
-        d = rec.to_dict()
-        fp = text_fingerprint(str(d.get("text", "")))
-        if fp in existing_raw_fps:
-            continue
-        existing_raw_fps.add(fp)
-        new_raw_dicts.append(d)
-    if new_raw_dicts:
-        _append_jsonl(raw_path, new_raw_dicts)
-        print(f"[append-youtube] Raw +{len(new_raw_dicts)} -> {raw_path}")
-
+def _append_texts(
+    config: dict[str, Any],
+    texts: list[str],
+    *,
+    tip: str,
+    out_path: Path,
+    url_note: str = "",
+) -> list[dict[str, str]]:
+    """Očisti/dedup tekstove i dopiši u out_path; tip = šema kolona (tema)."""
     prep_cfg = config.get("preprocessing", {})
     lang_cfg = config.get("language", {})
     min_len = int(lang_cfg.get("min_text_length", 15))
     max_len = int(lang_cfg.get("max_text_length", 2000))
 
-    cleaned_new: list[dict[str, Any]] = []
-    for rec in raw_records:
-        text = preprocess_text(rec.text, prep_cfg)
-        if len(text) < min_len or len(text) > max_len:
+    existing = _load_existing(out_path)
+    existing_texts = {normalize_for_dedup(str(r.get("text", ""))) for r in existing}
+    existing_fps = {text_fingerprint(str(r.get("text", ""))) for r in existing}
+    next_id = _next_youtube_id([str(r.get("id", "")) for r in existing])
+
+    appended: list[dict[str, str]] = []
+    for raw in texts:
+        cleaned = preprocess_text(raw, prep_cfg)
+        if len(cleaned) < min_len or len(cleaned) > max_len:
             continue
-        if not is_likely_serbian(text, lang_cfg):
+        if not is_likely_serbian(cleaned, lang_cfg):
             continue
-        key = normalize_for_dedup(text)
-        fp = text_fingerprint(text)
+        key = normalize_for_dedup(cleaned)
+        fp = text_fingerprint(cleaned)
         if key in existing_texts or fp in existing_fps:
             continue
         existing_texts.add(key)
         existing_fps.add(fp)
-        cleaned_new.append(
-            {
-                "source": rec.source or youtube_watch_url(
-                    str((rec.metadata or {}).get("video_id", ""))
-                ),
-                "text": text,
-                "source_item_id": rec.source_item_id,
-                "sentiment": "",
-                "sarcasm": "",
-                "metadata": rec.metadata or {},
-            }
+        appended.append(
+            DatasetRecord(
+                id=f"{_ID_PREFIX}-{next_id:05d}",
+                source="youtube",
+                text=cleaned,
+                tip=tip,
+                sentiment="",
+                sarcasm="",
+            ).to_dict()
         )
-        if len(cleaned_new) >= room:
-            break
-
-    interim_path = ensure_dir(resolve_path(config["paths"]["interim_dir"])) / "cleaned.jsonl"
-    if cleaned_new:
-        _append_jsonl(interim_path, cleaned_new)
-
-    next_id = _parse_next_id([str(r.get("id", "")) for r in existing_rows])
-    appended_rows: list[dict[str, str]] = []
-    for rec in cleaned_new:
-        row = DatasetRecord(
-            id=f"sr-{next_id:05d}",
-            source=str(rec["source"]),
-            text=str(rec["text"]),
-            sentiment="",
-            sarcasm="",
-        ).to_dict()
-        appended_rows.append(row)
         next_id += 1
 
-    if not appended_rows:
-        # Ipak zapamti video ID-eve da se ne pokeusava beskonacno ako nema srpskog
-        known.update(new_ids)
-        _save_known_video_ids(config, known)
-        print("[append-youtube] Nema novih tekstova posle filtera/dedupa.")
+    if not appended:
+        print("[youtube] Nema novih tekstova posle čišćenja/dedupa.")
         return []
 
-    combined = existing_rows + appended_rows
-    save_csv(combined, annotation_path, columns=FINAL_COLUMNS)
-    save_csv(combined, dataset_path, columns=FINAL_COLUMNS)
-    save_jsonl(combined, processed_dir / "dataset.jsonl")
-
-    known.update(new_ids)
-    _save_known_video_ids(config, known)
-
+    combined = existing + appended
+    save_csv(combined, out_path, columns=FINAL_COLUMNS)
     print(
-        f"[append-youtube] Dodato {len(appended_rows)} YouTube redova "
-        f"(sada ukupno {len(combined)})."
+        f"[youtube] +{len(appended)} (tip={tip}) -> ukupno {len(combined)} | {out_path}"
     )
-    print(f"[append-youtube] Azurirano: {annotation_path}")
-    return appended_rows
+    if url_note:
+        print(f"[youtube] video: {url_note}")
+    return appended
+
+
+def append_youtube_fetch(
+    config: dict[str, Any],
+    *,
+    tip: str,
+    url: str | None = None,
+    urls_file: str | Path | None = None,
+    out_csv: str | Path | None = None,
+    max_comments: int = 0,
+) -> list[dict[str, str]]:
+    """Skini komentare sa YouTube videa i upiši u youtube_comments.csv.
+
+    tip: vrednost šeme kolone tip (tema). out_csv podrazumevano iz config-a.
+    """
+    tip = (tip or "").strip() or "ostalo"
+    yt_cfg = config.get("collection", {}).get("youtube", {})
+    default_out = yt_cfg.get("output_csv", "data/processed/sources/youtube_comments.csv")
+    default_urls = yt_cfg.get("video_ids_file", "config/sources/youtube_video_ids.txt")
+    out_path = resolve_path(out_csv or default_out)
+    ensure_dir(out_path.parent)
+
+    urls: list[str] = []
+    if url and str(url).strip():
+        urls = [str(url).strip()]
+    else:
+        urls_path = resolve_path(urls_file or default_urls)
+        urls = load_youtube_urls(urls_path)
+        print(f"[youtube] Učitano {len(urls)} URL/ID-eva iz {urls_path}")
+
+    if not urls:
+        print("[youtube] Nema URL-ova / video ID-eva za fetch.")
+        return []
+
+    collector = YouTubeCollector(config)
+    per_video = int(max_comments) if max_comments > 0 else int(
+        yt_cfg.get("max_comments_per_video", 100)
+    )
+    # Budget: dovoljno da pokrije sve zadate videe
+    raw_budget = max(per_video * len(urls), per_video)
+
+    # Privremeno override max_comments_per_video za ovaj fetch
+    old_per = yt_cfg.get("max_comments_per_video")
+    yt_cfg["max_comments_per_video"] = per_video
+    try:
+        raw_records = collector.collect_specific_videos(urls, max_records=raw_budget)
+    finally:
+        if old_per is None:
+            yt_cfg.pop("max_comments_per_video", None)
+        else:
+            yt_cfg["max_comments_per_video"] = old_per
+
+    if not raw_records:
+        print("[youtube] API nije vratio komentare.")
+        return []
+
+    # Grupiši po video_id radi logovanja
+    by_video: dict[str, list[str]] = {}
+    for rec in raw_records:
+        vid = str((rec.metadata or {}).get("video_id") or "unknown")
+        by_video.setdefault(vid, []).append(rec.text)
+
+    all_appended: list[dict[str, str]] = []
+    for vid, texts in by_video.items():
+        if not texts:
+            continue
+        note = f"https://www.youtube.com/watch?v={vid}"
+        got = _append_texts(
+            config, texts, tip=tip, out_path=out_path, url_note=note
+        )
+        all_appended.extend(got)
+
+    print(f"[youtube] Ukupno dodato u ovoj sesiji: {len(all_appended)}")
+    return all_appended
+
+
+# Alias za stari import / CLI
+def append_new_youtube_videos(
+    config: dict[str, Any],
+    only_video_ids: list[str] | None = None,
+    *,
+    tip: str = "ostalo",
+    out_csv: str | Path | None = None,
+    max_comments: int = 0,
+) -> list[dict[str, str]]:
+    """Kompatibilnost: fetch u youtube_comments.csv (ne u annotation_template)."""
+    url = None
+    urls_file = None
+    if only_video_ids:
+        if len(only_video_ids) == 1:
+            url = only_video_ids[0]
+        else:
+            # Privremeni fajl nije potreban — pozovi fetch po jedan, ili spoji
+            all_appended: list[dict[str, str]] = []
+            for vid in only_video_ids:
+                all_appended.extend(
+                    append_youtube_fetch(
+                        config,
+                        tip=tip,
+                        url=vid,
+                        out_csv=out_csv,
+                        max_comments=max_comments,
+                    )
+                )
+            return all_appended
+    return append_youtube_fetch(
+        config,
+        tip=tip,
+        url=url,
+        urls_file=urls_file,
+        out_csv=out_csv,
+        max_comments=max_comments,
+    )

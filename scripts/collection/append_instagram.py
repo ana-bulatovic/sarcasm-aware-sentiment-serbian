@@ -21,6 +21,10 @@ from src.dataset.append_instagram import append_instagram_comments
 
 
 def main() -> None:
+    """CLI ulazna tačka; poziva ``src.dataset.append_instagram.append_instagram_comments``.
+
+    Polu-ručno dodaje Instagram komentare (browser + paste, bez scrapinga).
+    """
     configure_utf8_stdio()
     parser = argparse.ArgumentParser(
         description=(

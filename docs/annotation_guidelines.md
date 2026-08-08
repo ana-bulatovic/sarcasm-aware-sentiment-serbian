@@ -1,6 +1,6 @@
 # Uputstvo za ručnu anotaciju sentimenta i sarkazma
 
-Ovaj dokument definiše kako anotirati kolone `sentiment` i `sarcasm` u fajlu `data/processed/annotation_template.csv`.
+Ovaj dokument definiše kako anotirati kolone `sentiment` i `sarcasm` u fajlu `data/processed/annotation/annotation_template.csv`.
 
 ## Dozvoljene vrednosti
 

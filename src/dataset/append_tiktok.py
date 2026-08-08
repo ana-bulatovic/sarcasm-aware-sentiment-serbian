@@ -23,6 +23,7 @@ _VIDEO_ID_RE = re.compile(
 
 
 def extract_tiktok_video_id(url: str) -> str | None:
+    """Izvuci video/photo ID iz TikTok URL-a."""
     url = (url or "").strip()
     if not url:
         return None
@@ -51,6 +52,7 @@ def load_comments_file(path: Path) -> list[str]:
 
 
 def read_comments_interactive() -> list[str]:
+    """Učitaj komentare sa stdin (jedan po liniji; prazan red ili END završava)."""
     print(
         "Nalepi komentare (jedan po liniji). Zavrsi sa praznim redom pa Enter,\n"
         "ili napisi END u novom redu."
@@ -81,6 +83,7 @@ def append_tiktok_comments(
     *,
     open_browser: bool = True,
 ) -> list[dict[str, str]]:
+    """Polu-ručno dodaj TikTok komentare na annotation CSV (source = pun URL)."""
     url = (url or "").strip()
     if not url:
         raise ValueError("Potreban je TikTok URL (--url).")
@@ -99,6 +102,7 @@ def append_tiktok_comments(
     else:
         # Predlozi fajl gde korisnik moze da snimi komentare
         suggested = ensure_dir(resolve_path(config.get("collection", {}).get("tiktok", {}).get("comments_dir", "data/external/tiktok/")))
+        # Lokalna putanja predloženog TXT-a — NIJE šema kolona `tip`
         tip = suggested / "comments_paste.txt"
         print(
             "\nUputstvo:\n"

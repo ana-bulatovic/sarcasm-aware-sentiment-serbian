@@ -23,6 +23,10 @@ from src.common.stdio_utf8 import configure_utf8_stdio
 
 
 def main() -> None:
+    """CLI ulazna tačka; poziva ``src.collection.run_collection.run_collection``.
+
+    Prikuplja sirove tekstove iz konfigurisanih (ili ``--sources``) izvora.
+    """
     configure_utf8_stdio()
     parser = argparse.ArgumentParser(description="Prikupljanje sirovih tekstova.")
     parser.add_argument(

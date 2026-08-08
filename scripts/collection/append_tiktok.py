@@ -23,6 +23,10 @@ from src.dataset.append_tiktok import append_tiktok_comments
 
 
 def main() -> None:
+    """CLI ulazna tačka; poziva ``src.dataset.append_tiktok.append_tiktok_comments``.
+
+    Polu-ručno dodaje TikTok komentare (browser + paste, bez scrapinga).
+    """
     configure_utf8_stdio()
     parser = argparse.ArgumentParser(
         description=(

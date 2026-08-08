@@ -1,4 +1,8 @@
-"""Orkestracija prikupljanja iz svih omogućenih izvora."""
+"""Orkestracija prikupljanja iz svih omogućenih izvora.
+
+Radi samo sa COLLECTOR_REGISTRY (senticomments_sr, youtube, reddit, reviews).
+Twitter/X NIJE u registru — koristi twitter_fetch + append_twitter odvojeno.
+"""
 
 from __future__ import annotations
 
@@ -28,6 +32,12 @@ def run_collection(
     config: dict[str, Any],
     sources: list[str] | None = None,
 ) -> list[RawRecord]:
+    """Pokreni collect_and_save za omogućene izvore iz COLLECTOR_REGISTRY.
+
+    sources: lista imena ili None → collection.enabled_sources.
+    Piše po-izvor raw.jsonl i spojeni paths.raw_dir/merged_raw.jsonl.
+    Twitter se ovde ne pokreće.
+    """
     enabled = sources or config.get("collection", {}).get("enabled_sources", [])
     raw_total_budget, raw_per_source = _raw_quota(config)
 

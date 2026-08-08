@@ -26,10 +26,12 @@ except ImportError:  # pragma: no cover
 
 
 def has_cyrillic(text: str) -> bool:
+    """True ako tekst sadrži bar jedan ćirilični karakter."""
     return bool(_CYRILLIC_RE.search(text))
 
 
 def has_serbian_latin_diacritics(text: str) -> bool:
+    """True ako tekst sadrži srpske latinice dijakritike (č, ć, š, ž, đ…)."""
     return bool(_SERBIAN_LATIN_MARKERS.search(text))
 
 

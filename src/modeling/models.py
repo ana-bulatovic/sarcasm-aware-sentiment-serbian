@@ -17,6 +17,7 @@ from src.modeling.labels import (
 
 
 def build_single_task_model(model_name: str, task: str) -> AutoModelForSequenceClassification:
+    """HF klasifikator za jedan task (sentiment ili sarcasm) sa label mapama."""
     if task == "sentiment":
         label2id = SENTIMENT_LABEL2ID
         id2label = SENTIMENT_ID2LABEL
@@ -36,7 +37,7 @@ def build_single_task_model(model_name: str, task: str) -> AutoModelForSequenceC
 
 
 class MultiTaskModel(nn.Module):
-    """Zajednički encoder + dve klasifikacione glave."""
+    """Zajednički encoder + dve klasifikacione glave (sentiment i sarkazam)."""
 
     def __init__(
         self,
@@ -47,6 +48,7 @@ class MultiTaskModel(nn.Module):
         sentiment_class_weights: torch.Tensor | None = None,
         sarcasm_class_weights: torch.Tensor | None = None,
     ) -> None:
+        """Učitaj encoder; opcione težine loss-a i klasa za weighted CE."""
         super().__init__()
         config = AutoConfig.from_pretrained(model_name)
         self.encoder = AutoModel.from_pretrained(model_name, config=config)
@@ -80,6 +82,7 @@ class MultiTaskModel(nn.Module):
         sarcasm_labels: torch.Tensor | None = None,
         **_: Any,
     ) -> dict[str, torch.Tensor | None]:
+        """Forward: logits za oba taska; loss ako su date obe labele."""
         outputs = self.encoder(input_ids=input_ids, attention_mask=attention_mask)
         cls = outputs.last_hidden_state[:, 0]
         cls = self.dropout(cls)

@@ -32,6 +32,7 @@ _THREAD_RE = re.compile(
 
 
 def extract_reddit_thread_id(url: str) -> str | None:
+    """Izvuci thread ID iz reddit.com / redd.it URL-a."""
     url = (url or "").strip()
     if not url:
         return None
@@ -48,6 +49,7 @@ def append_reddit_comments(
     *,
     open_browser: bool = True,
 ) -> list[dict[str, str]]:
+    """Polu-ručno dodaj Reddit komentare na annotation CSV (source = pun URL)."""
     url = (url or "").strip()
     if not url:
         raise ValueError("Potreban je Reddit thread URL (--url).")
@@ -68,6 +70,7 @@ def append_reddit_comments(
         suggested = ensure_dir(
             resolve_path(reddit_cfg.get("comments_dir", "data/external/reddit/"))
         )
+        # Lokalna putanja predloženog TXT-a — NIJE šema kolona `tip`
         tip = suggested / "comments_paste.txt"
         print(
             "\nUputstvo (BEZ scrapinga / BEZ neovlascenog API-ja):\n"

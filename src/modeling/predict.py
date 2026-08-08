@@ -24,6 +24,7 @@ def predict_texts(
     model_dir: Path | None = None,
     device_name: str | None = None,
 ) -> list[dict[str, Any]]:
+    """Predikcije za listu tekstova (labele + verovatnoće po klasama)."""
     if not texts:
         return []
 

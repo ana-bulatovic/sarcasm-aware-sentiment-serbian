@@ -1,24 +1,24 @@
 # Data dictionary — annotation dataset
 
-Fajl: `data/processed/annotation_template.csv` (isto i `dataset.csv`)
+Fajl: `data/processed/annotation/annotation_template.csv` (isto i `data/processed/dataset/dataset.csv`)
 
 Kodiranje: **UTF-8 with BOM** (`utf-8-sig`) radi lakog otvaranja u Excel-u.
 
 | Kolona | Tip | Obavezno | Opis | Dozvoljene vrednosti |
 |--------|-----|----------|------|----------------------|
 | `id` | string | ne* | Identifikator uzorka | npr. `sr-00001`; ako fali, split/train generišu privremeni |
-| `source` | string | ne* | URL / izvor | može biti prazan; nije potreban za trening |
+| `source` | string | preporučeno | **Platforma** (ne tema) | `youtube`, `twitter`, `reddit`, … (ili URL ako tako vodiš provenijenciju) |
 | `text` | string | da | Očišćen srpski tekst | Interpunkcija sačuvana |
-| `tip` | string | preporučeno | Domen / tip sadržaja | npr. `filmovi` |
+| `tip` | string | preporučeno | **Tema / subject** (domen) | npr. `filmovi`, `serije`, `politika`, `sport`, `ostalo` |
 | `sentiment` | string/int | da (za trening) | Polaritet (preneseni stav) | `1` / `0` / `-1` |
 | `sarcasm` | string/int | da (za trening) | Da li je tekst sarkastičan | `1` / `0` |
 
-\* Za trening su dovoljni `text` + `sentiment` + `sarcasm`.
+\* Za trening su dovoljni `text` + `sentiment` + `sarcasm`.  
+`source` = gde je tekst sa (platforma); `tip` = o čemu je (tema). To **ne ulazi** u BERTić ulaz osim ako eksplicitno ne dodaš kao feature.
 
 ## Napomene
 
 - Kolone `sentiment` i `sarcasm` se **ručno** popunjavaju.
-- Ne koristite stare oznake (`positive`/`yes`) — samo `1` / `0` / `-1`.
 - Latinica i ćirilica se ne transliterišu.
 - `source` je kanal prikupljanja, ne autor (bez username-a).
 

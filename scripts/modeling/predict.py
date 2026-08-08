@@ -22,6 +22,10 @@ from src.modeling.predict import predict_texts
 
 
 def main() -> None:
+    """CLI ulazna tačka; poziva ``src.modeling.predict.predict_texts``.
+
+    Inferenca nad ``--text`` / ``--file``; ispis labele i verovatnoća (ili JSON).
+    """
     configure_utf8_stdio()
     parser = argparse.ArgumentParser(description="Inferenca sentiment / sarkazam / multitask.")
     parser.add_argument("--config", default="config/config.yaml")

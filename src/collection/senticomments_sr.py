@@ -21,14 +21,18 @@ GITHUB_RAW_BASE = "https://raw.githubusercontent.com/{repo}/master/{filename}"
 
 
 class SentiCommentsSRCollector(BaseCollector):
+    """Preuzima i parsira SentiComments.SR; source = 'senticomments_sr'."""
+
     source_name = "senticomments_sr"
 
     def __init__(self, config: dict[str, Any]):
+        """Postavi i external_dir (data/external/senticomments_sr)."""
         super().__init__(config)
         external = resolve_path(config["paths"]["external_dir"]) / self.source_name
         self.external_dir = ensure_dir(external)
 
     def _download_file(self, filename: str) -> Path:
+        """Vrati lokalni fajl; ako nedostaje, preuzmi sa GitHub raw (ako je dozvoljeno)."""
         dest = self.external_dir / filename
         if dest.exists():
             return dest
@@ -47,7 +51,7 @@ class SentiCommentsSRCollector(BaseCollector):
         return dest
 
     def _parse_main_corpus(self, path: Path) -> list[RawRecord]:
-        """Format: sentiment_label \\t comment_id \\t comment_text"""
+        """Parsira TSV: sentiment_label \\t comment_id \\t comment_text → RawRecord."""
         use_labels = not bool(self.source_cfg.get("discard_original_labels", False))
         records: list[RawRecord] = []
         with path.open(encoding="utf-8") as f:
@@ -86,6 +90,7 @@ class SentiCommentsSRCollector(BaseCollector):
         return records
 
     def collect(self, max_records: int) -> list[RawRecord]:
+        """Preuzmi/parsiraš collection.senticomments_sr.files do max_records."""
         files = self.source_cfg.get("files", ["SentiComments.SR.orig.txt"])
         all_records: list[RawRecord] = []
         for filename in files:

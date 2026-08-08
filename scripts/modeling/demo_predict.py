@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Proba: 10 rečenica kroz sentiment, sarcasm i multitask modele."""
+"""Proba: demo rečenice kroz sentiment, sarcasm i multitask modele."""
 
 from __future__ import annotations
 
@@ -41,6 +41,7 @@ SARC_NAME = {"1": "yes", "0": "no"}
 
 
 def _fmt_sent(label: str, probs: dict[str, float] | None = None) -> str:
+    """Formatiraj sentiment labelu za ispis (ime + opciona confidence)."""
     name = SENT_NAME.get(str(label), str(label))
     if not probs:
         return f"{label} ({name})"
@@ -49,6 +50,7 @@ def _fmt_sent(label: str, probs: dict[str, float] | None = None) -> str:
 
 
 def _fmt_sarc(label: str, probs: dict[str, float] | None = None) -> str:
+    """Formatiraj sarcasm labelu za ispis (ime + opciona confidence)."""
     name = SARC_NAME.get(str(label), str(label))
     if not probs:
         return f"{label} ({name})"
@@ -57,6 +59,11 @@ def _fmt_sarc(label: str, probs: dict[str, float] | None = None) -> str:
 
 
 def main() -> None:
+    """CLI ulazna tačka; poziva ``src.modeling.predict.predict_texts``.
+
+    Za svaki dostupni checkpoint (sentiment/sarcasm/multitask) radi inferencu
+    nad ``DEMO_TEXTS`` i štampa uporedni pregled.
+    """
     configure_utf8_stdio()
     parser = argparse.ArgumentParser(
         description="Inferenca 10 demo rečenica na sentiment / sarcasm / multitask."

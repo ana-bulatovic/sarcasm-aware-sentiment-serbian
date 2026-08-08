@@ -21,10 +21,13 @@ API_URL = "https://www.googleapis.com/youtube/v3/commentThreads"
 
 
 class YouTubeCollector(BaseCollector):
+    """Kolektor javnih YouTube komentara; source u RawRecord je watch URL."""
+
     source_name = "youtube"
 
     @staticmethod
     def _normalize_video_id(value: str) -> str:
+        """Izvuci video ID iz URL-a (v= / youtu.be/) ili vrati sirovi ID."""
         line = (value or "").strip()
         if not line or line.startswith("#"):
             return ""
@@ -35,6 +38,7 @@ class YouTubeCollector(BaseCollector):
         return line.strip()
 
     def _load_video_ids(self) -> list[str]:
+        """Učitaj jedinstvene video ID-eve iz config-a i video_ids_file."""
         ids: list[str] = list(self.source_cfg.get("video_ids") or [])
         ids_file = self.source_cfg.get("video_ids_file")
         if ids_file:
@@ -60,6 +64,7 @@ class YouTubeCollector(BaseCollector):
         include_replies: bool,
         timeout: int,
     ) -> list[RawRecord]:
+        """Pozovi commentThreads API i vrati do max_comments RawRecord-a."""
         records: list[RawRecord] = []
         page_token: str | None = None
         part = "snippet,replies" if include_replies else "snippet"
@@ -133,7 +138,7 @@ class YouTubeCollector(BaseCollector):
         video_ids: list[str],
         max_records: int,
     ) -> list[RawRecord]:
-        """Prikupi komentare samo za date video ID-eve."""
+        """Prikupi komentare samo za date video ID-eve / URL-ove (YOUTUBE_API_KEY)."""
         api_key = os.getenv("YOUTUBE_API_KEY", "").strip()
         if not api_key:
             print(
@@ -178,10 +183,11 @@ class YouTubeCollector(BaseCollector):
         return all_records[:max_records]
 
     def collect(self, max_records: int) -> list[RawRecord]:
+        """Prikupi komentare za ID-eve iz config-a / video_ids_file."""
         video_ids = self._load_video_ids()
         if not video_ids:
             print(
-                "[youtube] Nema video ID-eva. Dodajte ih u config/youtube_video_ids.txt "
+                "[youtube] Nema video ID-eva. Dodajte ih u config/sources/youtube_video_ids.txt "
                 "ili collection.youtube.video_ids u config.yaml."
             )
             return []

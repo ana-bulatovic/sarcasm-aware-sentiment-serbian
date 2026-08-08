@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Draft anotacija sentiment + sarkazam (za rucnu korekciju)."""
+"""Draft anotacija sentiment + sarkazam (za ručnu korekciju).
+
+Heuristika na leksikonima (``POSITIVE``, ``NEGATIVE``, ``SARCASM_CUES``),
+opciono Ollama batch. Upisuje labele u annotation CSV i dataset CSV —
+nije konačna anotacija.
+"""
 
 from __future__ import annotations
 
@@ -26,6 +31,7 @@ from src.common.schema import FINAL_COLUMNS
 from src.common.stdio_utf8 import configure_utf8_stdio
 from src.preprocessing.clean import normalize_whitespace
 
+# Leksikon pozitivnih fraza (substring match nakon casefold).
 POSITIVE = {
     "odličan", "odlican", "odlična", "odlicna", "odlično", "odlicno",
     "super", "bravo", "svaka čast", "svaka cast", "prelep", "prelepa",
@@ -38,6 +44,7 @@ POSITIVE = {
     "dopada", "zadovoljan", "zadovoljna", "obožavam", "obozavam",
 }
 
+# Leksikon negativnih fraza (substring match nakon casefold).
 NEGATIVE = {
     "loš", "los", "loša", "losa", "loše", "lose", "sranje", "govno",
     "katastrofa", "užas", "uzas", "odvratno", "odvratan", "glup", "glupa",
@@ -50,24 +57,37 @@ NEGATIVE = {
     "bolan", "boli me", "krade", "lopov", "blamaža", "blamaza",
 }
 
+# Regex signali sarkazma / ironije (navodnici, „baš“, „naravno“, …).
 SARCASM_CUES = [
     r"\bbaš\b", r"\bbas\b", r"\bnaravno\b", r"\bkao da\b", r"\bkako da ne\b",
     r"\bvaljda\b", r"\bzeza", r"\bsarkaz", r"\bironi", r"„[^”]{2,}”",
     r"\"[^\"]{2,}\"", r"\bah da\b", r"\bjoš nam treba\b", r"\bjos nam treba\b",
 ]
 
+# Kratki timestamp redovi (npr. video markeri) → neutralno.
 TIMESTAMP_RE = re.compile(r"^\s*\d{1,2}:\d{2}(?::\d{2})?\b")
 
 
 def _fold(text: str) -> str:
+    """Normalizuj beline i casefold radi poređenja sa leksikonima."""
     return normalize_whitespace(text or "").casefold()
 
 
 def _has_any(text: str, phrases: set[str]) -> bool:
+    """True ako bilo koja fraza iz skupa postoji kao substring u tekstu."""
     return any(p in text for p in phrases)
 
 
 def draft_annotate(text: str) -> tuple[str, str]:
+    """Heuristička draft labela (sentiment, sarcasm) za jedan komentar.
+
+    Koristi ``POSITIVE`` / ``NEGATIVE`` i ``SARCASM_CUES``. Prazan/kratak
+    tekst i timestamp → ``(\"0\", \"0\")``. Sarkazam ima prioritet nad
+    čistim sentimentom; pitanja bez stava ostaju neutralna.
+
+    Returns:
+        Par stringova: sentiment u {1, 0, -1}, sarcasm u {1, 0}.
+    """
     raw = normalize_whitespace(text or "")
     folded = _fold(raw)
     if not raw or len(raw) < 8:
@@ -78,6 +98,7 @@ def draft_annotate(text: str) -> tuple[str, str]:
     pos = _has_any(folded, POSITIVE)
     neg = _has_any(folded, NEGATIVE)
     sarc = sum(1 for pat in SARCASM_CUES if re.search(pat, folded, flags=re.I))
+    # Pohvala + negacija / elipsa → jači signal sarkazma
     if re.search(r"\b(bravo|genijalno|odlično|odlicno|super|svaka čast|svaka cast)\b", folded):
         if neg or "..." in raw or "…" in raw:
             sarc += 2
@@ -121,6 +142,15 @@ def draft_annotate(text: str) -> tuple[str, str]:
 
 
 def _ollama_annotate_batch(items: list[dict[str, str]], model: str) -> dict[str, tuple[str, str]]:
+    """Pošalji batch komentara Ollama modelu; parsira JSONL odgovor.
+
+    Args:
+        items: Lista ``{\"id\", \"text\"}`` (tekst se seče na 400 znakova).
+        model: Ime lokalnog Ollama modela (npr. ``llama2``).
+
+    Returns:
+        Mapiranje id → (sentiment, sarcasm). Prazan dict pri grešci / timeoutu.
+    """
     payload = "\n".join(f"{it['id']}: {it['text'][:400]}" for it in items)
     prompt = f"""Ti anotiras srpske komentare za master rad.
 Za SVAKI red vrati TACNO jedan JSON objekat po liniji (JSONL), polja:
@@ -172,6 +202,11 @@ Komentari:
 
 
 def main() -> None:
+    """CLI: draft anotacija annotation CSV-a (leksikon + opciono Ollama).
+
+    Pravi backup, popunjava sentiment/sarcasm preko ``draft_annotate``,
+    opciono prepisuje labele iz Ollama batcheva, čuva annotation i dataset CSV.
+    """
     configure_utf8_stdio()
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", default="config/config.yaml")

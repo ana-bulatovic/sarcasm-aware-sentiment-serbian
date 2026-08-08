@@ -1,0 +1,23 @@
+id,source,text,topic,sentiment,sarcasm
+sr-00001,instagram,"Ovo samo kod nas ima, komedija, svet nam se smeje",politika,-1,1
+sr-00002,instagram,"sam sa sobom prica covek je zreo za ludnicu",politika,-1,1
+sr-00003,instagram,"Kakav glumac,sjajno,pa daj pusti nekom drugom da spasava Srbiju,ti se posveti snimanju filmova",politika,-1,1
+sr-00004,instagram,"Indijske serije placu za tobom…",politika,-1,1
+sr-00005,instagram,"Bolesnik sta napisati drugo…?",politika,-1,1
+sr-00006,instagram,"Pa ovo više nije ni smešno glumatanje ,koliko je providno i bolesno...",politika,-1,1
+sr-00006,instagram,"Aco Srbin i dalje da pobeđuje samog sebe i nevidljive neprijatelje",politika,-1,1
+sr-00006,instagram,"merna jedinica za debilizam",politika,-1,1
+sr-00006,instagram,"Sta moze glupi sendvicar,covek koji proda sebe I svoje bliznje za 2000din",politika,-1,1
+sr-00006,instagram,"Kako ce ovo da iskopiraju bas me zanima.",politika,0,1
+sr-00006,instagram,"Studenti su genijalci!",politika,1,0
+sr-00006,instagram,"Ugasi malo Informer a ukljuci mozak ako ga imas",politika,-1,1
+sr-00006,instagram,"Ne verujem nijednom njihovom obećanju.",politika,-1,0
+sr-00006,instagram,"Dok narod jedva sastavlja kraj s krajem, vlast priča o EXPO-u.",politika,-1,1
+sr-00006,instagram,"Sama facijalna gestikulacija govori da je ovaj čovek lažovčina!",politika,-1,0
+sr-00006,instagram,"pa kamen da se kandiduje za njega cu da glasam, samo ne za vucica",politika,-1,1
+sr-00006,instagram,"Gospode boze. Dokle vise ovo foliranje, laganje, manipulacije",politika,-1,0
+sr-00006,instagram,"Blago li se nama...",politika,-1,1
+sr-00006,instagram,"Znanje je moć!",politika,0,0
+sr-00006,instagram,"Zna se koliko je sati",politika,0,1
+
+

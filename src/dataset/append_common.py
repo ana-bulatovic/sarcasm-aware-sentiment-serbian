@@ -1,4 +1,9 @@
-"""Zajednicko dopisivanje redova na annotation CSV."""
+"""Zajedničko dopisivanje redova na annotation CSV.
+
+Koriste ga polu-ručni append_* moduli. Argument source može biti pun URL
+(raw/annotation pipeline); platforma se izvodi iz URL-a.
+Dedup: normalize_for_dedup + text_fingerprint (16 hex), ne pun SHA.
+"""
 
 from __future__ import annotations
 
@@ -20,6 +25,7 @@ _ID_RE = re.compile(r"^sr-(\d+)$")
 
 
 def next_annotation_id(existing_ids: list[str]) -> int:
+    """Sledeći numerički sufiks za id oblika sr-XXXXX."""
     max_n = 0
     for raw in existing_ids:
         m = _ID_RE.match(str(raw).strip())
@@ -29,6 +35,7 @@ def next_annotation_id(existing_ids: list[str]) -> int:
 
 
 def append_jsonl(path: Path, records: list[dict[str, Any]]) -> None:
+    """Dopuni JSONL fajl (kreira parent dir po potrebi)."""
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a", encoding="utf-8") as f:
         for rec in records:
@@ -42,10 +49,20 @@ def append_texts_to_annotation(
     source: str,
     metadata: dict[str, Any] | None = None,
 ) -> list[dict[str, str]]:
-    """Očisti, filtriraj, deduplikuj i dopisi tekstove na annotation CSV."""
+    """Očisti, filtriraj, deduplikuj i dopisi tekstove na annotation CSV.
+
+    source: pun URL ili identifikator izvora (platforma via platform_from_source).
+    Piše i raw/<platform>/raw.jsonl, interim/cleaned.jsonl, dataset CSV/JSONL.
+    """
     annotation_path = resolve_path(config["paths"]["annotation_csv"])
     dataset_path = resolve_path(config["paths"]["dataset_csv"])
-    processed_dir = ensure_dir(resolve_path(config["paths"]["processed_dir"]))
+    dataset_jsonl = resolve_path(
+        config["paths"].get("dataset_jsonl")
+        or str(Path(config["paths"]["dataset_csv"]).with_suffix(".jsonl"))
+    )
+    ensure_dir(annotation_path.parent)
+    ensure_dir(dataset_path.parent)
+    ensure_dir(dataset_jsonl.parent)
 
     if not annotation_path.exists():
         raise FileNotFoundError(
@@ -55,6 +72,7 @@ def append_texts_to_annotation(
     df = load_csv(annotation_path)
     existing_rows = df.to_dict(orient="records")
     existing_texts = {normalize_for_dedup(str(r.get("text", ""))) for r in existing_rows}
+    # 16-hex fingerprint (base.text_fingerprint), ne pun SHA iz preprocessing.deduplicate
     existing_fps = {text_fingerprint(str(r.get("text", ""))) for r in existing_rows}
 
     max_total = int(config["dataset"]["max_total_samples"])
@@ -144,7 +162,7 @@ def append_texts_to_annotation(
     combined = existing_rows + appended
     save_csv(combined, annotation_path, columns=FINAL_COLUMNS)
     save_csv(combined, dataset_path, columns=FINAL_COLUMNS)
-    save_jsonl(combined, processed_dir / "dataset.jsonl")
+    save_jsonl(combined, dataset_jsonl)
     print(
         f"[append] +{len(appended)} ({source}) -> ukupno {len(combined)} | {annotation_path}"
     )

@@ -14,11 +14,16 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 
 def get_project_root() -> Path:
+    """Vrati apsolutnu putanju korijena repozitorijuma."""
     return PROJECT_ROOT
 
 
 def load_config(config_path: str | Path | None = None) -> dict[str, Any]:
-    """Učitaj YAML konfiguraciju i .env fajl."""
+    """Učitaj YAML konfiguraciju i `.env` fajl.
+
+    Podrazumevano čita ``config/config.yaml`` (ili ``CONFIG_PATH`` iz okruženja).
+    Relativne putanje su u odnosu na korijen projekta.
+    """
     load_dotenv(PROJECT_ROOT / ".env")
 
     if config_path is None:
@@ -41,7 +46,7 @@ def load_config(config_path: str | Path | None = None) -> dict[str, Any]:
 
 
 def resolve_path(relative_or_absolute: str | Path) -> Path:
-    """Relativne putanje se vezuju za korijen projekta."""
+    """Relativne putanje se vezuju za korijen projekta; apsolutne ostaju iste."""
     path = Path(relative_or_absolute)
     if path.is_absolute():
         return path
@@ -49,5 +54,6 @@ def resolve_path(relative_or_absolute: str | Path) -> Path:
 
 
 def ensure_dir(path: Path) -> Path:
+    """Kreiraj direktorijum (i roditelje) ako ne postoji; vrati istu putanju."""
     path.mkdir(parents=True, exist_ok=True)
     return path

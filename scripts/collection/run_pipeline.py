@@ -23,6 +23,10 @@ from src.pipeline import run_full_pipeline
 
 
 def main() -> None:
+    """CLI ulazna tačka; poziva ``src.pipeline.run_full_pipeline``.
+
+    Pokreće kolekciju + preprocess + dataset + stats u jednom prolazu.
+    """
     configure_utf8_stdio()
     parser = argparse.ArgumentParser(description="Ceo data preparation pipeline.")
     parser.add_argument("--config", default="config/config.yaml")

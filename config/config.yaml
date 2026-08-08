@@ -15,6 +15,7 @@ dataset:
 # Maksimalan broj uzoraka po izvoru u finalnom datasetu (pre balansiranja ukupnog limita)
 per_source_limits:
   youtube: 1500
+  twitter: 800
   tiktok: 800
   instagram: 800
   reddit: 400
@@ -25,10 +26,15 @@ paths:
   interim_dir: data/interim
   processed_dir: data/processed
   external_dir: data/external
-  annotation_csv: data/processed/annotation_template.csv
-  dataset_csv: data/processed/dataset.csv
-  stats_json: data/processed/dataset_stats.json
+  annotation_csv: data/processed/annotation/annotation_template.csv
+  dataset_csv: data/processed/dataset/dataset.csv
+  dataset_jsonl: data/processed/dataset/dataset.jsonl
+  stats_json: data/processed/dataset/dataset_stats.json
   splits_dir: data/processed/splits
+  twitter_csv: data/processed/sources/twitter_comments.csv
+  youtube_csv: data/processed/sources/youtube_comments.csv
+  instagram_csv: data/processed/sources/instagram_comments.csv
+  scratch_dir: data/processed/scratch
 
 language:
   # Filtriranje na srpski (i blisko srodne BCMS varijante ako je omogućeno)
@@ -49,6 +55,7 @@ collection:
   # Dataset je samostalan (bez SentiComments.SR)
   enabled_sources:
     - youtube
+    - twitter
     - tiktok
     - instagram
     - reddit
@@ -56,13 +63,26 @@ collection:
 
   youtube:
     # Zahteva YOUTUBE_API_KEY u .env
-    # Lista video ID-eva (ili putanja do TXT fajla, jedan ID po liniji)
+    # Append u POSEBAN CSV (kao twitter):
+    #   python scripts/collection/append_youtube.py --tip filmovi
+    #   python scripts/collection/append_youtube.py --tip politika --url "https://www.youtube.com/watch?v=ID"
     video_ids: []
-    video_ids_file: config/youtube_video_ids.txt
+    video_ids_file: config/sources/youtube_video_ids.txt
+    output_csv: data/processed/sources/youtube_comments.csv
     max_comments_per_video: 300
     include_replies: false
     # Samo tekst komentara; bez username / channelId autora
     request_timeout_seconds: 30
+
+  twitter:
+    # Automatski fetch replies (twikit) u POSEBAN CSV:
+    #   python scripts/collection/append_twitter.py --tip politika
+    # Ručno: --manual. Cookies: data/external/twitter/session/cookies.json
+    comments_dir: data/external/twitter/
+    output_csv: data/processed/sources/twitter_comments.csv
+    urls_file: config/sources/twitter_urls.txt
+    cookies_file: data/external/twitter/session/cookies.json
+    source_label: twitter
 
   tiktok:
     # Nema browser scrapinga (ToS). Koristi se rucni / polu-rucni unos:
@@ -98,8 +118,11 @@ collection:
     text_column: text
     source_label: reviews
 
+# Lagano čišćenje pri kolekciji / build dataseta.
+# ISTI tekst ide u BERTić (bez dodatnog baseline pretprocesiranja).
 preprocessing:
   remove_emojis: true
+  remove_mentions: true  # skini @username (npr. @n1srbija u reply-ima)
   normalize_whitespace: true
   replace_urls_with: "[URL]"
   strip_html: true
@@ -111,7 +134,57 @@ preprocessing:
   # Exact duplicate detection na normalizovanom tekstu
   deduplicate: true
 
+# Samo za klasične ML baseline modele (TF-IDF + LR/SVM/NB).
+# BERTić / transformer pipeline OVO NE KORISTI.
+# CLI: python scripts/preprocessing/text_preprocessing.py --use-config --csv ...
+baseline_preprocessing:
+  remove_urls: true
+  collapse_whitespace: true
+  normalize_unicode: true
+  remove_emojis: false
+  cyrillic_to_latin: true
+  lowercase: true
+  lemmatize: false
+  # simplemma kod za BCMS; 'sr'/'hr'/'bs' se mapiraju na hbs
+  lemma_lang: hbs
+
+# =============================================================================
+# Klasični ML baseline (TF-IDF + NB / LR / Linear SVM)
+# =============================================================================
+baselines:
+  csv: data/processed/dataset/dataset.csv
+  output_dir: models/baselines
+  test_size: 0.2
+  apply_preprocessing: true  # koristi baseline_preprocessing
+  save_model: true
+  tfidf:
+    max_features: 20000
+    ngram_range: [1, 2]
+    min_df: 2
+    max_df: 0.95
+    sublinear_tf: true
+  classifiers:
+    naive_bayes:
+      alpha: 1.0
+    logistic_regression:
+      C: 1.0
+      max_iter: 2000
+      class_weight: balanced
+    linear_svm:
+      C: 1.0
+      max_iter: 5000
+      class_weight: balanced
+
 random_seed: 42
+
+# =============================================================================
+# Trening — deljene opcije (baseline + BERTić)
+# =============================================================================
+training:
+  # true  → balanced class weights (baseline: class_weight / sample_weight;
+  #         BERTić: weighted CrossEntropyLoss)
+  # false → običan loss / bez class_weight
+  use_class_weights: true
 
 # =============================================================================
 # Modeling (fine-tune)
@@ -129,7 +202,7 @@ modeling:
   # null = auto (cuda ako postoji, inače cpu)
   device: null
   output_dir: models
-  # Balansiranje klasa (iz train.csv, dinamički)
+  # Fallback ako training.use_class_weights nije setovan (prioritet ima training:)
   use_class_weights: true
   use_weighted_sampler: true
   multitask:

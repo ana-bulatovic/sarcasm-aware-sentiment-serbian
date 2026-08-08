@@ -1,0 +1,58 @@
+# Lista YouTube video ID-eva ili URL-ova (jedan po liniji).
+# Linije koje počinju sa # se ignorišu.
+#
+# Primer:
+# hpKAFB9QUZc
+# https://www.youtube.com/watch?v=HMIfPTqxmWw
+#
+# Pokretanje:
+#   python scripts/collection/append_youtube.py --tip filmovi
+#   python scripts/collection/append_youtube.py --tip politika --url "https://www.youtube.com/watch?v=ID"
+#
+# Upisuje u data/processed/sources/youtube_comments.csv (ne dira annotation_template).
+
+#-_xotyeinSc
+#i_K0Z3jeZL0
+#3mmdrrL5eVA
+#Jct6LAGC-pU
+#NzsWabihv54
+#00onqy5JYzE
+#4kD_LmEGqcc
+#t1Jzut6esII
+#Ps4AgSVrBm0
+#T3eoijKZrNs
+#hpKAFB9QUZc
+#HMIfPTqxmWw
+#A-4Y3nUjUaY
+#FHQwol6UyOk
+#7Z4pzU1SSO4
+#1FIuVwTmYus
+#0PtdfLD4TDo
+#vlSbtHPT_YE
+#ZgbovBVheZY
+#e-NgjXehNfw
+#4o_wOqnZ8s0
+#k7zHF1uG4mI
+#BudvCadi5YA
+#yR9pXrwktos
+#d89OW4Gueao
+#BepF4Ljs2Wo
+#BEDEf-Vcm40
+#hl9JlRy_I-U
+#jbkZD3j1w3A
+#vcfb6ikDLzc
+#z52dWELjjLc
+#tUE1_SBXWoQ
+#OL2fQ5rY8bY
+#VwCWjGubK6w
+#8pjgzO-4STw
+#feXhdrVhZ34
+#5e0E2dvXZow
+#J3Zs4c7LhoM
+#WEMlY9FIhxY
+#0OMe_L9jzO0
+#Zao7bZgaE2A
+#6vRV7UyZtwk
+#6qKEHjar8ug
+#MS8Te0KJ5co
+-5Nhwbpc25A

@@ -21,6 +21,7 @@ from src.modeling.metrics import pack_multitask_metrics, pack_single_task_metric
 
 
 def _move_batch(batch: dict[str, Any], device: torch.device) -> dict[str, Any]:
+    """Premesti tenzore iz batch-a na zadati uređaj."""
     out: dict[str, Any] = {}
     for key, value in batch.items():
         if torch.is_tensor(value):
@@ -31,6 +32,7 @@ def _move_batch(batch: dict[str, Any], device: torch.device) -> dict[str, Any]:
 
 
 def _to_jsonable(obj: Any) -> Any:
+    """Rekurzivno pretvori tipove u JSON-serializabilne vrednosti."""
     if isinstance(obj, dict):
         return {str(k): _to_jsonable(v) for k, v in obj.items()}
     if isinstance(obj, (list, tuple)):
@@ -46,6 +48,7 @@ def _to_jsonable(obj: Any) -> Any:
 
 
 def _save_json(path: Path, payload: dict[str, Any]) -> None:
+    """Upisi rečnik kao UTF-8 JSON (sa indentom)."""
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
         json.dumps(_to_jsonable(payload), ensure_ascii=False, indent=2),
@@ -58,6 +61,7 @@ def _single_task_loss(
     labels: torch.Tensor,
     class_weights: torch.Tensor | None,
 ) -> torch.Tensor:
+    """CrossEntropyLoss; opciono sa težinama klasa."""
     weight = class_weights.to(logits.device) if class_weights is not None else None
     return nn.CrossEntropyLoss(weight=weight)(logits, labels)
 
@@ -70,6 +74,7 @@ def evaluate_single_task(
     task: str,
     class_weights: torch.Tensor | None = None,
 ) -> dict[str, Any]:
+    """Evaluacija single-task modela (metrike + prosečan loss)."""
     model.eval()
     losses: list[float] = []
     y_true: list[int] = []
@@ -105,6 +110,7 @@ def evaluate_multitask(
     loader: DataLoader,
     device: torch.device,
 ) -> dict[str, Any]:
+    """Evaluacija multitask modela (sentiment + sarcasm metrike)."""
     model.eval()
     losses: list[float] = []
     sent_true: list[int] = []
@@ -143,7 +149,10 @@ def evaluate_multitask(
 
 
 def _selection_score(metrics: dict[str, Any], task: str) -> float:
-    """Veći je bolji — koristi macro-F1 (za multitask: prosek sentiment+sarcasm)."""
+    """Score za izbor best checkpointa (veći = bolji).
+
+    Single-task: macro-F1. Multitask: prosek sentiment i sarcasm macro-F1.
+    """
     if task == "multitask":
         s = metrics["sentiment"]["overall"]["macro_f1"]
         c = metrics["sarcasm"]["overall"]["macro_f1"]
@@ -170,6 +179,7 @@ def train_one_task(
     balance_info: dict[str, Any] | None = None,
     log_fn: Callable[[str], None] | None = None,
 ) -> dict[str, Any]:
+    """Treniraj jedan task; best.pt bira se po ``_selection_score`` na valu."""
     log = log_fn or print
     output_dir.mkdir(parents=True, exist_ok=True)
     model.to(device)

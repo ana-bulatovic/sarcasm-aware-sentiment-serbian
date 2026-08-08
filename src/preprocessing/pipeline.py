@@ -13,7 +13,11 @@ from src.preprocessing.deduplicate import deduplicate_records
 
 
 def run_preprocessing(config: dict[str, Any]) -> list[dict[str, Any]]:
-    """Učitaj sve raw.jsonl fajlove, očisti, filtriraj jezik, deduplikuj."""
+    """Pipeline raw → interim: ``preprocess_text``, jezik, dužina, dedup.
+
+    Koristi lagano čišćenje (dataset / BERTić), ne baseline ``clean_text``.
+    Vraća listu zapisa i piše ``interim/cleaned.jsonl``.
+    """
     raw_dir = resolve_path(config["paths"]["raw_dir"])
     interim_dir = ensure_dir(resolve_path(config["paths"]["interim_dir"]))
     prep_cfg = config.get("preprocessing", {})

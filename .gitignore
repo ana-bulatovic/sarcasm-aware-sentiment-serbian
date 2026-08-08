@@ -219,16 +219,24 @@ __marimo__/
 
 # Project-specific
 .env
+data/external/twitter/session/
 data/raw/**/*.jsonl
 data/interim/**
-# Processed: ignoriši privremene / regenerabilne stvari, ALI prati anotacije
+# Processed: ignoriši privremene / regenerabilne stvari, ALI prati anotacije i source CSV
 data/processed/**
 !data/processed/.gitkeep
-!data/processed/annotation_template.csv
-!data/processed/dataset.csv
-!data/processed/dataset_stats.json
+!data/processed/annotation/
+!data/processed/annotation/**
+!data/processed/sources/
+!data/processed/sources/**
+!data/processed/dataset/
+!data/processed/dataset/dataset.csv
+!data/processed/dataset/dataset_stats.json
+!data/processed/dataset/.gitkeep
 !data/processed/splits/
 !data/processed/splits/**
+!data/processed/scratch/
+!data/processed/scratch/.gitkeep
 data/external/senticomments_sr/*.txt
 data/external/reddit/*
 data/external/reviews/*
@@ -236,6 +244,8 @@ data/external/reviews/*
 !data/external/reddit/.gitkeep
 !data/external/reviews/.gitkeep
 !data/external/senticomments_sr/.gitkeep
+!config/sources/
+!config/sources/**
 
 # Trained model checkpoints (large)
 models/

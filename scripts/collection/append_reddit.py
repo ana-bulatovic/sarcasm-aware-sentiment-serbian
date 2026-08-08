@@ -21,6 +21,10 @@ from src.dataset.append_reddit import append_reddit_comments
 
 
 def main() -> None:
+    """CLI ulazna tačka; poziva ``src.dataset.append_reddit.append_reddit_comments``.
+
+    Polu-ručno dodaje Reddit komentare (browser + paste, bez scrapinga).
+    """
     configure_utf8_stdio()
     parser = argparse.ArgumentParser(
         description=(

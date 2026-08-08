@@ -1,4 +1,4 @@
-"""Mapiranje labela za sentiment i sarkazam."""
+"""Mapiranje labela za sentiment i sarkazam (string ↔ ID za HF / torch)."""
 
 from __future__ import annotations
 

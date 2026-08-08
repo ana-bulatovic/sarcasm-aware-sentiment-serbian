@@ -1,0 +1,22 @@
+# Lista Twitter/X URL-ova objava (jedan po liniji).
+# Linije koje počinju sa # se ignorišu.
+#
+# Primer:
+# https://x.com/neko/status/1234567890
+# https://twitter.com/neko/status/1234567890
+#
+# Pokretanje (automatski fetch replies):
+#   pip install twikit
+#   python scripts/collection/append_twitter.py --tip politika
+#
+# Login: cookies JSON u data/external/twitter/session/cookies.json
+#   ili X_USERNAME / X_PASSWORD u .env
+# Ručno: dodaj --manual
+
+#https://x.com/n1srbija/status/2084973375370232126
+#https://x.com/ZeljkoKisa/status/2083054132319887424
+#https://x.com/milos_vucevic/status/1818679414357737896
+#https://x.com/milos_vucevic/status/1802317200423858493
+#https://x.com/Gaga00117/status/2009277378426449998
+#https://x.com/milos_vucevic/status/1819452971941613793
+https://x.com/avucic/status/702072554572349441

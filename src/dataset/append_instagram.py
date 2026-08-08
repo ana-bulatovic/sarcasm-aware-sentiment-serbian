@@ -28,6 +28,7 @@ _SHORTCODE_RE = re.compile(
 
 
 def extract_instagram_shortcode(url: str) -> str | None:
+    """Izvuci shortcode iz /p/, /reel/ ili /tv/ Instagram URL-a."""
     url = (url or "").strip()
     if not url:
         return None
@@ -42,6 +43,7 @@ def append_instagram_comments(
     *,
     open_browser: bool = True,
 ) -> list[dict[str, str]]:
+    """Polu-ručno dodaj Instagram komentare na annotation CSV (source = pun URL)."""
     url = (url or "").strip()
     if not url:
         raise ValueError("Potreban je Instagram URL (--url).")
@@ -62,6 +64,7 @@ def append_instagram_comments(
         suggested = ensure_dir(
             resolve_path(ig_cfg.get("comments_dir", "data/external/instagram/"))
         )
+        # Lokalna putanja predloženog TXT-a — NIJE šema kolona `tip`
         tip = suggested / "comments_paste.txt"
         print(
             "\nUputstvo (BEZ scrapinga / BEZ automatskog logina):\n"

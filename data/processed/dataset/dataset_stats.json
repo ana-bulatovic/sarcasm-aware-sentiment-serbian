@@ -1,0 +1,35 @@
+{
+  "total_texts": 1300,
+  "by_source": {
+    "instagram": 20,
+    "twitter": 143,
+    "youtube": 1137
+  },
+  "sentiment": {
+    "1": 474,
+    "0": 325,
+    "-1": 492,
+    "unlabeled": 9,
+    "other": 0
+  },
+  "sarcasm": {
+    "1": 563,
+    "0": 722,
+    "unlabeled": 10,
+    "other": 5
+  },
+  "sentiment_sarcasm_combinations": {
+    "1/1": 128,
+    "1/0": 343,
+    "0/1": 126,
+    "0/0": 197,
+    "-1/1": 309,
+    "-1/0": 182,
+    "unlabeled_pair": 10
+  },
+  "annotation_progress": {
+    "fully_labeled": 1290,
+    "missing_sentiment": 9,
+    "missing_sarcasm": 10
+  }
+}
