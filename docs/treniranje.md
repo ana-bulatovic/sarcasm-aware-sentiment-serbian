@@ -97,6 +97,13 @@ models/baselines/
 
 Glavne metrike: accuracy, macro-F1 (i detalji po klasama u `metrics.json`).
 
+**HTML izveštaj** (grafike: izvori, teme, labele, split, metrike, confusion matrices):
+
+```bash
+python scripts/reports/generate_report.py
+# → reports/izvestaj/izvestaj.html + reports/izvestaj/figures/
+```
+
 Balansiranje klasa: `training.use_class_weights` u `config/config.yaml` (`true` / `false`).
 
 ### Inferenca (baseline)
