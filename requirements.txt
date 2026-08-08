@@ -8,14 +8,7 @@ beautifulsoup4>=4.12
 tqdm>=4.66
 twikit>=2.0
 
-# Modeling / fine-tune
-# NAPOMENA: na GPU mašini NE instaliraj torch iz ovog fajla (često CPU).
-# Prvo ostalo, pa CUDA torch — vidi docs/treniranje_gpu.md
 transformers>=4.40
 scikit-learn>=1.3
 accelerate>=0.30
-# torch: instaliraj ručno sa https://pytorch.org (cu118 / cu121 / cu124 ...)
-
-# Baseline pretprocesiranje (opciono; samo za klasične ML modele)
-# Lematizacija: python scripts/preprocessing/text_preprocessing.py --lemmatize ...
 simplemma>=1.0
