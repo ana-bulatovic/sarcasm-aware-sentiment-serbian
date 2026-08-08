@@ -32,8 +32,9 @@ DEMO_TEXTS = [
     "Da li je neko gledao sinhronizaciju?",
     "Super!!! Još jedan remake koji nam je baš trebao.",
     "Gluma je solidna, priča malo slaba, ali ok je.",
-    "Gluma je solidna, priča malo slaba, ali ok je.",
-    "Bravo, neverovatno koliko je glupo"
+    "Bravo, neverovatno koliko je glupo",
+    "Blago gluvima",
+    "Jos jedan film o kriminalcima koji ce da gledaju nasa deca"
 ]
 
 SENT_NAME = {"1": "positive", "0": "neutral", "-1": "negative"}
