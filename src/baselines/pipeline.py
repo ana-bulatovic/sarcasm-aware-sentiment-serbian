@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import inspect
 from typing import Any, Literal
 
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -52,14 +53,18 @@ def build_classifier(name: ClassifierName, cfg: dict[str, Any] | None = None) ->
         # MultinomialNB nema class_weight; balansiranje ide preko sample_weight pri fit-u
         return MultinomialNB(alpha=float(cfg.get("alpha", 1.0)))
     if name == "logistic_regression":
-        return LogisticRegression(
-            C=float(cfg.get("C", 1.0)),
-            max_iter=int(cfg.get("max_iter", 2000)),
-            class_weight=class_weight,
-            solver=str(cfg.get("solver", "lbfgs")),
-            multi_class=str(cfg.get("multi_class", "auto")),
-            random_state=int(cfg.get("random_state", 42)),
-        )
+        # multi_class je uklonjen u novijem sklearn (≥1.8); starije verzije i dalje prihvataju
+        lr_kwargs: dict[str, Any] = {
+            "C": float(cfg.get("C", 1.0)),
+            "max_iter": int(cfg.get("max_iter", 2000)),
+            "class_weight": class_weight,
+            "solver": str(cfg.get("solver", "lbfgs")),
+            "random_state": int(cfg.get("random_state", 42)),
+        }
+        lr_params = inspect.signature(LogisticRegression.__init__).parameters
+        if "multi_class" in lr_params:
+            lr_kwargs["multi_class"] = str(cfg.get("multi_class", "auto"))
+        return LogisticRegression(**lr_kwargs)
     if name == "linear_svm":
         return LinearSVC(
             C=float(cfg.get("C", 1.0)),
