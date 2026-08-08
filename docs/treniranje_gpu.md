@@ -105,7 +105,7 @@ python scripts/modeling/train.py --task multitask --device cuda
 ```
 
 Defaulti (epohe, LR, model) su u `config/config.yaml` → sekcija `modeling`  
-(encoder: `classla/bcms-bertic`, podrazumevano 4 epohe).
+(encoder podrazumevano: `classla/bcms-bertic`; alternativa: `--model-name jerteh/Jerteh-81 --output-dir models/jerteh81`, podrazumevano 4 epohe).
 
 ---
 

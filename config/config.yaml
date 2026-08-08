@@ -191,7 +191,18 @@ training:
 # Modeling (fine-tune)
 # =============================================================================
 modeling:
+  # Podrazumevano: CLASSLA BERTić (Electra, BCMS).
+  # Alternative (srpski RoBERTa, Jerteh):
+  #   jerteh/Jerteh-81   — brži (~81M), dobar za laptop
+  #   jerteh/Jerteh-355  — veći (~355M), treba više VRAM-a
+  # CLI bez menjanja configa:
+  #   python scripts/modeling/train.py --task sarcasm --model-name jerteh/Jerteh-81 --output-dir models/jerteh81
   model_name: classla/bcms-bertic
+  # Lista poznatih encoder-a (dokumentacija / izbor); trening čita model_name ili --model-name
+  known_encoders:
+    - classla/bcms-bertic
+    - jerteh/Jerteh-81
+    - jerteh/Jerteh-355
   max_length: 128
   batch_size: 8
   eval_batch_size: 16

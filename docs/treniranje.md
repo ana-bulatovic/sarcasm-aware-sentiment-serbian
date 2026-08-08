@@ -42,6 +42,7 @@ python scripts/dataset/build_dataset.py
 |-----|----------|------|---------|
 | **Baseline** | TF-IDF + NB / LR / Linear SVM | direktno `dataset.csv` (sam pravi train/test) | `scripts/baselines/train_baselines.py` |
 | **BERTić** | fine-tune `classla/bcms-bertic` | `train/val/test` split | `prepare_splits.py` pa `train.py` |
+| **Jerteh** | fine-tune `jerteh/Jerteh-81` (ili `-355`) | isti split | `train.py --model-name jerteh/Jerteh-81 --output-dir models/jerteh81` |
 
 Preporuka za master rad: prvo **baseline** (brzo, CPU), zatim **BERTić** (bolji rezultati, bolje na GPU).
 
@@ -157,11 +158,47 @@ python scripts/modeling/train.py --task sarcasm
 python scripts/modeling/train.py --task multitask
 ```
 
+### Alternativni encoder: Jerteh (srpski RoBERTa)
+
+Podrazumevano je `classla/bcms-bertic` (BERTić). Jerteh modeli se uključuju preko `--model-name` i **odvojenog** `--output-dir` da se checkpointi ne pregaze:
+
+| HF ID | Napomena |
+|-------|----------|
+| `jerteh/Jerteh-81` | ~81M, preporuka za probu / laptop |
+| `jerteh/Jerteh-355` | ~355M, više VRAM-a |
+
+```bash
+python scripts/modeling/prepare_splits.py --csv data/processed/dataset/dataset.csv
+
+python scripts/modeling/train.py --task all \
+  --model-name jerteh/Jerteh-81 \
+  --output-dir models/jerteh81 \
+  --epochs 6 \
+  --device cuda
+
+# samo sarkazam
+python scripts/modeling/train.py --task sarcasm \
+  --model-name jerteh/Jerteh-81 \
+  --output-dir models/jerteh81 \
+  --epochs 6
+```
+
+Evaluacija / inferenca:
+
+```bash
+python scripts/modeling/evaluate.py --task sarcasm --model-dir models/jerteh81/sarcasm
+python scripts/modeling/predict.py --task sarcasm --model-dir models/jerteh81/sarcasm \
+  --text "Bravo majstore, baš si genijalac..."
+```
+
+Lista poznatih encoder-a je i u `config/config.yaml` → `modeling.known_encoders`.
+
 ### Korisne opcije
 
 ```bash
 python scripts/modeling/train.py --task sentiment --epochs 4 --batch-size 8 --device cuda
 python scripts/modeling/train.py --task all --device cpu
+python scripts/modeling/train.py --task sarcasm --model-name jerteh/Jerteh-81 --output-dir models/jerteh81
 ```
 
 Hiperparametri (model, LR, epohe, …) su u `config/config.yaml` → sekcija `modeling`.

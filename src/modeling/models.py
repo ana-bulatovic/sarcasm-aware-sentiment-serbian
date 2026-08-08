@@ -17,7 +17,10 @@ from src.modeling.labels import (
 
 
 def build_single_task_model(model_name: str, task: str) -> AutoModelForSequenceClassification:
-    """HF klasifikator za jedan task (sentiment ili sarcasm) sa label mapama."""
+    """HF klasifikator za jedan task (sentiment ili sarcasm) sa label mapama.
+
+    Radi sa Electra (npr. ``classla/bcms-bertic``) i RoBERTa (npr. ``jerteh/Jerteh-81``).
+    """
     if task == "sentiment":
         label2id = SENTIMENT_LABEL2ID
         id2label = SENTIMENT_ID2LABEL
