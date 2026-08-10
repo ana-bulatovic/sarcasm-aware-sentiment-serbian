@@ -220,6 +220,7 @@ __marimo__/
 # Project-specific
 .env
 data/external/twitter/session/
+data/external/tiktok/session/
 data/raw/**/*.jsonl
 data/interim/**
 # Processed: ignoriši privremene / regenerabilne stvari, ALI prati anotacije i source CSV

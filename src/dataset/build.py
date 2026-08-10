@@ -19,10 +19,11 @@ from src.common.io_utils import load_csv, load_jsonl, save_csv, save_jsonl
 from src.common.schema import FINAL_COLUMNS, DatasetRecord
 from src.common.source_utils import PLATFORM_ORDER, platform_from_source, platform_sort_key
 
-# Redosled spajanja source CSV-ova (youtube → twitter → instagram)
+# Redosled spajanja source CSV-ova (youtube → twitter → tiktok → instagram)
 _SOURCE_CSV_KEYS = (
     ("youtube_csv", "data/processed/sources/youtube_comments.csv"),
     ("twitter_csv", "data/processed/sources/twitter_comments.csv"),
+    ("tiktok_csv", "data/processed/sources/tiktok_comments.csv"),
     ("instagram_csv", "data/processed/sources/instagram_comments.csv"),
 )
 
@@ -36,7 +37,7 @@ def _tip_from_row(row: dict[str, Any]) -> str:
 
 
 def build_dataset_from_sources(config: dict[str, Any]) -> list[dict[str, str]]:
-    """Spoji youtube/twitter/instagram comments CSV u finalni dataset.
+    """Spoji youtube/twitter/tiktok/instagram comments CSV u finalni dataset.
 
     ``id`` je redni broj: 1, 2, 3, … (bez ``sr-`` prefiksa).
     Piše ``dataset_csv`` i ``dataset_jsonl`` iz config.paths.

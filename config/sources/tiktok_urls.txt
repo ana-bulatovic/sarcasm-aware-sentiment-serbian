@@ -1,0 +1,16 @@
+# Lista TikTok video URL-ova (jedan po liniji).
+# Linije koje počinju sa # se ignorišu.
+#
+# Primer:
+# https://www.tiktok.com/@nesto/video/1234567890
+#
+# Pokretanje (automatski fetch u headed Chromium):
+#   pip install playwright
+#   playwright install chromium
+#   python scripts/collection/append_tiktok.py --tip politika
+#   python scripts/collection/append_tiktok.py --tip filmovi --url "https://www.tiktok.com/@nesto/video/ID"
+#
+# Prvi put: uloguj se u otvorenom browseru ako TikTok traži, pa Enter u terminalu.
+# Upisuje u data/processed/sources/tiktok_comments.csv (ne dira annotation_template).
+
+https://www.tiktok.com/@madafakamaka/video/7666023119664073992?lang=hr

@@ -14,7 +14,8 @@ Moduli u ovom paketu:
 
 - append_twitter: X/Twitter → twitter_comments.csv (odvojeno od COLLECTOR_REGISTRY)
 
-- append_tiktok / append_instagram / append_reddit: polu-ručni unos na annotation
+- append_tiktok: TikTok → tiktok_comments.csv (Playwright fetch / --manual)
+- append_instagram / append_reddit: polu-ručni unos na annotation
 
 """
 

@@ -33,6 +33,7 @@ paths:
   splits_dir: data/processed/splits
   twitter_csv: data/processed/sources/twitter_comments.csv
   youtube_csv: data/processed/sources/youtube_comments.csv
+  tiktok_csv: data/processed/sources/tiktok_comments.csv
   instagram_csv: data/processed/sources/instagram_comments.csv
   scratch_dir: data/processed/scratch
 
@@ -85,9 +86,19 @@ collection:
     source_label: twitter
 
   tiktok:
-    # Nema browser scrapinga (ToS). Koristi se rucni / polu-rucni unos:
-    # scripts/collection/append_tiktok.py --url "..." --comments-file putanja.txt
+    # Automatski fetch (Playwright headed browser) u POSEBAN CSV:
+    #   pip install playwright && playwright install chromium
+    #   python scripts/collection/append_tiktok.py --tip politika
+    #   python scripts/collection/append_tiktok.py --tip filmovi --url "https://www.tiktok.com/@nesto/video/ID"
+    # Ručno: --manual. Sesija browsera: data/external/tiktok/session/browser
     comments_dir: data/external/tiktok/
+    urls_file: config/sources/tiktok_urls.txt
+    output_csv: data/processed/sources/tiktok_comments.csv
+    user_data_dir: data/external/tiktok/session/browser
+    max_comments_per_video: 300
+    scroll_rounds: 25
+    scroll_pause_seconds: 1.2
+    post_sleep_seconds: 3.0
     source_label: tiktok
 
   instagram:

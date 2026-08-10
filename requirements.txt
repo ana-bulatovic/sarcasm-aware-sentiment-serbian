@@ -7,6 +7,7 @@ langdetect>=1.0.9
 beautifulsoup4>=4.12
 tqdm>=4.66
 twikit>=2.0
+playwright>=1.40
 
 transformers>=4.40
 scikit-learn>=1.3
