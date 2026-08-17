@@ -1,5 +1,5 @@
 {
-  "csv": "C:\\Users\\ANA\\Desktop\\Faks\\Master\\Master rad\\Master rad - Analiza sentimenta sa detekcijom sarkazma za srpski jezik\\sarcasm-aware-sentiment-serbian\\data\\processed\\dataset\\dataset.csv",
+  "csv": "C:\\Users\\korisnik\\Desktop\\Ana Bulatovic\\sarcasm-aware-sentiment-serbian\\data\\processed\\dataset\\dataset.csv",
   "n_ukupno": 2000,
   "n_anotirano": 2000,
   "n_neanotirano": 0,
@@ -125,6 +125,6 @@
     "figures/14_duzina_reci.png",
     "figures/17_pismo.png"
   ],
-  "figures_dir": "C:\\Users\\ANA\\Desktop\\Faks\\Master\\Master rad\\Master rad - Analiza sentimenta sa detekcijom sarkazma za srpski jezik\\sarcasm-aware-sentiment-serbian\\reports\\dataset_statistike\\figures",
-  "tables_dir": "C:\\Users\\ANA\\Desktop\\Faks\\Master\\Master rad\\Master rad - Analiza sentimenta sa detekcijom sarkazma za srpski jezik\\sarcasm-aware-sentiment-serbian\\reports\\dataset_statistike\\tabele"
+  "figures_dir": "C:\\Users\\korisnik\\Desktop\\Ana Bulatovic\\sarcasm-aware-sentiment-serbian\\reports\\dataset_statistike\\figures",
+  "tables_dir": "C:\\Users\\korisnik\\Desktop\\Ana Bulatovic\\sarcasm-aware-sentiment-serbian\\reports\\dataset_statistike\\tabele"
 }
