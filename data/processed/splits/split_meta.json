@@ -3,19 +3,19 @@
   "seed": 42,
   "train_ratio": 0.7,
   "val_ratio": 0.15,
-  "total_rows": 1546,
-  "valid_labeled": 1531,
-  "skipped_invalid": 15,
-  "train": 1072,
-  "val": 230,
-  "test": 229,
+  "total_rows": 2000,
+  "valid_labeled": 2000,
+  "skipped_invalid": 0,
+  "train": 1401,
+  "val": 301,
+  "test": 298,
   "sentiment": {
-    "-1": 623,
-    "1": 516,
-    "0": 392
+    "-1": 767,
+    "1": 678,
+    "0": 555
   },
   "sarcasm": {
-    "0": 822,
-    "1": 709
+    "0": 1022,
+    "1": 978
   }
 }

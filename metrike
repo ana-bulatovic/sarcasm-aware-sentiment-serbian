@@ -32,3 +32,14 @@ bertic
 [eval] multitask / test:
   sentiment: acc=0.624 macroF1=0.613 | sarcasm: acc=0.729 macroF1=0.729
   sentiment @ sarcasm=yes: acc=0.514 macroF1=0.477 (n=107)
+  
+2000 redova
+[eval] sentiment / test:
+  overall: acc=0.664 macroF1=0.651
+  @ sarcasm=yes: acc=0.589 macroF1=0.529 (n=146)
+[eval] sarcasm / test:
+  overall: acc=0.742 macroF1=0.742
+  @ sarcasm=yes: acc=0.760 macroF1=0.432 (n=146)
+[eval] multitask / test:
+  sentiment: acc=0.658 macroF1=0.645 | sarcasm: acc=0.688 macroF1=0.686
+  sentiment @ sarcasm=yes: acc=0.568 macroF1=0.531 (n=146)
