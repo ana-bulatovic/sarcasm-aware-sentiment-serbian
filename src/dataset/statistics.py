@@ -13,15 +13,12 @@ from typing import Any
 import pandas as pd
 
 from src.common.config import resolve_path
-from src.common.schema import SARCASM_VALUES, SENTIMENT_VALUES
+from src.common.schema import SARCASM_VALUES, SENTIMENT_VALUES, normalize_label
 
 
 def _norm_label(value: Any) -> str:
-    """Normalizuj labelu (strip + lower); None → prazan string."""
-    if value is None:
-        return ""
-    text = str(value).strip().lower()
-    return text
+    """Normalizuj labelu (strip); None / nan → prazan string."""
+    return normalize_label(value)
 
 
 def compute_dataset_statistics(
@@ -46,6 +43,7 @@ def compute_dataset_statistics(
     total = len(df)
 
     by_source = Counter(df["source"].astype(str).tolist()) if "source" in df.columns else {}
+    by_tip = Counter(df["tip"].astype(str).tolist()) if "tip" in df.columns else {}
 
     sentiments = df["sentiment"].map(_norm_label) if "sentiment" in df.columns else pd.Series([""] * total)
     sarcasms = df["sarcasm"].map(_norm_label) if "sarcasm" in df.columns else pd.Series([""] * total)
@@ -71,7 +69,8 @@ def compute_dataset_statistics(
 
     stats: dict[str, Any] = {
         "total_texts": total,
-        "by_source": dict(sorted(by_source.items())),
+        "by_source": dict(sorted(by_source.items(), key=lambda x: (-x[1], x[0]))),
+        "by_tip": dict(sorted(by_tip.items(), key=lambda x: (-x[1], x[0]))),
         "sentiment": sentiment_counts,
         "sarcasm": sarcasm_counts,
         "sentiment_sarcasm_combinations": combinations,
@@ -98,6 +97,10 @@ def print_statistics(stats: dict[str, Any]) -> None:
     print("\nPo izvoru:")
     for source, count in stats["by_source"].items():
         print(f"  {source}: {count}")
+    if stats.get("by_tip"):
+        print("\nPo temi (tip):")
+        for tip, count in stats["by_tip"].items():
+            print(f"  {tip}: {count}")
     print("\nSentiment:")
     for k, v in stats["sentiment"].items():
         print(f"  {k}: {v}")

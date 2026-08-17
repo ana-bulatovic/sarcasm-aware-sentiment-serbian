@@ -16,7 +16,7 @@ from typing import Any
 
 from src.common.config import ensure_dir, resolve_path
 from src.common.io_utils import load_csv, load_jsonl, save_csv, save_jsonl
-from src.common.schema import FINAL_COLUMNS, DatasetRecord
+from src.common.schema import FINAL_COLUMNS, DatasetRecord, normalize_label
 from src.common.source_utils import PLATFORM_ORDER, platform_from_source, platform_sort_key
 
 # Redosled spajanja source CSV-ova (youtube → twitter → tiktok → instagram)
@@ -68,8 +68,8 @@ def build_dataset_from_sources(config: dict[str, Any]) -> list[dict[str, str]]:
                     source=str(rec.get("source", "")).strip(),
                     text=text,
                     tip=_tip_from_row(rec),
-                    sentiment=str(rec.get("sentiment") or "").strip(),
-                    sarcasm=str(rec.get("sarcasm") or "").strip(),
+                    sentiment=normalize_label(rec.get("sentiment")),
+                    sarcasm=normalize_label(rec.get("sarcasm")),
                 ).to_dict()
             )
 

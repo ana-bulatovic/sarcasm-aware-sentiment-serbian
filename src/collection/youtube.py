@@ -35,6 +35,11 @@ class YouTubeCollector(BaseCollector):
             line = line.split("v=", 1)[1].split("&", 1)[0]
         elif "youtu.be/" in line:
             line = line.split("youtu.be/", 1)[1].split("?", 1)[0]
+        elif "/shorts/" in line:
+            line = line.split("/shorts/", 1)[1]
+        elif "/embed/" in line:
+            line = line.split("/embed/", 1)[1]
+        line = line.split("?", 1)[0].split("&", 1)[0].split("/", 1)[0]
         return line.strip()
 
     def _load_video_ids(self) -> list[str]:

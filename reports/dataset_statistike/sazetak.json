@@ -1,0 +1,130 @@
+{
+  "csv": "C:\\Users\\ANA\\Desktop\\Faks\\Master\\Master rad\\Master rad - Analiza sentimenta sa detekcijom sarkazma za srpski jezik\\sarcasm-aware-sentiment-serbian\\data\\processed\\dataset\\dataset.csv",
+  "n_ukupno": 2000,
+  "n_anotirano": 2000,
+  "n_neanotirano": 0,
+  "n_tacni_duplikati_teksta": 1,
+  "po_izvoru": {
+    "YouTube": 1750,
+    "Twitter/X": 143,
+    "TikTok": 87,
+    "Instagram": 20
+  },
+  "po_temi": {
+    "Muzika": 719,
+    "Filmovi": 572,
+    "Zabava": 432,
+    "Politika": 131,
+    "Sport": 130,
+    "Ostalo": 16
+  },
+  "sentiment": {
+    "Pozitivno": 678,
+    "Neutralno": 555,
+    "Negativno": 767
+  },
+  "sarkazam": {
+    "Sarkazam": 978,
+    "Nije sarkazam": 1022
+  },
+  "kombinacije": [
+    {
+      "sentiment": "1",
+      "sentiment_ime": "Pozitivno",
+      "sarcasm": "1",
+      "sarcasm_ime": "Sarkazam",
+      "n": 211,
+      "udeo_%": 10.55
+    },
+    {
+      "sentiment": "1",
+      "sentiment_ime": "Pozitivno",
+      "sarcasm": "0",
+      "sarcasm_ime": "Nije sarkazam",
+      "n": 467,
+      "udeo_%": 23.35
+    },
+    {
+      "sentiment": "0",
+      "sentiment_ime": "Neutralno",
+      "sarcasm": "1",
+      "sarcasm_ime": "Sarkazam",
+      "n": 265,
+      "udeo_%": 13.25
+    },
+    {
+      "sentiment": "0",
+      "sentiment_ime": "Neutralno",
+      "sarcasm": "0",
+      "sarcasm_ime": "Nije sarkazam",
+      "n": 290,
+      "udeo_%": 14.5
+    },
+    {
+      "sentiment": "-1",
+      "sentiment_ime": "Negativno",
+      "sarcasm": "1",
+      "sarcasm_ime": "Sarkazam",
+      "n": 502,
+      "udeo_%": 25.1
+    },
+    {
+      "sentiment": "-1",
+      "sentiment_ime": "Negativno",
+      "sarcasm": "0",
+      "sarcasm_ime": "Nije sarkazam",
+      "n": 265,
+      "udeo_%": 13.25
+    }
+  ],
+  "duzina": {
+    "karakteri": {
+      "min": 6.0,
+      "p25": 28.0,
+      "median": 42.0,
+      "mean": 57.868,
+      "p75": 67.0,
+      "p90": 106.0,
+      "p95": 139.0,
+      "max": 1398.0,
+      "std": 66.68746940767808
+    },
+    "reci": {
+      "min": 1.0,
+      "p25": 5.0,
+      "median": 8.0,
+      "mean": 10.253,
+      "p75": 12.0,
+      "p90": 19.0,
+      "p95": 24.0,
+      "max": 224.0,
+      "std": 11.012810313448608
+    }
+  },
+  "pismo": {
+    "latinica": 1939,
+    "ćirilica": 57,
+    "mešano": 4
+  },
+  "figures": [
+    "figures/01_izvori.png",
+    "figures/02_teme.png",
+    "figures/03_sentiment.png",
+    "figures/04_sarkazam.png",
+    "figures/05_kombinacije_heatmap.png",
+    "figures/06_kombinacije_grouped.png",
+    "figures/07_sentiment_po_izvoru.png",
+    "figures/08_sarkazam_po_izvoru.png",
+    "figures/09_sentiment_po_temi.png",
+    "figures/10_sarkazam_po_temi.png",
+    "figures/11_udeo_sarkazma_po_sentimentu.png",
+    "figures/12_udeo_sarkazma_po_temi.png",
+    "figures/15_duzina_po_sentimentu.png",
+    "figures/16_duzina_po_sarkazmu.png",
+    "figures/13_duzina_karaktera.png",
+    "figures/14_duzina_reci.png",
+    "figures/17_pismo.png"
+  ],
+  "figures_dir": "C:\\Users\\ANA\\Desktop\\Faks\\Master\\Master rad\\Master rad - Analiza sentimenta sa detekcijom sarkazma za srpski jezik\\sarcasm-aware-sentiment-serbian\\reports\\dataset_statistike\\figures",
+  "tables_dir": "C:\\Users\\ANA\\Desktop\\Faks\\Master\\Master rad\\Master rad - Analiza sentimenta sa detekcijom sarkazma za srpski jezik\\sarcasm-aware-sentiment-serbian\\reports\\dataset_statistike\\tabele"
+}

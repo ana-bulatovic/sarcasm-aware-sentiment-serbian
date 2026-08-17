@@ -1,35 +1,46 @@
 {
-  "total_texts": 1512,
+  "total_texts": 2000,
   "by_source": {
-    "instagram": 20,
+    "youtube": 1750,
     "twitter": 143,
-    "youtube": 1349
+    "tiktok": 87,
+    "instagram": 20
+  },
+  "by_tip": {
+    "muzika": 719,
+    "filmovi": 572,
+    "zabava": 432,
+    "politika": 131,
+    "sport": 130,
+    "fakultet": 14,
+    "hrana": 1,
+    "tenis": 1
   },
   "sentiment": {
-    "1": 506,
-    "0": 385,
-    "-1": 621,
+    "1": 678,
+    "0": 555,
+    "-1": 767,
     "unlabeled": 0,
     "other": 0
   },
   "sarcasm": {
-    "1": 692,
-    "0": 815,
-    "unlabeled": 1,
-    "other": 4
+    "1": 978,
+    "0": 1022,
+    "unlabeled": 0,
+    "other": 0
   },
   "sentiment_sarcasm_combinations": {
-    "1/1": 140,
-    "1/0": 363,
-    "0/1": 161,
-    "0/0": 222,
-    "-1/1": 391,
-    "-1/0": 230,
-    "unlabeled_pair": 1
+    "1/1": 211,
+    "1/0": 467,
+    "0/1": 265,
+    "0/0": 290,
+    "-1/1": 502,
+    "-1/0": 265,
+    "unlabeled_pair": 0
   },
   "annotation_progress": {
-    "fully_labeled": 1511,
+    "fully_labeled": 2000,
     "missing_sentiment": 0,
-    "missing_sarcasm": 1
+    "missing_sarcasm": 0
   }
 }

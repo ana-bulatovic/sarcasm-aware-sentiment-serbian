@@ -1,0 +1,7 @@
+﻿sentiment,sentiment_ime,sarcasm,sarcasm_ime,n,udeo_%
+1,Pozitivno,1,Sarkazam,211,10.55
+1,Pozitivno,0,Nije sarkazam,467,23.35
+0,Neutralno,1,Sarkazam,265,13.25
+0,Neutralno,0,Nije sarkazam,290,14.5
+-1,Negativno,1,Sarkazam,502,25.1
+-1,Negativno,0,Nije sarkazam,265,13.25

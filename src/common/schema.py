@@ -16,6 +16,16 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass, field
 from typing import Any
 
+
+def normalize_label(value: Any) -> str:
+    """Sredi CSV labelu: ``1.0`` → ``1``, ``nan`` → prazan string."""
+    text = str(value or "").strip()
+    if text.lower() in {"nan", "none", "null"}:
+        return ""
+    if text.endswith(".0") and text[:-2].lstrip("-").isdigit():
+        return text[:-2]
+    return text
+
 FINAL_COLUMNS = ["id", "source", "text", "tip", "sentiment", "sarcasm"]
 
 # Sentiment: 1 = positive, 0 = neutral, -1 = negative (čuvaju se kao string u CSV)
